@@ -862,7 +862,22 @@
                                 </form>
                             </div>
                             <!-- Когда получите активированный скрипт, замените блок выше на что-то вроде:
-                            <script async src="URL_ВАШЕГО_СКРИПТА_ВИДЖЕТА_АВИАБИЛЕТОВ" charset="utf-8"></script>
+                           <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
+  (function () {
+        var script = document.createElement("script");
+        script.async = 1;
+        script.type = "module";
+        script.src = "https://tpwgt.com/wl_web/main.js?wl_id=1368";
+        document.head.appendChild(script);
+
+        window.TPWL_CONFIGURATION = {
+          ...window.TPWL_CONFIGURATION,
+          resultsURL: "https://essem39.github.io/Airflow.html/" 
+        };
+      })();
+</script>
+
+<div id="tpwl-search"></div>
                             -->
                         </div>
                     </div>
