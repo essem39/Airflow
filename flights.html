@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airflow - Поиск дешёвых авиабилетов, аренда авто и отели</title>
-    <meta name="description" content="Airflow - ваш надёжный помощник в поиске дешёвых авиабилетов, аренде автомобилей и бронировании отелей. Сравниваем цены с сотен сайтов для лучших предложений.">
+    <title>Airflow - Поиск дешёвых авиабилетов</title>
+    <meta name="description" content="Поиск дешёвых авиабилетов с Airflow. Сравниваем цены с сотен сайтов и позволяем вам выбрать самый дешевый вариант перелета.">
     <meta name="author" content="Airflow">
-    <meta name="keywords" content="авиабилеты, дешевые билеты, аренда авто, отели, путешествия, бронирование">
+    <meta name="keywords" content="поиск авиабилетов, дешёвые билеты, авиабилеты, бронирование, путешествия">
     
-    <meta property="og:title" content="Airflow - Поиск дешёвых авиабилетов и путешествий">
-    <meta property="og:description" content="Сравниваем цены с сотен сайтов и позволяем выбрать самый дешёвый вариант перелёта, аренды авто и проживания.">
+    <meta property="og:title" content="Airflow - Поиск дешёвых авиабилетов">
+    <meta property="og:description" content="Сравниваем цены с сотен сайтов и позволяем вам выбрать самый дешевый вариант перелета.">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:type" content="website">
+    <meta content="product.item" property="og:type">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
     
@@ -22,12 +23,28 @@
             box-sizing: border-box;
         }
         
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .page-wrapper {
+            flex: 1 0 auto; /* Важно для растягивания контента */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .main-content {
+            flex: 1;
         }
         
         .container {
@@ -60,21 +77,10 @@
             gap: 12px;
             text-decoration: none;
             color: inherit;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
         }
         
         .logo-icon {
-            font-size: 40px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
+            font-size: 32px;
         }
         
         .logo-text {
@@ -83,16 +89,14 @@
         }
         
         .logo-title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 900;
             color: #1e40af;
-            letter-spacing: -0.5px;
         }
         
         .logo-subtitle {
             font-size: 12px;
             color: #6b7280;
-            font-weight: 500;
         }
         
         .nav-menu {
@@ -111,8 +115,13 @@
             position: relative;
         }
         
-        .nav-link:hover, .nav-link.active {
-            color: #2563eb;
+        .nav-link:hover {
+            color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .nav-link.active {
+            color: #3b82f6;
             background: #eff6ff;
         }
         
@@ -124,7 +133,7 @@
             transform: translateX(-50%);
             width: 32px;
             height: 4px;
-            background: #2563eb;
+            background: #3b82f6;
             border-radius: 2px;
         }
         
@@ -134,7 +143,6 @@
             border: none;
             font-size: 24px;
             cursor: pointer;
-            padding: 8px;
         }
         
         .mobile-menu {
@@ -159,22 +167,21 @@
             color: #374151;
             font-weight: 600;
             border-bottom: 1px solid #f3f4f6;
-            transition: all 0.3s ease;
         }
         
         .mobile-nav-link:hover, .mobile-nav-link.active {
-            color: #2563eb;
+            color: #3b82f6;
             background: #eff6ff;
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #312e81 100%);
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+            color: white;
             position: relative;
             overflow: hidden;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
         }
         
         .hero::before {
@@ -184,420 +191,372 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.2);
-        }
-        
-        .hero-bg-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.1;
-        }
-        
-        .hero-bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: white;
-            filter: blur(40px);
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        .hero-bg-circle:nth-child(1) {
-            top: 80px;
-            left: 80px;
-            width: 300px;
-            height: 300px;
-        }
-        
-        .hero-bg-circle:nth-child(2) {
-            top: 160px;
-            right: 80px;
-            width: 300px;
-            height: 300px;
-            animation-delay: 1s;
-        }
-        
-        .hero-bg-circle:nth-child(3) {
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            animation-delay: 2s;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.1; transform: scale(1); }
-            50% { opacity: 0.2; transform: scale(1.1); }
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">');
+            opacity: 0.3;
         }
         
         .hero-content {
             position: relative;
             z-index: 10;
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
         }
         
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 500;
+        .hero-icon {
+            font-size: 80px;
             margin-bottom: 24px;
+            display: block;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
         
         .hero-title {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 900;
-            line-height: 1.1;
             margin-bottom: 24px;
-        }
-        
-        .hero-gradient-text {
-            background: linear-gradient(45deg, #fbbf24, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         
         .hero-subtitle {
             font-size: clamp(1.125rem, 2vw, 1.5rem);
-            color: #bfdbfe;
+            color: #e0f2fe;
             margin-bottom: 32px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
         
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            align-items: center;
-            margin-bottom: 32px;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 32px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            min-width: 200px;
-            justify-content: center;
-        }
-        
-        .btn-primary {
-            background: white;
-            color: #1e40af;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            background: #f8fafc;
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-        
-        .btn-secondary:hover {
-            background: white;
-            color: #1e40af;
-            transform: translateY(-2px);
-        }
-        
-        .hero-features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 24px;
-            font-size: 14px;
-            color: #bfdbfe;
-        }
-        
-        .hero-feature {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        /* Stats Section */
-        .stats {
-            background: #f8fafc;
+        /* Features Grid */
+        .features-section {
             padding: 60px 20px;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-        
-        .stat-item {
-            padding: 20px;
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #2563eb;
-            margin-bottom: 8px;
-            display: block;
-        }
-        
-        .stat-label {
-            color: #6b7280;
-            font-weight: 500;
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 80px 20px;
             background: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 24px;
+            border-radius: 16px;
+            background: #f8fafc;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+        
+        .feature-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+        
+        .feature-description {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        /* Widget Section */
+        .widget-section {
+            padding: 60px 20px;
+            background: #f8fafc;
         }
         
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
         
         .section-title {
-            font-size: 3rem;
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 900;
-            color: #111827;
+            color: #1f2937;
             margin-bottom: 16px;
         }
         
         .section-subtitle {
             font-size: 1.25rem;
             color: #6b7280;
-            max-width: 600px;
+        }
+        
+        /* Стилизация для контейнера виджета */
+        .widget-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 800px;
             margin: 0 auto;
         }
         
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 32px;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 16px;
-            padding: 32px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            border: 1px solid #f3f4f6;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        
-        .service-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
+        /* Стили для виджета */
+        .widget-wrapper {
+            width: 100%; 
+            max-width: 100%;
+            margin: 0 auto;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            margin-bottom: 24px;
-            transition: transform 0.3s ease;
         }
         
-        .service-card:hover .service-icon {
-            transform: scale(1.1);
+        /* Временная заглушка для виджета */
+        .flights-search-widget {
+            width: 100%;
+            max-width: 700px;
+            padding: 20px;
+            border: 2px dashed #3b82f6;
+            border-radius: 8px;
+            margin: 20px 0;
         }
         
-        .service-icon.flights {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        @media (max-width: 640px) {
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-align: left;
+            color: #1f2937;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+            outline: none;
+        }
+        
+        .search-btn {
+            grid-column: 1 / -1;
+            background: #3b82f6;
             color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
         
-        .service-icon.cars {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
+        .search-btn:hover {
+            background: #1d4ed8;
         }
         
-        .service-icon.hotels {
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-            color: white;
+        .widget-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.7;
         }
         
-        .service-title {
+        .widget-title {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 12px;
-            color: #111827;
+            color: #1f2937;
         }
         
-        .service-description {
-            font-size: 1.125rem;
-            color: #6b7280;
+        .widget-description {
             margin-bottom: 24px;
-        }
-        
-        .service-features {
-            list-style: none;
-            margin-bottom: 24px;
-        }
-        
-        .service-feature {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
+            font-size: 1rem;
             color: #6b7280;
         }
         
-        .service-feature::before {
-            content: '✓';
-            color: #10b981;
-            font-weight: bold;
-            font-size: 16px;
+        /* Popular Destinations Section */
+        .destinations-section {
+            padding: 60px 20px;
+            background: white;
         }
         
-        .service-btn {
-            width: 100%;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            text-align: center;
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .destination-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .destination-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .destination-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+        }
+        
+        .destination-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .destination-price {
+            font-size: 0.875rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
+            gap: 4px;
         }
         
-        .service-btn.flights {
-            background: #2563eb;
-            color: white;
+        .destination-info {
+            padding: 16px;
+            background: white;
         }
         
-        .service-btn.cars {
-            background: #059669;
-            color: white;
+        .destination-date {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 8px;
         }
         
-        .service-btn.hotels {
-            background: #7c3aed;
-            color: white;
+        .destination-flight {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .service-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        .destination-flight-info {
+            display: flex;
+            flex-direction: column;
         }
         
-        /* Features Section */
-        .features {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+        .airline {
+            font-weight: 700;
+            color: #1f2937;
         }
         
-        .features-grid {
+        .flight-duration {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        .flight-price {
+            font-weight: 700;
+            color: #3b82f6;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            padding: 60px 20px;
+            background: #f8fafc;
+        }
+        
+        .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 32px;
         }
         
-        .feature-card {
-            background: white;
-            border-radius: 16px;
-            padding: 32px;
+        .benefit-card {
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 32px 20px;
+            border-radius: 16px;
+            background: white;
             transition: all 0.3s ease;
         }
         
-        .feature-card:hover {
+        .benefit-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
         
-        .feature-icon {
+        .benefit-icon {
             width: 80px;
             height: 80px;
-            border-radius: 16px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 40px;
-            margin: 0 auto 24px;
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: white;
         }
         
-        .feature-title {
-            font-size: 1.5rem;
+        .benefit-title {
+            font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 16px;
-            color: #111827;
+            margin-bottom: 12px;
+            color: #1f2937;
         }
         
-        .feature-description {
+        .benefit-description {
             color: #6b7280;
             line-height: 1.6;
         }
         
-        /* CTA Section */
-        .cta {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #2563eb 0%, #3730a3 100%);
-            text-align: center;
-            color: white;
-        }
-        
-        .cta-title {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 24px;
-        }
-        
-        .cta-subtitle {
-            font-size: 1.25rem;
-            color: #bfdbfe;
-            margin-bottom: 32px;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            align-items: center;
-        }
-        
         /* Footer */
         .footer {
-            background: #111827;
+            background: #1f2937;
             color: white;
             padding: 60px 20px 20px;
+            margin-top: auto; /* Важно для позиционирования футера внизу */
+            flex-shrink: 0; /* Запрещает футеру сжиматься */
         }
         
         .footer-content {
@@ -638,57 +597,91 @@
             color: white;
         }
         
-        .footer-contact {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #d1d5db;
-            font-size: 14px;
-        }
-        
         .footer-bottom {
             border-top: 1px solid #374151;
             padding-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
             text-align: center;
-        }
-        
-        .footer-bottom p {
             color: #9ca3af;
             font-size: 14px;
         }
         
-        /* Responsive Design */
-        @media (min-width: 640px) {
-            .hero-buttons {
+        /* Cookie notice */
+        .cookie-notice {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 16px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cookie-notice-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .cookie-notice-content {
                 flex-direction: row;
-                justify-content: center;
-            }
-            
-            .hero-features {
-                justify-content: center;
-            }
-            
-            .cta-buttons {
-                flex-direction: row;
-                justify-content: center;
-            }
-            
-            .footer-bottom {
-                flex-direction: row;
+                text-align: left;
                 justify-content: space-between;
             }
         }
         
+        .cookie-text {
+            margin-bottom: 16px;
+        }
+        
+        @media (min-width: 768px) {
+            .cookie-text {
+                margin-bottom: 0;
+                margin-right: 24px;
+            }
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .cookie-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .accept-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+        }
+        
+        .accept-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .policy-btn {
+            background: transparent;
+            color: #3b82f6;
+            border: 1px solid #3b82f6;
+        }
+        
+        .policy-btn:hover {
+            background: #eff6ff;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -698,23 +691,26 @@
                 display: block;
             }
             
-            .hero-content {
-                padding: 60px 20px;
+            .hero {
+                padding: 60px 16px;
             }
             
-            .section-title {
-                font-size: 2rem;
+            .features-section,
+            .widget-section,
+            .destinations-section,
+            .benefits-section {
+                padding: 40px 16px;
             }
             
-            .cta-title {
-                font-size: 2rem;
+            .widget-container {
+                padding: 30px 16px;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
+            .footer {
+                padding: 40px 16px 20px;
             }
             
-            .features-grid {
+            .destinations-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -724,315 +720,391 @@
                 padding: 0 16px;
             }
             
-            .container {
-                padding: 0 16px;
-            }
-            
-            .hero-content {
-                padding: 40px 16px;
-            }
-            
-            .services {
-                padding: 60px 16px;
-            }
-            
-            .features {
-                padding: 60px 16px;
-            }
-            
-            .cta {
-                padding: 60px 16px;
-            }
-            
-            .footer {
-                padding: 40px 16px 20px;
+            .features-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">✈️</div>
-                <div class="logo-text">
-                    <div class="logo-title">Airflow</div>
-                    <div class="logo-subtitle">Путешествия мечты</div>
-                </div>
-            </a>
-            
-            <ul class="nav-menu">
-                <li><a href="#" class="nav-link active">Главная</a></li>
-                <li><a href="flights.html" class="nav-link">Авиабилеты</a></li>
-                <li><a href="cars.html" class="nav-link">Аренда авто</a></li>
-                <li><a href="hotels.html" class="nav-link">Отели</a></li>
-            </ul>
-            
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-        </div>
-        
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#" class="mobile-nav-link active">Главная</a>
-            <a href="flights.html" class="mobile-nav-link">Авиабилеты</a>
-            <a href="cars.html" class="mobile-nav-link">Аренда авто</a>
-            <a href="hotels.html" class="mobile-nav-link">Отели</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg-pattern">
-            <div class="hero-bg-circle"></div>
-            <div class="hero-bg-circle"></div>
-            <div class="hero-bg-circle"></div>
-        </div>
-        
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    ⭐ Более 10 миллионов довольных клиентов
-                </div>
-                
-                <h1 class="hero-title">
-                    Путешествуйте<br>
-                    <span class="hero-gradient-text">умнее и дешевле</span>
-                </h1>
-                
-                <p class="hero-subtitle">
-                    Сравниваем цены с 1000+ сайтов, чтобы найти лучшие предложения по авиабилетам, отелям и аренде авто
-                </p>
-                
-                <div class="hero-buttons">
-                    <a href="flights.html" class="btn btn-primary">
-                        ✈️ Найти авиабилеты →
-                    </a>
-                    <a href="cars.html" class="btn btn-secondary">
-                        🚗 Арендовать авто
-                    </a>
-                </div>
-
-                <div class="hero-features">
-                    <div class="hero-feature">
-                        ✓ Без скрытых комиссий
+    <div class="page-wrapper">
+        <header class="navbar">
+            <div class="nav-container container">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        ✈️
                     </div>
-                    <div class="hero-feature">
-                        ✓ Мгновенное бронирование
+                    <div class="logo-text">
+                        <div class="logo-title">
+                            Airflow
+                        </div>
+                        <div class="logo-subtitle">
+                            Путешествия мечты
+                        </div>
                     </div>
-                    <div class="hero-feature">
-                        ✓ Поддержка 24/7
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">10M+</span>
-                    <div class="stat-label">Довольных клиентов</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">1000+</span>
-                    <div class="stat-label">Партнерских сайтов</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">200+</span>
-                    <div class="stat-label">Стран мира</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">24/7</span>
-                    <div class="stat-label">Поддержка клиентов</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Все для вашего путешествия</h2>
-                <p class="section-subtitle">
-                    Комплексные решения для планирования идеального отпуска
-                </p>
-            </div>
-            
-            <div class="services-grid">
-                <a href="flights.html" class="service-card">
-                    <div class="service-icon flights">✈️</div>
-                    <h3 class="service-title">Авиабилеты</h3>
-                    <p class="service-description">
-                        Поиск и сравнение цен на авиабилеты от 500+ авиакомпаний
-                    </p>
-                    <ul class="service-features">
-                        <li class="service-feature">White Label метапоиск</li>
-                        <li class="service-feature">Лучшие цены гарантированы</li>
-                        <li class="service-feature">Мгновенное бронирование</li>
+                </a>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#" class="nav-link">Главная</a></li>
+                        <li><a href="#" class="nav-link active">Авиабилеты</a></li>
+                        <li><a href="#" class="nav-link">Аренда авто</a></li>
+                        <li><a href="#" class="nav-link">Отели</a></li>
                     </ul>
-                    <div class="service-btn flights">
-                        Найти билеты →
+                </nav>
+                <button class="mobile-menu-btn">☰</button>
+            </div>
+            <div class="mobile-menu">
+                <a href="#" class="mobile-nav-link">Главная</a>
+                <a href="#" class="mobile-nav-link active">Авиабилеты</a>
+                <a href="#" class="mobile-nav-link">Аренда авто</a>
+                <a href="#" class="mobile-nav-link">Отели</a>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="hero">
+                <div class="hero-content container">
+                    <div class="hero-icon">✈️</div>
+                    <h1 class="hero-title">Поиск дешёвых авиабилетов</h1>
+                    <p class="hero-subtitle">
+                        Ваше путешествие начинается здесь. Сравниваем цены с сотен сайтов и позволяем вам выбрать самый дешевый вариант перелета.
+                    </p>
+                </div>
+            </section>
+
+            <section class="features-section">
+                <div class="container">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                🔄
+                            </div>
+                            <h3 class="feature-title">Сравнение цен</h3>
+                            <p class="feature-description">
+                                Сравниваем цены с сотен сайтов
+                            </p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                💰
+                            </div>
+                            <h3 class="feature-title">Экономия до 60%</h3>
+                            <p class="feature-description">
+                                Находим самые выгодные предложения
+                            </p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                🔍
+                            </div>
+                            <h3 class="feature-title">Умный поиск</h3>
+                            <p class="feature-description">
+                                Все направления и авиакомпании
+                            </p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                ⚡
+                            </div>
+                            <h3 class="feature-title">Быстрая покупка</h3>
+                            <p class="feature-description">
+                                Без скрытых комиссий и сборов
+                            </p>
+                        </div>
                     </div>
-                </a>
+                </div>
+            </section>
 
-                <a href="cars.html" class="service-card">
-                    <div class="service-icon cars">🚗</div>
-                    <h3 class="service-title">Аренда авто</h3>
-                    <p class="service-description">
-                        Удобная аренда автомобилей в 180+ странах мира
-                    </p>
-                    <ul class="service-features">
-                        <li class="service-feature">Партнерство с Localrent.com</li>
-                        <li class="service-feature">Все классы автомобилей</li>
-                        <li class="service-feature">Страхование включено</li>
-                    </ul>
-                    <div class="service-btn cars">
-                        Арендовать авто →
+            <section class="widget-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Найдите идеальный рейс</h2>
+                        <p class="section-subtitle">
+                            Просто укажите направление и даты поездки
+                        </p>
                     </div>
-                </a>
-
-                <a href="hotels.html" class="service-card">
-                    <div class="service-icon hotels">🏨</div>
-                    <h3 class="service-title">Отели</h3>
-                    <p class="service-description">
-                        Бронирование отелей и размещения по всему миру
-                    </p>
-                    <ul class="service-features">
-                        <li class="service-feature">⏰ Скоро - интеграция с Expedia</li>
-                        <li class="service-feature">Миллионы вариантов размещения</li>
-                        <li class="service-feature">Реальные отзывы гостей</li>
-                    </ul>
-                    <div class="service-btn hotels">
-                        Скоро доступно →
+                    
+                    <div class="widget-container">
+                        <div class="widget-icon">✈️</div>
+                        <h3 class="widget-title">Поиск авиабилетов</h3>
+                        <p class="widget-description">
+                            Сравниваем цены с сотен сайтов и позволяем вам выбрать самый дешевый вариант перелета
+                        </p>
+                        
+                        <div class="widget-wrapper">
+                            <!-- Здесь будет ваш виджет поиска авиабилетов. Пока он не активирован, 
+                            показываем форму-заглушку. Когда получите скрипт для виджета, замените
+                            этот блок на тег script с вашим виджетом. -->
+                            <div class="flights-search-widget">
+                                <form class="search-form">
+                                    <div class="form-group">
+                                        <label class="form-label">Откуда</label>
+                                        <input type="text" class="form-control" placeholder="Город отправления">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Куда</label>
+                                        <input type="text" class="form-control" placeholder="Город назначения">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Дата вылета</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Дата возвращения</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                    <button type="button" class="search-btn">Найти билеты</button>
+                                </form>
+                            </div>
+                            <!-- Когда получите активированный скрипт, замените блок выше на что-то вроде:
+                            <script async src="URL_ВАШЕГО_СКРИПТА_ВИДЖЕТА_АВИАБИЛЕТОВ" charset="utf-8"></script>
+                            -->
+                        </div>
                     </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Почему выбирают Airflow</h2>
-                <p class="section-subtitle">
-                    Мы делаем путешествия доступными и удобными для каждого
-                </p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
-                    <h3 class="feature-title">Умный поиск</h3>
-                    <p class="feature-description">
-                        Наш алгоритм сравнивает миллионы предложений за секунды, находя лучшие цены для вас
-                    </p>
                 </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h3 class="feature-title">Глобальное покрытие</h3>
-                    <p class="feature-description">
-                        Путешествуйте в любую точку мира с нашей сетью из 1000+ партнеров в 200+ странах
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3 class="feature-title">Безопасность</h3>
-                    <p class="feature-description">
-                        Защищенные платежи, проверенные партнеры и круглосуточная поддержка для вашего спокойствия
-                    </p>
-                </div>
+            </section>
 
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3 class="feature-title">Лучшие цены</h3>
-                    <p class="feature-description">
-                        Гарантируем лучшие цены на рынке или вернем разницу в течение 24 часов
-                    </p>
+            <section class="destinations-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Популярные направления перелётов</h2>
+                        <p class="section-subtitle">
+                            Вдохновитесь идеями для вашего следующего путешествия
+                        </p>
+                    </div>
+                    
+                    <div class="destinations-grid">
+                        <div class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Москва — Санкт-Петербург</div>
+                                    <div class="destination-price">от 3,900 ₽</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Ноя - Дек 2025</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">Аэрофлот</div>
+                                        <div class="flight-duration">1ч 35м</div>
+                                    </div>
+                                    <div class="flight-price">3,900 ₽</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Москва — Сочи</div>
+                                    <div class="destination-price">от 5,800 ₽</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Ноя - Дек 2025</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">S7 Airlines</div>
+                                        <div class="flight-duration">2ч 25м</div>
+                                    </div>
+                                    <div class="flight-price">5,800 ₽</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Москва — Стамбул</div>
+                                    <div class="destination-price">от 13,500 ₽</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Ноя - Дек 2025</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">Turkish Airlines</div>
+                                        <div class="flight-duration">3ч 30м</div>
+                                    </div>
+                                    <div class="flight-price">13,500 ₽</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Москва — Дубай</div>
+                                    <div class="destination-price">от 19,200 ₽</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Ноя - Дек 2025</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">Emirates</div>
+                                        <div class="flight-duration">5ч 15м</div>
+                                    </div>
+                                    <div class="flight-price">19,200 ₽</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Москва — Париж</div>
+                                    <div class="destination-price">от 21,700 ₽</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Ноя - Дек 2025</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">Air France</div>
+                                        <div class="flight-duration">4ч 10м</div>
+                                    </div>
+                                    <div class="flight-price">21,700 ₽</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1544085311-11a028465b03?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Москва — Нью-Йорк</div>
+                                    <div class="destination-price">от 45,900 ₽</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Ноя - Дек 2025</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">Аэрофлот</div>
+                                        <div class="flight-duration">10ч 30м</div>
+                                    </div>
+                                    <div class="flight-price">45,900 ₽</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3 class="feature-title">Миллионы клиентов</h3>
-                    <p class="feature-description">
-                        Более 10 миллионов путешественников доверяют нам планирование своих поездок
-                    </p>
+            <section class="benefits-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Преимущества поиска с Airflow</h2>
+                    </div>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                🔎
+                            </div>
+                            <h3 class="benefit-title">Все рейсы</h3>
+                            <p class="benefit-description">
+                                Тысячи предложений от сотен авиакомпаний в одном месте
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                💸
+                            </div>
+                            <h3 class="benefit-title">Без комиссий</h3>
+                            <p class="benefit-description">
+                                Вы не платите никаких дополнительных сборов или наценок
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                🛡️
+                            </div>
+                            <h3 class="benefit-title">Безопасность</h3>
+                            <p class="benefit-description">
+                                Все платежи защищены современными протоколами безопасности
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                📊
+                            </div>
+                            <h3 class="benefit-title">Прогноз цен</h3>
+                            <p class="benefit-description">
+                                Умный алгоритм предсказывает изменения стоимости билетов
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                📱
+                            </div>
+                            <h3 class="benefit-title">Мобильная версия</h3>
+                            <p class="benefit-description">
+                                Удобный поиск и покупка билетов с любого устройства
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                🌍
+                            </div>
+                            <h3 class="benefit-title">Мировое покрытие</h3>
+                            <p class="benefit-description">
+                                Билеты во все страны мира с самыми выгодными ценами
+                            </p>
+                        </div>
+                    </div>
                 </div>
+            </section>
+        </main>
+    </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3 class="feature-title">Поддержка 24/7</h3>
-                    <p class="feature-description">
-                        Наша команда экспертов готова помочь вам в любое время дня и ночи
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2 class="cta-title">Готовы начать свое путешествие?</h2>
-            <p class="cta-subtitle">
-                Присоединяйтесь к миллионам путешественников, которые экономят с Airflow
-            </p>
-            <div class="cta-buttons">
-                <a href="flights.html" class="btn btn-primary">
-                    ✈️ Найти авиабилеты
-                </a>
-                <a href="cars.html" class="btn btn-secondary">
-                    🚗 Арендовать авто
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                        <span style="font-size: 32px;">✈️</span>
-                        <div>
-                            <h3 style="margin: 0; font-size: 24px;">Airflow</h3>
-                            <p style="margin: 0; font-size: 12px; color: #9ca3af;">Путешествия мечты</p>
+                    <div class="logo">
+                        <div class="logo-icon">
+                            ✈️
+                        </div>
+                        <div class="logo-text">
+                            <div class="logo-title">
+                                Airflow
+                            </div>
+                            <div class="logo-subtitle">
+                                Путешествия мечты
+                            </div>
                         </div>
                     </div>
                     <p>
                         Мы помогаем найти лучшие предложения по авиабилетам, аренде авто и бронированию отелей. 
                         Сравниваем цены с сотен сайтов для вашего удобства.
                     </p>
-                    <div class="footer-contact">
-                        <div class="contact-item">
-                            📧 support@airflow.travel
-                        </div>
-                        <div class="contact-item">
-                            📞 +7 (800) 123-45-67
-                        </div>
-                    </div>
                 </div>
 
                 <div class="footer-section">
                     <h3>Наши сервисы</h3>
                     <ul class="footer-links">
-                        <li><a href="flights.html">Авиабилеты</a></li>
-                        <li><a href="cars.html">Аренда авто</a></li>
-                        <li><a href="hotels.html">Отели</a></li>
+                        <li><a href="#">Авиабилеты</a></li>
+                        <li><a href="#">Аренда авто</a></li>
+                        <li><a href="#">Отели</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h3>Правовая информация</h3>
                     <ul class="footer-links">
+                        <li><a href="#">Условия обслуживания</a></li>
                         <li><a href="#">Политика конфиденциальности</a></li>
-                        <li><a href="#">Пользовательское соглашение</a></li>
                         <li><a href="#">Политика cookie</a></li>
                         <li><a href="#">Отказ от ответственности</a></li>
                     </ul>
@@ -1040,87 +1112,29 @@
             </div>
 
             <div class="footer-bottom">
-                <p>© 2008−2024 Airflow. Все права защищены.</p>
-                <p>📍 Москва, Россия</p>
+                <p>© 2008−2025 Airflow. Все права защищены. 📍 Москва, Россия</p>
             </div>
         </div>
     </footer>
+    
+    <div class="cookie-notice" id="cookie-notice">
+        <div class="cookie-notice-content">
+            <div class="cookie-text">
+                Мы используем cookie, чтобы запоминать вашу историю поиска и выбранные фильтры. 
+                Продолжая пользоваться сайтом, вы соглашаетесь на их использование.
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept-btn" onclick="document.getElementById('cookie-notice').style.display='none';">Принять</button>
+                <a href="#" class="cookie-btn policy-btn">Политика cookie</a>
+            </div>
+        </div>
+    </div>
 
+    <!-- Место для вашего скрипта cookie политики -->
     <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            
-            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
-                mobileMenu.classList.remove('active');
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to navbar
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.backdropFilter = 'blur(10px)';
-            } else {
-                navbar.style.background = 'white';
-                navbar.style.backdropFilter = 'none';
-            }
-        });
-
-        // Animate stats on scroll
-        function animateStats() {
-            const stats = document.querySelectorAll('.stat-number');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = entry.target;
-                        const finalValue = target.textContent;
-                        const numericValue = parseInt(finalValue.replace(/\D/g, ''));
-                        const suffix = finalValue.replace(/[\d]/g, '');
-                        
-                        let current = 0;
-                        const increment = numericValue / 50;
-                        const timer = setInterval(() => {
-                            current += increment;
-                            if (current >= numericValue) {
-                                current = numericValue;
-                                clearInterval(timer);
-                            }
-                            target.textContent = Math.floor(current) + suffix;
-                        }, 30);
-                        
-                        observer.unobserve(target);
-                    }
-                });
-            });
-            
-            stats.forEach(stat => observer.observe(stat));
-        }
-
-        // Initialize animations when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            animateStats();
+        // Простой скрипт для обработки мобильного меню
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('active');
         });
     </script>
 </body>
