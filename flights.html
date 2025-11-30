@@ -1087,38 +1087,6 @@
             menu.classList.toggle('active');
         }
     </script>
-
-    <script>
-        // 1. Активация главного поиска (Search Form Widget)
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            // ВАЖНО: Замените [ВАШ МАРКЕР] на ваш реальный партнерский ID!
-            js.src = '//www.travelpayouts.com/widgets/e38f65420d91b32b9015949d9703359d.js?marker=[ВАШ МАРКЕР]&host=search.airflowtravel.net';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'tp-widget-search'));
-
-        // 2. Активация популярных направлений (Weedle Widgets)
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('tpwl-widget-weedles');
-            if (!container) return;
-            
-            const destinationElements = container.querySelectorAll('div[data-destination]');
-            
-            destinationElements.forEach(element => {
-                const destination = element.getAttribute('data-destination');
-                if (destination) {
-                    const scriptElement = document.createElement('script');
-                    scriptElement.async = true;
-                    // Использование виджета Popular Destinations. Замените [ВАШ МАРКЕР]
-                    scriptElement.src = `//www.travelpayouts.com/content?marker=[ВАШ МАРКЕР]&currency=RUB&destination=${destination}&target_host=search.airflowtravel.net&locale=ru&limit=6&powered_by=false&primary=%233b82f6&promo_id=4044&campaign_id=100`;
-                    element.appendChild(scriptElement);
-                }
-            });
-        });
-    </script>
 </body>
 </html>
 </body>
