@@ -3,826 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airflow - Бронирование Отелей</title>
-    <meta name="description" content="Бронирование отелей с Airflow. Скоро - интеграция с Expedia для широкого выбора отелей по всему миру.">
+    <title>AirFlow Travel - Поиск Отелей | Бронирование Жилья Выгодно</title>
+    <meta name="description" content="Ищите и бронируйте отели по лучшим ценам с AirFlow Travel. Сравнение цен на жилье по всему миру.">
     <meta name="author" content="Airflow">
-    <meta name="keywords" content="отели, бронирование отелей, гостиницы, размещение, путешествия">
+    <meta name="keywords" content="отели, бронирование отелей, жилье, дешевые отели, AirFlow Travel">
     
-    <meta property="og:title" content="Airflow - Бронирование Отелей">
-    <meta property="og:description" content="Скоро здесь появится возможность бронирования отелей по всему миру с лучшими ценами и условиями.">
+    <meta property="og:title" content="Airflow - Поиск и бронирование отелей">
+    <meta property="og:description" content="Сравниваем цены на отели с сотен сайтов и находим лучшие предложения.">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:type" content="website">
-    
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏨</text></svg>">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* CSS, предоставленный вами в теле файла (стили не менялись) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #fdf4ff 0%, #f3e8ff 100%);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Navigation */
-        .navbar {
-            background: white;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-            padding: 0 20px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        .logo-icon {
-            font-size: 32px;
-        }
-        
-        .logo-text {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-color: #f8fafc;
         }
-        
-        .logo-title {
-            font-size: 24px;
-            font-weight: 900;
-            color: #1e40af;
-        }
-        
-        .logo-subtitle {
-            font-size: 12px;
-            color: #6b7280;
-        }
-        
-        .nav-menu {
-            display: flex;
-            gap: 8px;
-            list-style: none;
-        }
-        
-        .nav-link {
-            padding: 12px 24px;
-            text-decoration: none;
-            color: #374151;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-link:hover {
-            color: #7c3aed;
-            background: #faf5ff;
-        }
-        
-        .nav-link.active {
-            color: #7c3aed;
-            background: #faf5ff;
-        }
-        
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 32px;
-            height: 4px;
-            background: #7c3aed;
-            border-radius: 2px;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            z-index: 999;
-        }
-        
-        .mobile-menu.active {
-            display: block;
-        }
-        
-        .mobile-nav-link {
-            display: block;
-            padding: 16px 20px;
-            text-decoration: none;
-            color: #374151;
-            font-weight: 600;
-            border-bottom: 1px solid #f3f4f6;
-        }
-        
-        .mobile-nav-link:hover, .mobile-nav-link.active {
-            color: #7c3aed;
-            background: #faf5ff;
-        }
-        
+        .page-wrapper { flex: 1 0 auto; display: flex; flex-direction: column; }
+        .main-content { flex: 1; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Navigation */
+        .navbar { background: white; box-shadow: 0 2px 20px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #e5e7eb; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; padding: 0 20px; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { font-size: 32px; }
+        .logo-text { display: flex; flex-direction: column; }
+        .logo-title { font-size: 24px; font-weight: 900; color: #1e40af; }
+        .logo-subtitle { font-size: 12px; color: #6b7280; }
+        .nav-menu { display: flex; gap: 8px; list-style: none; }
+        .nav-link { padding: 12px 24px; text-decoration: none; color: #374151; font-weight: 600; border-radius: 8px; transition: all 0.3s ease; position: relative; }
+        .nav-link:hover, .nav-link.active { color: #3b82f6; background: #eff6ff; }
+        .nav-link.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 32px; height: 4px; background: #3b82f6; border-radius: 2px; }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
+        .mobile-menu { display: none; position: fixed; top: 80px; left: 0; right: 0; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.1); z-index: 999; }
+        .mobile-menu.active { display: block; }
+        .mobile-nav-link { display: block; padding: 16px 20px; text-decoration: none; color: #374151; font-weight: 600; border-bottom: 1px solid #f3f4f6; }
+        .mobile-nav-link:hover, .mobile-nav-link.active { color: #3b82f6; background: #eff6ff; }
+
         /* Hero Section */
-        .hero {
-            padding: 80px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
+        .hero { padding: 60px 20px; text-align: center; background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%); color: white; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.3; }
+        .hero-content { position: relative; z-index: 10; }
+        .hero-icon { font-size: 60px; margin-bottom: 16px; display: block; animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(5deg); } 100% { transform: translateY(0px) rotate(0deg); } }
+        .hero-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; margin-bottom: 16px; }
+        .hero-subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: #e0f2fe; margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* Features Grid */
+        .features-section { padding: 40px 20px; background: white; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+        .feature-card { text-align: center; padding: 20px; border-radius: 16px; background: #f8fafc; transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .feature-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 12px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; }
+        .feature-title { font-size: 1.125rem; font-weight: 700; margin-bottom: 8px; color: #1f2937; }
+        .feature-description { color: #6b7280; font-size: 14px; }
+
+        /* Widget Section */
+        .widget-section { padding: 40px 20px; background: #f8fafc; }
+        .section-header { text-align: center; margin-bottom: 30px; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #1f2937; margin-bottom: 10px; }
+        .section-subtitle { font-size: 1.25rem; color: #6b7280; }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
-            opacity: 0.3;
+        .widget-container { 
+            background: white; border-radius: 20px; 
+            padding: 30px 20px 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            text-align: center; max-width: 800px; margin: 0 auto; 
         }
+        .widget-wrapper { width: 100%; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        .hero-content {
-            position: relative;
-            z-index: 10;
+        /* Стили для Iframe Отелей */
+        .hotels-search-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 10px auto 0;
         }
-        
-        .hero-icon {
-            font-size: 80px;
-            margin-bottom: 24px;
+
+        .hotels-search-container iframe {
+            width: 100%; 
+            min-height: 550px; 
+            border: none;
             display: block;
-            animation: pulse 2s infinite;
         }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
+
+        /* Popular Destinations Section */
+        .destinations-section { padding: 40px 20px; background: white; }
+        .destinations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+        .destination-card { 
+            border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+            transition: all 0.3s ease; position: relative; text-decoration: none; color: inherit; display: block;
         }
-        
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            margin-bottom: 24px;
-        }
-        
-        .hero-subtitle {
-            font-size: clamp(1.125rem, 2vw, 1.5rem);
-            color: #e9d5ff;
-            margin-bottom: 32px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Status Section */
-        .status-section {
-            padding: 80px 20px;
-        }
-        
-        .status-card {
-            background: white;
-            border-radius: 20px;
-            padding: 60px 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .status-icon {
-            font-size: 80px;
-            margin-bottom: 24px;
-            display: block;
-            animation: rotate 3s linear infinite;
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .status-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #1f2937;
-            margin-bottom: 16px;
-        }
-        
-        .status-subtitle {
-            font-size: 1.25rem;
-            color: #6b7280;
-            margin-bottom: 40px;
-        }
-        
-        .status-info {
-            background: #fef3c7;
-            border: 2px solid #f59e0b;
-            border-radius: 16px;
-            padding: 32px;
-            margin-bottom: 40px;
-        }
-        
-        .status-info h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #92400e;
-            margin-bottom: 12px;
-        }
-        
-        .status-info p {
-            color: #b45309;
-            margin-bottom: 16px;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            background: #fbbf24;
-            color: #92400e;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            margin-top: 40px;
-        }
-        
-        .feature-list {
-            text-align: left;
-        }
-        
-        .feature-list h4 {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .feature-list ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .feature-list li {
-            padding: 8px 0;
-            color: #6b7280;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .feature-list li::before {
-            content: '•';
-            color: #10b981;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
-        /* Coming Soon Section */
-        .coming-soon-section {
-            padding: 80px 20px;
-            background: white;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 900;
-            color: #1f2937;
-            margin-bottom: 16px;
-        }
-        
-        .coming-soon-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-        }
-        
-        .coming-soon-card {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 32px 24px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .coming-soon-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-color: #7c3aed;
-        }
-        
-        .coming-soon-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin: 0 auto 24px;
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-            color: white;
-        }
-        
-        .coming-soon-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #1f2937;
-        }
-        
-        .coming-soon-description {
-            color: #6b7280;
-        }
-        
-        /* Timeline Section */
-        .timeline-section {
-            padding: 80px 20px;
-            background: #f8fafc;
-        }
-        
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .timeline-item {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 32px;
-            padding: 24px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .timeline-item:hover {
-            transform: translateX(8px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
-        
-        .timeline-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-        
-        .timeline-icon.completed {
-            background: #10b981;
-            color: white;
-        }
-        
-        .timeline-icon.current {
-            background: #f59e0b;
-            color: white;
-        }
-        
-        .timeline-icon.pending {
-            background: #e5e7eb;
-            color: #6b7280;
-        }
-        
-        .timeline-content h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 8px;
-        }
-        
-        .timeline-content p {
-            color: #6b7280;
-        }
-        
+        .destination-card:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
+        .destination-image { height: 180px; background-size: cover; background-position: center; position: relative; }
+        .destination-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); color: white; }
+        .destination-name { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; }
+        .destination-price { font-size: 0.875rem; display: flex; align-items: center; gap: 4px; }
+        .destination-info { padding: 16px; background: white; }
+        .destination-date { color: #6b7280; font-size: 0.875rem; margin-bottom: 8px; }
+        .destination-flight { display: flex; justify-content: space-between; align-items: center; }
+        .destination-flight-info { display: flex; flex-direction: column; }
+        .airline { font-weight: 700; color: #1f2937; }
+        .flight-duration { font-size: 0.875rem; color: #6b7280; }
+        .flight-price { font-weight: 700; color: #3b82f6; }
+
+        /* Benefits Section */
+        .benefits-section { padding: 40px 20px; background: #f8fafc; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+        .benefit-card { text-align: center; padding: 32px 20px; border-radius: 16px; background: white; transition: all 0.3s ease; }
+        .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .benefit-icon { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto 20px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; }
+        .benefit-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #1f2937; }
+        .benefit-description { color: #6b7280; line-height: 1.6; }
+
         /* Footer */
-        .footer {
-            background: #1f2937;
-            color: white;
-            padding: 60px 20px 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.125rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: white;
-        }
-        
-        .footer-section p {
-            color: #d1d5db;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 8px;
-        }
-        
-        .footer-links a {
-            color: #d1d5db;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid #374151;
-            padding-top: 20px;
-            text-align: center;
-            color: #9ca3af;
-            font-size: 14px;
-        }
-        
-        /* Responsive Design */
+        .footer { background: #1f2937; color: white; padding: 60px 20px 20px; margin-top: auto; flex-shrink: 0; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-section h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 16px; color: white; }
+        .footer-section p { color: #d1d5db; line-height: 1.6; margin-bottom: 16px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a { color: #d1d5db; text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid #374151; padding-top: 20px; text-align: center; color: #9ca3af; font-size: 14px; }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 60px 16px;
-            }
-            
-            .status-section {
-                padding: 60px 16px;
-            }
-            
-            .status-card {
-                padding: 40px 20px;
-            }
-            
-            .coming-soon-section {
-                padding: 60px 16px;
-            }
-            
-            .timeline-section {
-                padding: 60px 16px;
-            }
-            
-            .timeline-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .footer {
-                padding: 40px 16px 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 0 16px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .coming-soon-grid {
-                grid-template-columns: 1fr;
-            }
+            .nav-menu { display: none; }
+            .mobile-menu-btn { display: block; }
+            .destinations-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">✈️</div>
-                <div class="logo-text">
-                    <div class="logo-title">Airflow</div>
-                    <div class="logo-subtitle">Путешествия мечты</div>
-                </div>
-            </a>
-            
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Главная</a></li>
-                <li><a href="flights.html" class="nav-link">Авиабилеты</a></li>
-                <li><a href="cars.html" class="nav-link">Аренда авто</a></li>
-                <li><a href="hotels.html" class="nav-link active">Отели</a></li>
-            </ul>
-            
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-        </div>
-        
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html" class="mobile-nav-link">Главная</a>
-            <a href="flights.html" class="mobile-nav-link">Авиабилеты</a>
-            <a href="cars.html" class="mobile-nav-link">Аренда авто</a>
-            <a href="hotels.html" class="mobile-nav-link active">Отели</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <span class="hero-icon">🏨</span>
-                <h1 class="hero-title">Бронирование Отелей</h1>
-                <p class="hero-subtitle">
-                    Скоро здесь появится возможность бронирования отелей по всему миру 
-                    с лучшими ценами и условиями.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Status Section -->
-    <section class="status-section">
-        <div class="container">
-            <div class="status-card">
-                <span class="status-icon">⏰</span>
-                <h2 class="status-title">Раздел находится в разработке</h2>
-                <p class="status-subtitle">Ожидаем одобрения программы Expedia</p>
-                
-                <div class="status-info">
-                    <h3>📋 Статус интеграции</h3>
-                    <p>
-                        Мы подали заявку на участие в партнерской программе Expedia. 
-                        Процесс рассмотрения занимает до 48 часов.
-                    </p>
-                    <span class="status-badge">В процессе одобрения</span>
-                </div>
-                
-                <div class="features-grid">
-                    <div class="feature-list">
-                        <h4>
-                            ✅ Что будет доступно:
-                        </h4>
-                        <ul>
-                            <li>Поиск отелей по всему миру</li>
-                            <li>Сравнение цен от разных поставщиков</li>
-                            <li>Мгновенное бронирование</li>
-                            <li>Отзывы и рейтинги отелей</li>
-                            <li>Специальные предложения</li>
-                        </ul>
+    <div class="page-wrapper">
+        <header class="navbar">
+            <div class="nav-container container">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">🏨</div>
+                    <div class="logo-text">
+                        <div class="logo-title">Airflow</div>
+                        <div class="logo-subtitle">Путешествия мечты</div>
                     </div>
-                    
-                    <div class="feature-list">
-                        <h4>
-                            ⭐ Преимущества:
-                        </h4>
-                        <ul>
-                            <li>Лучшие цены на рынке</li>
-                            <li>Безопасные платежи</li>
-                            <li>Поддержка 24/7</li>
-                            <li>Гибкие условия отмены</li>
-                            <li>Программа лояльности</li>
-                        </ul>
-                    </div>
-                </div>
+                </a>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link">Главная</a></li>
+                        <li><a href="flights.html" class="nav-link">Авиабилеты</a></li>
+                        <li><a href="cars.html" class="nav-link">Аренда авто</a></li>
+                        <li><a href="hotels.html" class="nav-link active">Отели</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             </div>
-        </div>
-    </section>
-
-    <!-- Coming Soon Features -->
-    <section class="coming-soon-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Скоро в разделе отелей</h2>
+            <div class="mobile-menu" id="mobile-menu">
+                <a href="index.html" class="mobile-nav-link">Главная</a>
+                <a href="flights.html" class="mobile-nav-link">Авиабилеты</a>
+                <a href="cars.html" class="mobile-nav-link">Аренда авто</a>
+                <a href="hotels.html" class="mobile-nav-link active">Отели</a>
             </div>
-            
-            <div class="coming-soon-grid">
-                <div class="coming-soon-card">
-                    <div class="coming-soon-icon">🏨</div>
-                    <h3 class="coming-soon-title">Широкий выбор</h3>
-                    <p class="coming-soon-description">
-                        От бюджетных хостелов до роскошных курортов
-                    </p>
-                </div>
+        </header>
 
-                <div class="coming-soon-card">
-                    <div class="coming-soon-icon">💰</div>
-                    <h3 class="coming-soon-title">Лучшие цены</h3>
-                    <p class="coming-soon-description">
-                        Сравнение предложений от Expedia и других платформ
-                    </p>
+        <main class="main-content">
+            <section class="hero">
+                <div class="hero-content container">
+                    <div class="hero-icon">🏨</div>
+                    <h1 class="hero-title">Поиск и бронирование отелей</h1>
+                    <p class="hero-subtitle">Найдите идеальное жилье в любой точке мира по лучшей цене.</p>
                 </div>
+            </section>
 
-                <div class="coming-soon-card">
-                    <div class="coming-soon-icon">⭐</div>
-                    <h3 class="coming-soon-title">Проверенные отзывы</h3>
-                    <p class="coming-soon-description">
-                        Реальные отзывы от путешественников
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="timeline-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">План запуска</h2>
-            </div>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon completed">✅</div>
-                    <div class="timeline-content">
-                        <h3>Подача заявки в Expedia</h3>
-                        <p>Заявка подана и находится на рассмотрении</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-icon current">⏰</div>
-                    <div class="timeline-content">
-                        <h3>Ожидание одобрения</h3>
-                        <p>Процесс рассмотрения: до 48 часов</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-icon pending">3</div>
-                    <div class="timeline-content">
-                        <h3>Интеграция API</h3>
-                        <p>Настройка и тестирование системы бронирования</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-icon pending">4</div>
-                    <div class="timeline-content">
-                        <h3>Запуск сервиса</h3>
-                        <p>Полноценный поиск и бронирование отелей</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                        <span style="font-size: 32px;">✈️</span>
-                        <div>
-                            <h3 style="margin: 0; font-size: 24px;">Airflow</h3>
-                            <p style="margin: 0; font-size: 12px; color: #9ca3af;">Путешествия мечты</p>
+            <section class="features-section">
+                <div class="container">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3 class="feature-title">Тысячи вариантов</h3>
+                            <p class="feature-description">От роскошных курортов до уютных апартаментов</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⭐</div>
+                            <h3 class="feature-title">Отзывы гостей</h3>
+                            <p class="feature-description">Читайте реальные отзывы, чтобы сделать правильный выбор</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💰</div>
+                            <h3 class="feature-title">Гарантия лучшей цены</h3>
+                            <p class="feature-description">Сравниваем предложения ведущих систем бронирования</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔒</div>
+                            <h3 class="feature-title">Безопасное бронирование</h3>
+                            <p class="feature-description">Прямая связь с надежными партнерами</p>
                         </div>
                     </div>
-                    <p>
-                        Мы помогаем найти лучшие предложения по авиабилетам, аренде авто и бронированию отелей. 
-                        Сравниваем цены с сотен сайтов для вашего удобства.
-                    </p>
                 </div>
+            </section>
 
-                <div class="footer-section">
-                    <h3>Наши сервисы</h3>
-                    <ul class="footer-links">
-                        <li><a href="flights.html">Авиабилеты</a></li>
-                        <li><a href="cars.html">Аренда авто</a></li>
-                        <li><a href="hotels.html">Отели</a></li>
-                    </ul>
+            <section class="widget-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Начните поиск отеля</h2>
+                        <p class="section-subtitle">Просто укажите город и даты проживания</p>
+                    </div>
+                    
+                    <div class="widget-container">
+                        <div class="widget-wrapper">
+                            <div class="hotels-search-container">
+                                <iframe src="https://search.airflowtravel.net/hotels" 
+                                        width="100%" 
+                                        height="680" 
+                                        frameborder="0" 
+                                        scrolling="no" 
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div class="footer-section">
-                    <h3>Правовая информация</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Политика конфиденциальности</a></li>
-                        <li><a href="#">Пользовательское соглашение</a></li>
-                        <li><a href="#">Политика cookie</a></li>
-                        <li><a href="#">Отказ от ответственности</a></li>
-                    </ul>
+            <section class="destinations-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Популярные отельные направления</h2>
+                        <p class="section-subtitle">Откройте для себя места, где хотят остановиться все</p>
+                    </div>
+                    
+                    <div class="destinations-grid">
+                        <a href="https://search.airflowtravel.net/hotels?location=Москва" target="_blank" class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1547065997-c75c88c7f07a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Отели в Москве</div>
+                                    <div class="destination-price">от 4,500 ₽/ночь</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Роскошные и бюджетные</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">500+ отелей</div>
+                                        <div class="flight-duration">В центре и у метро</div>
+                                    </div>
+                                    <div class="flight-price">⭐ 4.7</div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://search.airflowtravel.net/hotels?location=Санкт-Петербург" target="_blank" class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1547346892-299f0e47d1a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Отели в Санкт-Петербурге</div>
+                                    <div class="destination-price">от 3,200 ₽/ночь</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Уютные гостиницы</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">400+ отелей</div>
+                                        <div class="flight-duration">Рядом с Эрмитажем</div>
+                                    </div>
+                                    <div class="flight-price">⭐ 4.5</div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://search.airflowtravel.net/hotels?location=Дубай" target="_blank" class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Отели в Дубае</div>
+                                    <div class="destination-price">от 8,900 ₽/ночь</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Пляжные курорты</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">Мировой уровень</div>
+                                        <div class="flight-duration">У Бурдж-Халифа</div>
+                                    </div>
+                                    <div class="flight-price">⭐ 4.9</div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://search.airflowtravel.net/hotels?location=Стамбул" target="_blank" class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1524388414436-1e6a6a2a0e28?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Отели в Стамбуле</div>
+                                    <div class="destination-price">от 4,100 ₽/ночь</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Исторические районы</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">Возле Султанахмет</div>
+                                        <div class="flight-duration">На любой вкус</div>
+                                    </div>
+                                    <div class="flight-price">⭐ 4.6</div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://search.airflowtravel.net/hotels?location=Пхукет" target="_blank" class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Отели на Пхукете</div>
+                                    <div class="destination-price">от 2,800 ₽/ночь</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Пляжный отдых</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">Бунгало и виллы</div>
+                                        <div class="flight-duration">Лучшие пляжи</div>
+                                    </div>
+                                    <div class="flight-price">⭐ 4.4</div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://search.airflowtravel.net/hotels?location=Ереван" target="_blank" class="destination-card">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1582239401917-86c55d050510?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                                <div class="destination-overlay">
+                                    <div class="destination-name">Отели в Ереване</div>
+                                    <div class="destination-price">от 3,000 ₽/ночь</div>
+                                </div>
+                            </div>
+                            <div class="destination-info">
+                                <div class="destination-date">Исторический центр</div>
+                                <div class="destination-flight">
+                                    <div class="destination-flight-info">
+                                        <div class="airline">Рядом с Каскадом</div>
+                                        <div class="flight-duration">Комфортный отдых</div>
+                                    </div>
+                                    <div class="flight-price">⭐ 4.8</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="benefits-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Почему стоит бронировать с Airflow</h2>
+                    </div>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🌎</div>
+                            <h3 class="benefit-title">Глобальный охват</h3>
+                            <p class="benefit-description">Доступ к миллионам предложений по всему миру</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">📅</div>
+                            <h3 class="benefit-title">Гибкие условия</h3>
+                            <p class="benefit-description">Возможность бесплатной отмены для многих бронирований</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <div class="benefit-icon">💵</div>
+                            <h3 class="benefit-title">Выгода</h3>
+                            <p class="benefit-description">Мы находим скрытые скидки и лучшие предложения</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>О Airflow</h3>
+                        <p>Airflow помогает находить дешевые авиабилеты и выгодные отели по всему миру. Быстро, удобно и выгодно.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Навигация</h3>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Главная</a></li>
+                            <li><a href="flights.html">Авиабилеты</a></li>
+                            <li><a href="cars.html">Аренда авто</a></li>
+                            <li><a href="hotels.html">Отели</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Помощь</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Контакты</a></li>
+                            <li><a href="#">Правила</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    &copy; 2025 Airflow. Все права защищены.
                 </div>
             </div>
-
-            <div class="footer-bottom">
-                <p>© 2008−2024 Airflow. Все права защищены. 📍 Москва, Россия</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script>
         function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
         }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            
-            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
-                mobileMenu.classList.remove('active');
-            }
-        });
-
-        // Add progress animation to timeline
-        document.addEventListener('DOMContentLoaded', function() {
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            
-            timelineItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateX(-50px)';
-                    item.style.transition = 'all 0.6s ease';
-                    
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateX(0)';
-                    }, 100);
-                }, index * 200);
-            });
-        });
-
-        // Add hover effects to coming soon cards
-        document.querySelectorAll('.coming-soon-card').forEach(function(card) {
-            card.addEventListener('mouseenter', function() {
-                this.style.background = 'linear-gradient(135deg, #faf5ff, #f3e8ff)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.background = '#f8fafc';
-            });
-        });
-
-        // Simulate progress updates
-        setTimeout(function() {
-            const currentIcon = document.querySelector('.timeline-icon.current');
-            if (currentIcon) {
-                currentIcon.innerHTML = '🔄';
-                currentIcon.style.animation = 'rotate 2s linear infinite';
-            }
-        }, 3000);
     </script>
 </body>
 </html>
