@@ -15,6 +15,9 @@
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
     <style>
         /* --- УНИФИЦИРОВАННЫЕ СТИЛИ (CSS) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,7 +25,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #ffffff; /* ИСПРАВЛЕНО: Чисто белый фон для всей страницы */
+            background-color: #ffffff;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -68,7 +71,7 @@
             padding: 40px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             margin: 0 20px;
-            z-index: 9999; /* ИСПРАВЛЕНО: Высокий z-index для элементов виджета */
+            z-index: 9999;
         }
 
         .hero-headline {
@@ -126,6 +129,82 @@
         .benefit-card h3 { font-size: 1.125rem; margin-bottom: 8px; color: #1f2937;}
         .benefit-card p { font-size: 0.9rem; color: #6b7280;}
 
+        /* --- СЕКЦИЯ ОТЗЫВОВ (ДОБАВЛЕННЫЕ СТИЛИ) --- */
+        .testimonials {
+            background-color: #f8fafc; /* Светло-серый фон для секции */
+            padding: 60px 0;
+        }
+        .testimonials .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .testimonials-slider {
+            /* Swiper контейнер */
+            padding: 20px 0 50px; /* Отступы для навигации и пагинации */
+        }
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            height: 100%; /* Гарантируем одинаковую высоту карточек в слайдере */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #e2e8f0;
+        }
+        .testimonial-rating {
+            margin-bottom: 15px;
+            color: #f59e0b; /* Золотой цвет для звезд */
+        }
+        .testimonial-text {
+            font-size: 1rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #2563eb;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .author-info h4 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .author-info p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        /* Стили для навигации Swiper */
+        .swiper-button-next, .swiper-button-prev {
+            color: #2563eb;
+            --swiper-navigation-size: 30px;
+        }
+        .swiper-pagination-bullet-active {
+            background: #2563eb !important;
+        }
+
         /* --- ПОПУЛЯРНЫЕ ПРЕДЛОЖЕНИЯ (СЛАЙДЕР) --- */
         .offers-section { background: #f8fafc; padding: 20px 0 60px; }
         .section-header { text-align: center; margin-bottom: 40px; }
@@ -140,7 +219,7 @@
         /* --- СТИЛИ ДЛЯ FAQ АККОРДЕОНА (Используем <details>) --- */
         .faq-section { 
             padding: 60px 0; 
-            background: white; /* Фон для выделения */
+            background: white;
         }
         .faq-list { 
             max-width: 900px; 
@@ -302,6 +381,161 @@
         </div>
     </div>
 
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Что говорят наши путешественники?</h2>
+            
+            <div class="swiper testimonials-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                            <p class="testimonial-text">"Поиск отелей через AirflowTravel занял всего 5 минут! Виджет очень удобный, сразу нашла идеальные апартаменты в Сочи для всей семьи. Теперь пользуюсь только этим порталом."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">А</div>
+                                <div class="author-info">
+                                    <h4>Анна</h4>
+                                    <p>Москва</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                            <p class="testimonial-text">"Огромный гайд помог мне выбрать отель не в центре, но рядом с метро, что сэкономило мне кучу денег. Спасибо за честные советы и отличный сервис бронирования Туту.ру!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">И</div>
+                                <div class="author-info">
+                                    <h4>Игорь</h4>
+                                    <p>Санкт-Петербург</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                            <p class="testimonial-text">"Наконец-то все виды транспорта и отели собраны в одном месте, да еще и с нормальной навигацией! Мобильная версия просто супер. Настоящий мощный портал!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Е</div>
+                                <div class="author-info">
+                                    <h4>Елена</h4>
+                                    <p>Казань</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                            <p class="testimonial-text">"Бронировал отель в Москве через виджет - все прошло быстро и без проблем. Цены оказались даже лучше, чем на других сайтах. Рекомендую всем!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">М</div>
+                                <div class="author-info">
+                                    <h4>Михаил</h4>
+                                    <p>Екатеринбург</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                            <p class="testimonial-text">"Отличный сайт для планирования путешествий! Нашла апартаменты в Питере с потрясающим видом на Неву. Все советы из гайда очень помогли в выборе."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">О</div>
+                                <div class="author-info">
+                                    <h4>Ольга</h4>
+                                    <p>Новосибирск</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                            <p class="testimonial-text">"Пользуюсь AirflowTravel уже полгода. Удобно, что можно сравнить цены на отели и сразу купить билеты на поезд. Экономлю время и деньги!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">Д</div>
+                                <div class="author-info">
+                                    <h4>Дмитрий</h4>
+                                    <p>Краснодар</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                            <p class="testimonial-text">"Замечательный портал! Быстро нашел хороший отель в центре Москвы по отличной цене. Виджет работает без сбоев, все интуитивно понятно."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">В</div>
+                                <div class="author-info">
+                                    <h4>Владимир</h4>
+                                    <p>Ростов-на-Дону</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-pagination"></div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
     <section class="faq-section">
         <div class="container">
             <div class="section-header">
@@ -382,8 +616,10 @@
     </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <script>
-    // Простой скрипт для переключения мобильного меню (если нужно)
+    // Простой скрипт для переключения мобильного меню
     document.addEventListener('DOMContentLoaded', () => {
         const menuBtn = document.querySelector('.mobile-menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
@@ -392,8 +628,36 @@
                 mobileMenu.classList.toggle('active');
             });
         }
+
+        // ИНИЦИАЛИЗАЦИЯ SWIPER-СЛАЙДЕРА ДЛЯ ОТЗЫВОВ
+        new Swiper('.testimonials-slider', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 40
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 50
+                }
+            }
+        });
     });
-    // Примечание: Аккордеон FAQ работает без JS благодаря тегам <details> и <summary>.
 </script>
 </body>
 </html>
