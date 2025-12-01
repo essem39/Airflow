@@ -172,7 +172,9 @@
         .hero {
             background: linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #312e81 100%);
             position: relative;
-            overflow: hidden;
+            /* !!!!!!! ИСПРАВЛЕНО ЗДЕСЬ !!!!!!! */
+            overflow: visible; /* УБРАНО 'hidden' для предотвращения обрезания выпадающих меню */
+            /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
             min-height: 500px;
             display: flex;
             align-items: center;
@@ -1016,27 +1018,31 @@
                 </div>
 
                 <div class="footer-section">
-                    <h3>Правовая информация</h3>
+                    <h3>Информация</h3>
                     <ul class="footer-links">
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Партнерская программа</a></li>
                         <li><a href="#">Политика конфиденциальности</a></li>
-                        <li><a href="#">Пользовательское соглашение</a></li>
-                        <li><a href="#">Политика cookie</a></li>
-                        <li><a href="#">Отказ от ответственности</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>© 2008−2024 Airflow. Все права защищены.</p>
-                <p>📍 Москва, Россия</p>
+                <div>
+                    © 2025 Airflow. Все права защищены.
+                </div>
+                <div>
+                    Работает на Travelpayouts, Localrent
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
         function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
         }
     </script>
 </body>
