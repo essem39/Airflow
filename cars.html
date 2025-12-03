@@ -198,7 +198,7 @@
         }
 
         /* ---------------------------------------------------- */
-        /* СТИЛИ КОНТЕНТА СТРАНИЦЫ (ГЛАВНАЯ - БРЕНДОВЫЙ ЦВЕТ) */
+        /* СТИЛИ КОНТЕНТА СТРАНИЦЫ (ОБЩИЕ) */
         /* ---------------------------------------------------- */
         
         .section-title {
@@ -291,17 +291,77 @@
             color: #4c1d95;
         }
 
+        /* ---------------------------------------------------- */
+        /* СТИЛИ КЛАССОВ АВТО И ПРЕИМУЩЕСТВ (НОВЫЕ СЕКЦИИ) */
+        /* ---------------------------------------------------- */
 
-        /* ---------------------------------------------------- */
-        /* СТИЛИ КАРТОЧЕК НАПРАВЛЕНИЙ (ПЕРЕИСПОЛЬЗОВАНИЕ ДИЗАЙНА) */
-        /* ---------------------------------------------------- */
-        .destinations-section {
+        .car-features-section {
+            padding: 80px 20px;
+            background: #ffffff; /* Белый фон */
+        }
+        
+        .features-grid, .classes-grid {
+            display: grid;
+            /* Сетка для 4 или 6 карточек: 3 колонки на больших экранах, минимум 220px */
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            background: #f8fafc; /* Очень светлый фон */
+            /* Основной цвет по умолчанию, но будет переопределен инлайн стилями */
+            border-top: 5px solid #4c1d95; 
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            /* Основной цвет по умолчанию, но будет переопределен инлайн стилями */
+            color: #4c1d95; 
+            margin-bottom: 15px;
+        }
+
+        .feature-card h4 {
+            font-size: 1.2rem;
+            color: #1e293b;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+        
+        /* Карточки классов авто - используем тот же стиль */
+        .car-class-section {
             padding: 80px 20px;
             background: #f8fafc; /* Светлый фон */
         }
 
+
+        /* ---------------------------------------------------- */
+        /* СТИЛИ КАРТОЧЕК НАПРАВЛЕНИЙ */
+        /* ---------------------------------------------------- */
+        .destinations-section {
+            padding: 80px 20px;
+            background: white; /* Сделаем белый, чтобы отделить от секции классов */
+        }
+
         .destinations-grid {
             display: grid;
+            /* Сетка на 6 карточек */
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
             gap: 30px;
             max-width: 1200px;
@@ -379,7 +439,7 @@
         /* СТИЛИ ОТЗЫВОВ - Слайдер Swiper */
         /* ---------------------------------------------------- */
         .testimonials-section {
-            background: white; 
+            background: #f8fafc; /* Светлый фон */
             padding: 80px 20px;
         }
 
@@ -390,7 +450,7 @@
         }
 
         .testimonial-card {
-            background: #f8fafc; /* Светлый фон для карточек */
+            background: white; /* Белый фон для карточек */
             padding: 30px;
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -628,6 +688,76 @@
                         <div class="product-icon"><i class="fas fa-train"></i></div>
                         <div class="product-title">Поезда</div>
                     </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="car-class-section">
+            <div class="container">
+                <div class="section-title" style="color: #1e293b;">Выберите класс автомобиля</div>
+                <div class="classes-grid">
+                    
+                    <div class="feature-card" style="border-top-color: #4a89dc;"> <div class="feature-icon" style="color: #4a89dc;"><i class="fas fa-road"></i></div>
+                        <h4>Эконом и Компакт</h4>
+                        <p>Идеально для городских поездок, низкий расход топлива и легкая парковка.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #ff9800;"> <div class="feature-icon" style="color: #ff9800;"><i class="fas fa-mountain"></i></div>
+                        <h4>Внедорожники (SUV)</h4>
+                        <p>Высокая проходимость и комфорт для путешествий по сложным маршрутам и горам.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #6f1fa8;"> <div class="feature-icon" style="color: #6f1fa8;"><i class="fas fa-people-group"></i></div>
+                        <h4>Минивэны и Семья</h4>
+                        <p>Просторные автомобили для большой семьи или компании до 7-9 человек.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #16a085;"> <div class="feature-icon" style="color: #16a085;"><i class="fas fa-crown"></i></div>
+                        <h4>Премиум и Люкс</h4>
+                        <p>Автомобили высокого класса для максимального комфорта и представительских целей.</p>
+                    </div>
+
+                    <div class="feature-card" style="border-top-color: #cc3333;"> <div class="feature-icon" style="color: #cc3333;"><i class="fas fa-wind"></i></div>
+                        <h4>Кабриолеты и Спорт</h4>
+                        <p>Ощутите свободу и скорость. Лучший выбор для курортных и живописных маршрутов.</p>
+                    </div>
+
+                    <div class="feature-card" style="border-top-color: #f59e0b;"> <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-bolt"></i></div>
+                        <h4>Электро и Гибриды</h4>
+                        <p>Экологичный и современный выбор. Удобные электрокары для городской среды.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <section class="car-features-section">
+            <div class="container">
+                <div class="section-title" style="color: #4c1d95;">Почему выбирают аренду через Airflow Travel</div>
+                <div class="features-grid">
+                    
+                    <div class="feature-card" style="border-top-color: #f59e0b;">
+                        <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-shield-halved"></i></div>
+                        <h4>Полная страховка</h4>
+                        <p>Многие предложения включают страховку без франшизы для вашего спокойствия.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #4c1d95;">
+                        <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                        <h4>Круглосуточная поддержка</h4>
+                        <p>Наша команда поддержки всегда на связи, чтобы помочь в любой ситуации.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #1abc9c;"> <div class="feature-icon" style="color: #1abc9c;"><i class="fas fa-credit-card"></i></div>
+                        <h4>Без скрытых платежей</h4>
+                        <p>Финальная цена всегда включает налоги и сборы. Никаких сюрпризов при получении авто.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #e9573f;"> <div class="feature-icon" style="color: #e9573f;"><i class="fas fa-ban"></i></div>
+                        <h4>Отмена без штрафов</h4>
+                        <p>Бесплатная отмена бронирования за 24 часа до получения авто по многим тарифам.</p>
+                    </div>
+                    
                 </div>
             </div>
         </section>
