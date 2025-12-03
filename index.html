@@ -39,144 +39,11 @@
             padding: 0 20px;
         }
         
-        /* Navigation */
-        .navbar {
-            background: white;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-            padding: 0 20px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .logo-icon {
-            font-size: 40px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-        
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .logo-title {
-            font-size: 28px;
-            font-weight: 900;
-            color: #1e40af;
-            letter-spacing: -0.5px;
-        }
-        
-        .logo-subtitle {
-            font-size: 12px;
-            color: #6b7280;
-            font-weight: 500;
-        }
-        
-        .nav-menu {
-            display: flex;
-            gap: 8px;
-            list-style: none;
-        }
-        
-        .nav-link {
-            padding: 12px 24px;
-            text-decoration: none;
-            color: #374151;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: #2563eb;
-            background: #eff6ff;
-        }
-        
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 32px;
-            height: 4px;
-            background: #2563eb;
-            border-radius: 2px;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 8px;
-        }
-        
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            z-index: 999;
-        }
-        
-        .mobile-menu.active {
-            display: block;
-        }
-        
-        .mobile-nav-link {
-            display: block;
-            padding: 16px 20px;
-            text-decoration: none;
-            color: #374151;
-            font-weight: 600;
-            border-bottom: 1px solid #f3f4f6;
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-nav-link:hover, .mobile-nav-link.active {
-            color: #2563eb;
-            background: #eff6ff;
-        }
-        
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #312e81 100%);
             position: relative;
-            /* !!!!!!! ИСПРАВЛЕНО ЗДЕСЬ !!!!!!! */
-            overflow: visible; /* УБРАНО 'hidden' для предотвращения обрезания выпадающих меню */
-            /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+            overflow: visible; 
             min-height: 500px;
             display: flex;
             align-items: center;
@@ -251,7 +118,7 @@
             width: 100%;
         }
 
-      /* Стиль для контейнера виджета (ИСПРАВЛЕНО: Убран z-index/position, чтобы не конфликтовать с родительским блоком) */
+      /* Стиль для контейнера виджета */
         .travelpayouts-widget-container {
             max-width: 1100px; 
             width: 100%;
@@ -260,7 +127,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             border-radius: 8px;
             background: #ffffff; 
-            /* overflow: hidden также отсутствует здесь */
         }
         
         .hero-title {
@@ -296,7 +162,7 @@
             margin-top: 16px;
         }
 
-        /* Stats, Services, Features */
+        /* Stats, Services, Features (остальные стили не менялись) */
         .stats {
             padding: 40px 0;
             background: #f9fafb;
@@ -522,7 +388,7 @@
             border-top: 1px solid #e5e7eb;
         }
         
-        /* CTA Section (Обновлено для 4 кнопок) */
+        /* CTA Section */
         .cta {
             background: linear-gradient(90deg, #1e40af, #3b82f6);
             padding: 80px 0;
@@ -653,82 +519,7 @@
             justify-content: space-between;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-content {
-                padding: 60px 20px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-buttons-all {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn-cta {
-                width: 80%;
-                min-width: 0;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 0 16px;
-            }
-            
-            .container {
-                padding: 0 16px;
-            }
-            
-            .hero-content {
-                padding: 40px 16px;
-            }
-            
-            .hero-features {
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .stats {
-                padding: 30px 0;
-            }
-
-            .services, .features, .cta {
-                padding: 60px 0;
-            }
-        }
-
-/* МЕНЮ В ШАПКЕ - ТОЧНО ТАКОЕ ЖЕ КАК НА ПАРТНЁРСКОМ САЙТЕ */
+/* МЕНЮ В ШАПКЕ */
         .main-navigation {
           background: #1e293b;
           padding: 0;
@@ -756,13 +547,20 @@
         }
 
         .nav-logo-icon {
-          /* SVG-иконка, встроенная как data URI */
-          width: 28px;
-          height: 28px;
-          background: no-repeat url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="%23fff" fill-rule="evenodd" d="M17.026 2.117a3.483 3.483 0 0 1 5.021 4.828l-2.778 2.91a6.391 6.391 0 0 0-.219.235v.005c.011.061.03.145.068.31l1.728 7.487.015.066c.058.243.13.549.105.861a2 2 0 0 1-.222.773c-.145.278-.367.499-.545.675l-.048.048-.4.4c-.278.278-.533.533-.759.721-.232.194-.55.418-.964.491a2 2 0 0 1-1.54-.363c-.338-.251-.522-.594-.643-.871-.118-.27-.232-.612-.357-.985l-1.51-4.533-2.202 2.201a6.644 6.644 0 0 0-.2.205 6.18 6.18 0 0 0 .028.285l.184 1.654.006.059c.025.217.056.49.013.764a2 2 0 0 1-.236.672c-.137.241-.332.435-.487.59l-.042.04-.197.198-.026.026c-.214.214-.419.419-.604.574-.199.167-.458.35-.798.439a2 2 0 0 1-1.378-.137 2.04 2.04 0 0 1-.697-.587 10.212 10.212 0 0 1-.48-.68l-1.588-2.383a5.878 5.878 0 0 0-.066-.098v-.002h-.002a5.934 5.934 0 0 0-.098-.067L2.726 17.34c-.253-.168-.493-.329-.682-.48a2.041 2.041 0 0 1-.587-.696 2 2 0 0 1-.136-1.379 2.04 2.04 0 0 1 .439-.798c.155-.185.36-.389.574-.604l.223-.222.041-.042c.155-.155.349-.35.589-.487a2 2 0 0 1 .673-.236c.273-.044.546-.013.764.012l.058.007 1.654.184c.15.016.226.024.28.028h.005l.003-.003a6.33 6.33 0 0 0 .202-.197l2.201-2.202-4.533-1.51c-.373-.125-.715-.24-.984-.357-.278-.122-.62-.305-.871-.643a2 2 0 0 1-.364-1.54c.073-.415.298-.732.492-.965.188-.226.443-.48.72-.759l.03-.029.37-.37.049-.049c.176-.177.397-.4.674-.545a2 2 0 0 1 .773-.222c.313-.024.618.048.862.105l.066.016 7.459 1.72c.165.04.25.058.312.069h.005c.002 0 .003-.002.004-.003.046-.043.107-.105.225-.227l2.71-2.799Zm3.551 1.374a1.483 1.483 0 0 0-2.114.017l-2.71 2.8-.046.048c-.17.177-.384.399-.653.547a2 2 0 0 1-.824.243c-.306.022-.606-.048-.845-.104l-.065-.015-7.459-1.722a6.532 6.532 0 0 0-.317-.069h-.006a6.532 6.532 0 0 0-.237.23l-.37.37a11.529 11.529 0 0 0-.647.678l.028.012c.175.077.428.162.854.304l6.029 2.01a1 1 0 0 1 .39 1.655L8.24 13.841l-.041.042c-.154.155-.348.35-.589.487a2 2 0 0 1-.673.236c-.273.043-.546.012-.763-.013l-.06-.007-1.653-.183a6.405 6.405 0 0 0-.285-.029l-.003.003c-.041.037-.095.09-.202.198l-.198.197a9.188 9.188 0 0 0-.493.515l.014.012c.112.09.278.201.57.397l2.353 1.568.021.014c.078.052.176.117.268.195a2.003 2.003 0 0 1 .419.492l.013.02 1.569 2.353a9.253 9.253 0 0 0 .408.585l.015-.012c.11-.092.251-.233.5-.482l.198-.197c.107-.107.16-.161.197-.202l.003-.004v-.004a6.341 6.341 0 0 0-.028-.28l-.184-1.654-.006-.059c-.055-.237-.125-.536-.104-.84a2 2 0 0 1 .208-.759c.138-.273.35-.494.519-.67l.045-.047 2.78-2.91a1.483 1.483 0 0 0-.025-2.073Z" clip-rule="evenodd"/></svg>');
+          /* ГАРАНТИЯ: Резервный символ самолета */
+          width: 30px; 
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px; 
+          
+          /* Встроенная SVG-иконка */
+          background: no-repeat url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="%23fff" fill-rule="evenodd" d="M17.026 2.117a3.483 3.483 0 0 1 5.021 4.828l-2.778 2.91a6.391 6.391 0 0 0-.219.235v.005c.011.061.03.145.068.31l1.728 7.487.015.066c.058.243.13.549.105.861a2 2 0 0 1-.222.773c-.145.278-.367.499-.545.675l-.048.048-.4.4c-.278.278-.533.533-.759.721-.232.194-.55.418-.964.491a2 2 0 0 1-1.54-.363c-.338-.251-.522-.594-.643-.871-.118-.27-.232-.612-.357-.985l-1.51-4.533-2.202 2.201a6.644 6.644 0 0 0-.2.205 6.18 6.18 0 0 0 .028.285l.184 1.654.006.059c.025.217.056.49.013.764a2 2 0 0 1-.236.672c-.137.241-.332.435-.487.59l-.042.04-.197.198-.026.026c-.214.214-.419.419-.604.574-.199.167-.458.35-.798.439a2 2 0 0 1-1.378-.137 2.04 2.04 0 0 1-.697-.587 10.212 10.212 0 0 1-.48-.68l-1.588-2.383a5.878 5.878 0 0 0-.066-.098v-.002h-.002a5.934 5.934 0 0 0-.098-.067L2.726 17.34c-.253-.168-.493-.329-.682-.48a2.041 2.041 0 0 1-.587-.696 2 2 0 0 1-.136-1.379 2.04 2.04 0 0 1 .439-.798c.155-.185.36-.389.574-.604l.223-.222.041-.042c.155-.155.349-.35.589-.487a2 2 0 0 1 .673-.236c.273-.044.546-.013.764.012l.058.007 1.654.184c.15.016.226.024.28.028h.005l.003-.003c.046-.043.107-.105.225-.227l2.71-2.799Zm3.551 1.374a1.483 1.483 0 0 0-2.114.017l-2.71 2.8-.046.048c-.17.177-.384.399-.653.547a2 2 0 0 1-.824.243c-.306.022-.606-.048-.845-.104l-.065-.015-7.459-1.722a6.532 6.532 0 0 0-.317-.069h-.006a6.532 6.532 0 0 0-.237.23l-.37.37a11.529 11.529 0 0 0-.647.678l.028.012c.175.077.428.162.854.304l6.029 2.01a1 1 0 0 1 .39 1.655L8.24 13.841l-.041.042c-.154.155-.348.35-.589.487a2 2 0 0 1-.673.236c-.273.043-.546.012-.763-.013l-.06-.007-1.653-.183a6.405 6.405 0 0 0-.285-.029l-.003.003c-.041.037-.095.09-.202.198l-.198.197a9.188 9.188 0 0 0-.493.515l.014.012c.112.09.278.201.57.397l2.353 1.568.021.014c.078.052.176.117.268.195a2.003 2.003 0 0 1 .419.492l.013.02 1.569 2.353a9.253 9.253 0 0 0 .408.585l.015-.012c.11-.092.251-.233.5-.482l.198-.197c.107-.107.16-.161.197-.202l.003-.004v-.004a6.341 6.341 0 0 0-.028-.28l-.184-1.654-.006-.059c-.055-.237-.125-.536-.104-.84a2 2 0 0 1 .208-.759c.138-.273.35-.494.519-.67l.045-.047 2.78-2.91a1.483 1.483 0 0 0-.025-2.073Z" clip-rule="evenodd"/></svg>');
         }
 
         .nav-menu {
+          /* НАВИГАЦИЯ ФИКС 1: Основное меню по умолчанию видно (display: flex) */
           display: flex;
           list-style: none;
           margin: 0;
@@ -789,14 +587,27 @@
           display: none;
           background: none;
           border: none;
-          color: white;
-          font-size: 20px;
+          color: white; /* Базовый цвет */
+          font-size: 30px; 
+          font-weight: 700; 
           cursor: pointer;
           padding: 8px;
+          line-height: 1; 
+          position: relative; 
+        }
+
+        /* Стили для Font Awesome внутри кнопки */
+        .mobile-menu-button i {
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             transform: translate(-50%, -50%);
+             font-size: 20px; 
+             color: white; 
+             line-height: 1;
         }
 
         .mobile-menu-overlay {
-          display: none; /* Управляется JS */
           position: fixed;
           top: 0;
           left: 0;
@@ -805,30 +616,36 @@
           background: rgba(0, 0, 0, 0.5);
           z-index: 999;
           opacity: 0;
-          transition: opacity 0.3s ease;
+          visibility: hidden; 
+          transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .mobile-menu-overlay.active {
           opacity: 1;
+          visibility: visible;
         }
 
         .mobile-menu {
-          display: none; /* Управляется JS */
-          position: fixed;
+          position: fixed; 
           top: 0;
-          right: -280px;
+          right: 0; 
+          left: auto; 
           width: 260px;
           height: 100vh;
           background: #1e293b;
           z-index: 1001;
           padding: 60px 15px 15px;
           box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
-          transition: right 0.3s ease;
           overflow-y: auto;
+          
+          visibility: hidden; 
+          transform: translateX(100%); 
+          transition: transform 0.3s ease, visibility 0.3s ease; 
         }
 
         .mobile-menu.active {
-          right: 0;
+          transform: translateX(0); 
+          visibility: visible;
         }
 
         .mobile-menu-close {
@@ -841,6 +658,7 @@
           font-size: 20px;
           cursor: pointer;
           padding: 5px;
+          z-index: 9999; 
         }
 
         .mobile-menu-links {
@@ -876,14 +694,15 @@
           }
           
           .nav-menu {
-            display: none;
+            /* НАВИГАЦИЯ ФИКС 2: Скрываем основное меню на мобильных */
+            display: none; 
           }
           
           .mobile-menu-button {
             display: block;
+            color: #f7f7f7 !important; 
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
           }
-          
-          /* ИСПРАВЛЕНИЕ #2: УДАЛЕН КОНФЛИКТУЮЩИЙ CSS */
         }
 
         @media (max-width: 480px) {
@@ -896,12 +715,12 @@
           }
 
           .mobile-menu {
-            width: 100vw;
-            right: -100vw;
+            width: 100vw; 
+            transform: translateX(100%); 
           }
           
           .mobile-menu.active {
-            right: 0;
+            transform: translateX(0); 
           }
           
         }
@@ -911,7 +730,7 @@
 <nav class="main-navigation">
     <div class="nav-container">
       <div class="nav-logo">
-        <div class="nav-logo-icon"></div>
+        <div class="nav-logo-icon">✈️</div> 
         Airflow
       </div>
 
@@ -924,7 +743,7 @@
       </ul>
 
       <button class="mobile-menu-button" id="mobile-menu-button" aria-label="Меню">
-        <i class="fas fa-bars"></i>
+        ☰<i class="fas fa-bars"></i>
       </button>
     </div>
   </nav>
@@ -1164,7 +983,7 @@
                         Ваш надежный партнер для поиска самых выгодных предложений на авиабилеты, отели и аренду автомобилей. Мы делаем путешествия доступными.
                     </p>
                     <div class="nav-logo" style="padding: 0; margin-top: 15px;">
-                        <div class="nav-logo-icon"></div>
+                        <div class="nav-logo-icon">✈️</div>
                         Airflow
                     </div>
                 </div>
@@ -1218,19 +1037,13 @@
                 if (isMenuOpen) {
                     mobileMenu.classList.add('active');
                     menuOverlay.classList.add('active');
-                    menuOverlay.style.display = 'block';
                     // Блокируем прокрутку фона
                     document.body.style.overflow = 'hidden'; 
                 } else {
                     mobileMenu.classList.remove('active');
                     menuOverlay.classList.remove('active');
+                    // Разблокируем прокрутку фона
                     document.body.style.overflow = '';
-                    // Скрываем оверлей только после завершения анимации
-                    setTimeout(() => {
-                        if (!isMenuOpen) {
-                            menuOverlay.style.display = 'none';
-                        }
-                    }, 300); 
                 }
             }
 
@@ -1239,9 +1052,6 @@
                 mobileMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
                 document.body.style.overflow = '';
-                setTimeout(() => {
-                    menuOverlay.style.display = 'none';
-                }, 300);
             }
 
             // Обработчики событий
@@ -1251,6 +1061,7 @@
             
             // Закрытие при изменении размера экрана (если десктопное меню снова становится видимым)
             window.addEventListener('resize', function() {
+                // 1175px - это breakpoint для мобильного меню
                 if (window.innerWidth > 1175 && isMenuOpen) {
                     closeMenu();
                 }
