@@ -201,6 +201,10 @@
         /* СТИЛИ КОНТЕНТА СТРАНИЦЫ (ОБЩИЕ) */
         /* ---------------------------------------------------- */
         
+        /* ЦВЕТОВАЯ СХЕМА: ЗЕЛЕНЫЙ (по запросу) */
+        /* Main Green: #10b981 (Emerald Green) */
+        /* Dark Green: #065f46 (Dark Teal Green for headings/accents) */
+        
         .section-title {
             text-align: center;
             font-size: 2.5rem;
@@ -210,8 +214,8 @@
         }
         
         .hero-section {
-            /* Уникальный Hero-фон для Cars: Акцент на темном индиго, чтобы отличать от главной */
-            background: linear-gradient(135deg, #370c79 0%, #1e293b 100%); 
+            /* Уникальный Hero-фон для Cars: используем темный зеленый */
+            background: linear-gradient(135deg, #065f46 0%, #1e293b 100%);
             color: white;
             padding: 80px 20px;
             text-align: center;
@@ -234,8 +238,8 @@
         
         .cta-button {
             display: inline-block;
-            background-color: #f59e0b; /* Яркий желто-оранжевый */
-            color: #1e293b;
+            background-color: #10b981; /* Зеленый */
+            color: white; /* Изменено с #1e293b для лучшего контраста */
             padding: 15px 35px;
             border-radius: 8px;
             text-decoration: none;
@@ -246,7 +250,7 @@
         }
 
         .cta-button:hover {
-            background-color: #d97706;
+            background-color: #059669; /* Более темный зеленый */
         }
 
         .product-icons-section {
@@ -273,26 +277,26 @@
             border-radius: 8px;
         }
         
-        /* Изменение цвета иконок на оранжевый по умолчанию */
+        /* Изменение цвета иконок на ЗЕЛЕНЫЙ по умолчанию */
         .product-icon {
             font-size: 3rem;
             margin-bottom: 10px;
-            color: #f59e0b; /* Яркий Оранжевый/Янтарный */
+            color: #10b981; /* Зеленый */
             transition: color 0.3s ease;
         }
 
         .product-icon-link:hover {
-            color: #4c1d95; /* Фирменный фиолетовый для текста при наведении */
+            color: #065f46; /* Темно-зеленый для текста при наведении */
             transform: translateY(-5px);
         }
         
-        /* Изменение цвета иконки на фиолетовый при наведении */
+        /* Изменение цвета иконки на Темно-зеленый при наведении */
         .product-icon-link:hover .product-icon {
-            color: #4c1d95;
+            color: #065f46;
         }
 
         /* ---------------------------------------------------- */
-        /* СТИЛИ КЛАССОВ АВТО И ПРЕИМУЩЕСТВ (НОВЫЕ СЕКЦИИ) */
+        /* СТИЛИ КЛАССОВ АВТО И ПРЕИМУЩЕСТВ */
         /* ---------------------------------------------------- */
 
         .car-features-section {
@@ -302,9 +306,7 @@
         
         .features-grid, .classes-grid {
             display: grid;
-            /* ФИКС: Увеличиваем minmax до 300px, чтобы на ПК помещалось только 3 колонки (3x300 = 900) */
-            /* На планшете (768px) поместится 2 колонки (2x300 = 600) */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             max-width: 1100px;
             margin: 0 auto;
@@ -317,7 +319,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             background: #f8fafc; /* Очень светлый фон */
             /* Основной цвет по умолчанию, но будет переопределен инлайн стилями */
-            border-top: 5px solid #4c1d95; 
+            border-top: 5px solid #065f46; /* Темно-зеленый */
             transition: transform 0.3s;
         }
         
@@ -329,7 +331,7 @@
         .feature-icon {
             font-size: 3rem;
             /* Основной цвет по умолчанию, но будет переопределен инлайн стилями */
-            color: #4c1d95; 
+            color: #065f46; /* Темно-зеленый */
             margin-bottom: 15px;
         }
 
@@ -351,19 +353,17 @@
             background: #f8fafc; /* Светлый фон */
         }
 
-
         /* ---------------------------------------------------- */
         /* СТИЛИ КАРТОЧЕК НАПРАВЛЕНИЙ */
         /* ---------------------------------------------------- */
         .destinations-section {
             padding: 80px 20px;
-            background: white; /* Сделаем белый, чтобы отделить от секции классов */
+            background: white;
         }
 
         .destinations-grid {
             display: grid;
-            /* ФИКС: Устанавливаем minmax(300px, 1fr), чтобы на ПК помещалось только 3 колонки */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
@@ -378,17 +378,18 @@
             text-decoration: none;
             color: inherit;
             display: block;
+            height: 100%;
         }
 
         .destination-card:hover {
-            transform: translateY(-5px); /* Эффект приподнятия */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); 
         }
 
         .destination-image {
             width: 100%;
             height: 180px;
-            background-size: cover;
+            background-size: cover; 
             background-position: center;
             position: relative;
             display: flex;
@@ -397,28 +398,29 @@
             font-size: 3rem;
             color: white;
             font-weight: 700;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            opacity: 0.9;
         }
         
-        /* Цвета для 6 карточек (переиспользованы с index.html) */
+        .dest-tbilisi { 
+            background-image: url('https://images.unsplash.com/photo-1594950796856-d70c4e1f7480?w=400&auto=format');
+        }
         .dest-istanbul { 
-            background-image: linear-gradient(135deg, #5d9cec 0%, #4a89dc 100%);
+            background-image: url('https://images.unsplash.com/photo-1527838832700-5059252407ae?w=400&auto=format');
         }
         .dest-dubai { 
-            background-image: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            background-image: url('https://images.unsplash.com/photo-1549487597-28d84bc13348?w=400&auto=format');
         }
-        .dest-tbilisi { 
-            background-image: linear-gradient(135deg, #8cc152 0%, #6e8b4e 100%);
+        .dest-erevan { 
+            background-image: url('https://images.unsplash.com/photo-1596726194787-8d0b2847a960?w=400&auto=format');
         }
-        .dest-bangkok { 
-            background-image: linear-gradient(135deg, #e9573f 0%, #cc3333 100%);
+        .dest-baku { 
+            background-image: url('https://images.unsplash.com/photo-1582239433296-1c881023c9e9?w=400&auto=format');
         }
-        .dest-paris { 
-            background-image: linear-gradient(135deg, #a033d5 0%, #6f1fa8 100%);
+        .dest-praga { 
+            background-image: url('https://images.unsplash.com/photo-1520106212299-82f7aa500524?w=400&auto=format');
         }
-        .dest-newyork { 
-            background-image: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
-        }
-
 
         .destination-info {
             padding: 20px;
@@ -427,7 +429,7 @@
         .destination-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #4c1d95; /* Фирменный цвет */
+            color: #065f46; /* Темно-зеленый */
             margin-bottom: 5px;
         }
 
@@ -436,6 +438,72 @@
             color: #64748b;
         }
 
+        /* ---------------------------------------------------- */
+        /* СТИЛИ СЕКЦИИ С СЕКРЕТАМИ/СПОЙЛЕРАМИ (АККОРДЕОН) */
+        /* ---------------------------------------------------- */
+        .price-secrets-section {
+            padding: 80px 20px;
+            background: #f8fafc; /* Светлый фон */
+        }
+        
+        .accordion-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        /* ЦВЕТ: Акцент на Зеленый */
+        .accordion-item.active {
+            border-color: #10b981; /* Зеленый */
+        }
+
+        .accordion-header {
+            background-color: #f0fff4; /* Очень светло-зеленый фон */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #065f46; /* Темно-зеленый текст */
+            transition: background-color 0.3s;
+        }
+
+        .accordion-header:hover {
+            background-color: #e0f2f4; /* Чуть светлее */
+        }
+
+        .accordion-icon {
+            font-size: 1.2rem;
+            color: #10b981; /* Зеленый */
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            color: #475569;
+        }
+        
+        .accordion-content p {
+            padding-bottom: 20px;
+            margin-top: 10px;
+        }
+        
         /* ---------------------------------------------------- */
         /* СТИЛИ ОТЗЫВОВ - Слайдер Swiper */
         /* ---------------------------------------------------- */
@@ -453,14 +521,14 @@
         .testimonial-card {
             background: white; /* Белый фон для карточек */
             padding: 30px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-radius: 4px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
             border: 1px solid #e2e8f0;
             height: 100%;
             display: flex;
             flex-direction: column;
         }
-
+        
         .stars {
             color: #f59e0b; /* Желтый/оранжевый */
             margin-bottom: 15px;
@@ -483,7 +551,7 @@
         .author-avatar {
             width: 50px;
             height: 50px;
-            background: #4c1d95; /* Фирменный цвет */
+            background: #065f46; /* Темно-зеленый */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -504,10 +572,10 @@
             color: #64748b;
             font-size: 0.9rem;
         }
-
+        
         /* Swiper навигация: Адаптивный фикс - Стрелки без фона, но контрастного цвета */
         .swiper-button-prev, .swiper-button-next {
-            background: transparent !important; 
+            background: transparent !important;
             width: 30px;
             height: 30px;
             border-radius: 0;
@@ -515,23 +583,23 @@
             transition: opacity 0.3s;
             top: 50%; 
             margin-top: -15px; 
-            opacity: 0.7; 
+            opacity: 0.7;
         }
 
         .swiper-button-prev:hover, .swiper-button-next:hover {
-            background: transparent !important; 
+            background: transparent !important;
             opacity: 1; 
         }
         
         .swiper-button-prev:after, .swiper-button-next:after {
-            color: #1e293b !important; 
+            color: #1e293b !important;
             font-size: 24px !important; 
         }
 
-        /* Swiper Pagination (точки) */
         .swiper-pagination-bullet-active {
-            background: #4c1d95 !important;
+            background: #065f46 !important; /* Темно-зеленый */
         }
+
 
         /* ---------------------------------------------------- */
         /* СТИЛИ ФУТЕРА */
@@ -541,12 +609,6 @@
             color: #94a3b8;
             padding: 60px 0 20px;
             font-size: 14px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .footer-content {
@@ -575,10 +637,6 @@
             padding-left: 0;
         }
 
-        .footer-section li {
-            margin-bottom: 10px;
-        }
-
         .footer-section a {
             color: #94a3b8;
             transition: 0.3s;
@@ -590,26 +648,11 @@
             color: white;
             text-decoration: underline;
         }
-
-        .footer-bottom {
-            border-top: 1px solid #334155;
-            padding-top: 20px;
-            text-align: center;
-            color: #94a3b8;
-        }
         
         @media (max-width: 768px) {
-            .footer-content {
-                flex-direction: column;
-            }
-
             .footer-section {
                 width: 100%;
                 margin-right: 0;
-            }
-            
-            .footer-section h3 {
-                padding-top: 10px;
             }
         }
     </style>
@@ -623,13 +666,14 @@
             </a>
 
             <ul class="nav-menu">
-                <li><a href="index.html">Главная</a></li>
+                <li><a href="index.html">Главная</a></li> 
                 <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
                 <li><a href="hotels.html">🏨 Отели</a></li>
-                <li><a href="cars.html" class="active">🚗 Аренда авто</a></li> <li><a href="transfers.html">🚕 Трансферы</a></li>
+                <li><a href="cars.html" class="active">🚗 Аренда авто</a></li>
+                <li><a href="transfers.html">🚕 Трансферы</a></li>
                 <li><a href="trains.html">🚆 Поезда</a></li>
             </ul>
-
+            
             <button class="mobile-menu-button" id="mobile-menu-button" aria-label="Меню">
                 <i class="fas fa-bars"></i>
             </button>
@@ -652,6 +696,7 @@
         </ul>
     </nav>
 
+    
     <main>
         <section class="hero-section">
             <div class="container">
@@ -667,7 +712,7 @@
 
         <section class="product-icons-section">
             <div class="container">
-                <div class="section-title" style="margin-bottom: 30px; color: #4c1d95;">Наши продукты</div>
+                <div class="section-title" style="margin-bottom: 30px; color: #065f46;">Наши продукты</div>
                 <div class="product-icons-grid">
                     <a href="https://search.airflowtravel.net" class="product-icon-link">
                         <div class="product-icon"><i class="fas fa-plane"></i></div>
@@ -693,78 +738,43 @@
             </div>
         </section>
         
-        <section class="car-class-section">
-            <div class="container">
-                <div class="section-title" style="color: #1e293b;">Выберите класс автомобиля</div>
-                <div class="classes-grid">
-                    
-                    <div class="feature-card" style="border-top-color: #4a89dc;"> <div class="feature-icon" style="color: #4a89dc;"><i class="fas fa-road"></i></div>
-                        <h4>Эконом и Компакт</h4>
-                        <p>Идеально для городских поездок, низкий расход топлива и легкая парковка.</p>
-                    </div>
-                    
-                    <div class="feature-card" style="border-top-color: #ff9800;"> <div class="feature-icon" style="color: #ff9800;"><i class="fas fa-mountain"></i></div>
-                        <h4>Внедорожники (SUV)</h4>
-                        <p>Высокая проходимость и комфорт для путешествий по сложным маршрутам и горам.</p>
-                    </div>
-                    
-                    <div class="feature-card" style="border-top-color: #6f1fa8;"> <div class="feature-icon" style="color: #6f1fa8;"><i class="fas fa-people-group"></i></div>
-                        <h4>Минивэны и Семья</h4>
-                        <p>Просторные автомобили для большой семьи или компании до 7-9 человек.</p>
-                    </div>
-                    
-                    <div class="feature-card" style="border-top-color: #16a085;"> <div class="feature-icon" style="color: #16a085;"><i class="fas fa-crown"></i></div>
-                        <h4>Премиум и Люкс</h4>
-                        <p>Автомобили высокого класса для максимального комфорта и представительских целей.</p>
-                    </div>
-
-                    <div class="feature-card" style="border-top-color: #cc3333;"> <div class="feature-icon" style="color: #cc3333;"><i class="fas fa-wind"></i></div>
-                        <h4>Кабриолеты и Спорт</h4>
-                        <p>Ощутите свободу и скорость. Лучший выбор для курортных и живописных маршрутов.</p>
-                    </div>
-
-                    <div class="feature-card" style="border-top-color: #f59e0b;"> <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-bolt"></i></div>
-                        <h4>Электро и Гибриды</h4>
-                        <p>Экологичный и современный выбор. Удобные электрокары для городской среды.</p>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        
         <section class="car-features-section">
             <div class="container">
-                <div class="section-title" style="color: #4c1d95;">Почему выбирают аренду через Airflow Travel</div>
+                <div class="section-title" style="color: #065f46;">Почему выбирают аренду через Airflow Travel</div>
                 <div class="features-grid">
                     
-                    <div class="feature-card" style="border-top-color: #f59e0b;">
-                        <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-shield-halved"></i></div>
+                    <div class="feature-card" style="border-top-color: #10b981;">
+                        <div class="feature-icon" style="color: #10b981;"><i class="fas fa-shield-halved"></i></div>
                         <h4>Полная страховка</h4>
                         <p>Многие предложения включают страховку без франшизы для вашего спокойствия.</p>
                     </div>
                     
-                    <div class="feature-card" style="border-top-color: #4c1d95;">
-                        <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <div class="feature-card" style="border-top-color: #065f46;">
+                        <div class="feature-icon" style="color: #065f46;"><i class="fas fa-headset"></i></div>
                         <h4>Круглосуточная поддержка</h4>
                         <p>Наша команда поддержки всегда на связи, чтобы помочь в любой ситуации.</p>
                     </div>
                     
-                    <div class="feature-card" style="border-top-color: #1abc9c;"> <div class="feature-icon" style="color: #1abc9c;"><i class="fas fa-credit-card"></i></div>
+                    <div class="feature-card" style="border-top-color: #f59e0b;">
+                        <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-credit-card"></i></div>
                         <h4>Без скрытых платежей</h4>
                         <p>Финальная цена всегда включает налоги и сборы. Никаких сюрпризов при получении авто.</p>
                     </div>
                     
-                    <div class="feature-card" style="border-top-color: #e9573f;"> <div class="feature-icon" style="color: #e9573f;"><i class="fas fa-ban"></i></div>
+                    <div class="feature-card" style="border-top-color: #e9573f;">
+                        <div class="feature-icon" style="color: #e9573f;"><i class="fas fa-ban"></i></div>
                         <h4>Отмена без штрафов</h4>
                         <p>Бесплатная отмена бронирования за 24 часа до получения авто по многим тарифам.</p>
                     </div>
-
-                    <div class="feature-card" style="border-top-color: #4a89dc;"> <div class="feature-icon" style="color: #4a89dc;"><i class="fas fa-star-half-stroke"></i></div>
+                    
+                    <div class="feature-card" style="border-top-color: #4a89dc;">
+                        <div class="feature-icon" style="color: #4a89dc;"><i class="fas fa-star-half-stroke"></i></div>
                         <h4>Рейтинги и отзывы</h4>
                         <p>Проверенные оценки от реальных клиентов помогут выбрать лучшего прокатчика.</p>
                     </div>
-
-                    <div class="feature-card" style="border-top-color: #8cc152;"> <div class="feature-icon" style="color: #8cc152;"><i class="fas fa-sliders"></i></div>
+                    
+                    <div class="feature-card" style="border-top-color: #8cc152;">
+                        <div class="feature-icon" style="color: #8cc152;"><i class="fas fa-sliders"></i></div>
                         <h4>Подбор по параметрам</h4>
                         <p>Легко фильтруйте авто по типу коробки, топливу, размеру и дополнительным опциям.</p>
                     </div>
@@ -772,76 +782,154 @@
                 </div>
             </div>
         </section>
+
+        <section class="price-secrets-section">
+            <div class="container">
+                <div class="section-title" style="color: #1e293b;">Секреты выгодной аренды авто</div>
+                
+                <div class="accordion-container">
+                    
+                    <div class="accordion-item" data-spoiler="1">
+                        <div class="accordion-header">
+                            <span>1. Бронируйте заранее и на долгий срок</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Чем раньше вы бронируете, тем больше выбор и ниже цена. Кроме того, суточная стоимость аренды падает, если вы берете автомобиль на неделю или дольше. Лучше бронировать за 2-4 недели до поездки.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" data-spoiler="2">
+                        <div class="accordion-header">
+                            <span>2. Сравнивайте предложения от локальных и международных компаний</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Используйте агрегаторы, такие как Localrent (специализируется на местных прокатных конторах) и EconomyBookings (для крупных международных брендов). Зачастую локальные прокатчики предлагают лучшие цены или более гибкие условия.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item" data-spoiler="3">
+                        <div class="accordion-header">
+                            <span>3. Внимательно читайте условия страховки (франшиза)</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Самый большой риск — это франшиза (сумма, которую вы платите в случае ущерба). Обязательно берите полную страховку без франшизы (Full Collision Damage Waiver - FCDW) или рассмотрите вариант покупки отдельной страховки франшизы у сторонних компаний. Это сэкономит ваши деньги при неприятностях.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item" data-spoiler="4">
+                        <div class="accordion-header">
+                            <span>4. Проверяйте автомобиль и фотографируйте ДО и ПОСЛЕ</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Перед тем как отъехать, тщательно осмотрите кузов и салон, зафиксируйте все царапины, сколы и уровень топлива на камеру. Это ваш главный аргумент в случае спорных ситуаций при сдаче авто.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
         
+        <section class="car-class-section">
+            <div class="container">
+                <div class="section-title" style="color: #1e293b;">Классы автомобилей на любой вкус</div>
+                <div class="classes-grid">
+                    
+                    <div class="feature-card" style="border-top-color: #10b981;">
+                        <div class="feature-icon" style="color: #10b981;"><i class="fas fa-car-side"></i></div>
+                        <h4>Эконом и Компакт</h4>
+                        <p>Идеально для городских поездок и небольших дистанций. Самый выгодный вариант.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #f59e0b;">
+                        <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-suitcase-rolling"></i></div>
+                        <h4>Стандарт и Седан</h4>
+                        <p>Удобный баланс цены и комфорта. Отлично подходит для семейных поездок.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #4a89dc;">
+                        <div class="feature-icon" style="color: #4a89dc;"><i class="fas fa-road"></i></div>
+                        <h4>Внедорожники (SUV)</h4>
+                        <p>Для горных дорог, дальних маршрутов и поездок большой компанией.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #e9573f;">
+                        <div class="feature-icon" style="color: #e9573f;"><i class="fas fa-gem"></i></div>
+                        <h4>Премиум и Спорт</h4>
+                        <p>Для тех, кто ценит максимальный комфорт, мощность и внимание к деталям.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #065f46;">
+                        <div class="feature-icon" style="color: #065f46;"><i class="fas fa-bus"></i></div>
+                        <h4>Минивэны</h4>
+                        <p>Лучшее решение для большой группы путешественников (7-9 мест).</p>
+                    </div>
+                    
+                    <div class="feature-card" style="border-top-color: #8cc152;">
+                        <div class="feature-icon" style="color: #8cc152;"><i class="fas fa-bolt"></i></div>
+                        <h4>Электрокары</h4>
+                        <p>Экологичный и современный выбор в странах с развитой сетью зарядных станций.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
         <section class="destinations-section">
             <div class="container">
                 <div class="section-title" style="color: #1e293b;">Популярные направления для аренды авто</div>
                 <div class="destinations-grid">
                     
+                    <a href="#" class="destination-card"> 
+                        <div class="destination-image dest-tbilisi"> <i class="fas fa-car-side"></i> </div> 
+                        <div class="destination-info"> 
+                            <h3 class="destination-title">Тбилиси, Грузия</h3> 
+                            <p class="destination-subtitle">Удобный автопрокат для путешествия по всей стране.</p> 
+                        </div> 
+                    </a>
                     <a href="#" class="destination-card">
-                        <div class="destination-image dest-tbilisi">
-                             <i class="fas fa-car-side"></i>
-                        </div>
-                        <div class="destination-info">
-                            <h3 class="destination-title">Аренда авто в Грузии</h3>
-                            <p class="destination-subtitle">Найдите лучшие предложения Localrent в Тбилиси и Батуми.</p>
+                        <div class="destination-image dest-istanbul"> <i class="fas fa-city"></i> </div> 
+                        <div class="destination-info"> 
+                            <h3 class="destination-title">Стамбул, Турция</h3> 
+                            <p class="destination-subtitle">Отличные цены на авто в крупнейших аэропортах.</p> 
                         </div>
                     </a>
-                    
-                    <a href="#" class="destination-card">
-                        <div class="destination-image dest-dubai">
-                            <i class="fas fa-car-side"></i>
-                        </div>
-                        <div class="destination-info">
-                            <h3 class="destination-title">Аренда авто в ОАЭ</h3>
-                            <p class="destination-subtitle">Прокат премиум и эконом-класса в Дубае.</p>
+                    <a href="#" class="destination-card"> 
+                        <div class="destination-image dest-dubai"> <i class="fas fa-map-marked-alt"></i> </div> 
+                        <div class="destination-info"> 
+                            <h3 class="destination-title">Дубай, ОАЭ</h3> 
+                            <p class="destination-subtitle">Роскошные и стандартные авто для комфортной езды.</p> 
                         </div>
                     </a>
-                    
                     <a href="#" class="destination-card">
-                        <div class="destination-image dest-istanbul">
-                            <i class="fas fa-car-side"></i>
-                        </div>
-                        <div class="destination-info">
-                            <h3 class="destination-title">Прокат авто в Турции</h3>
-                            <p class="destination-subtitle">Сравнение цен на авто в Стамбуле и Анталии.</p>
+                        <div class="destination-image dest-erevan"> <i class="fas fa-mountain"></i> </div> 
+                        <div class="destination-info"> 
+                            <h3 class="destination-title">Ереван, Армения</h3> 
+                            <p class="destination-subtitle">Бронирование авто для поездок к горным озёрам.</p> 
                         </div>
                     </a>
-                    
                     <a href="#" class="destination-card">
-                        <div class="destination-image dest-bangkok">
-                            <i class="fas fa-car-side"></i>
-                        </div>
-                        <div class="destination-info">
-                            <h3 class="destination-title">Аренда авто в Таиланде</h3>
-                            <p class="destination-subtitle">Свобода передвижения по Пхукету и Бангкоку.</p>
+                        <div class="destination-image dest-baku"> <i class="fas fa-sun"></i> </div> 
+                        <div class="destination-info"> 
+                            <h3 class="destination-title">Баку, Азербайджан</h3> 
+                            <p class="destination-subtitle">Сравните предложения от лучших местных прокатчиков.</p> 
                         </div>
                     </a>
-                    
                     <a href="#" class="destination-card">
-                        <div class="destination-image dest-paris">
-                            <i class="fas fa-car-side"></i>
-                        </div>
-                        <div class="destination-info">
-                            <h3 class="destination-title">Автопрокат во Франции</h3>
-                            <p class="destination-subtitle">Путешествие по Лазурному Берегу и Парижу.</p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="destination-card">
-                        <div class="destination-image dest-newyork">
-                            <i class="fas fa-car-side"></i>
-                        </div>
-                        <div class="destination-info">
-                            <h3 class="destination-title">Прокат авто в США</h3>
-                            <p class="destination-subtitle">Лучшие условия для поездок по Америке.</p>
+                        <div class="destination-image dest-praga"> <i class="fas fa-flag"></i> </div> 
+                        <div class="destination-info"> 
+                            <h3 class="destination-title">Прага, Чехия</h3> 
+                            <p class="destination-subtitle">Поездки по Европе с максимальным удобством.</p> 
                         </div>
                     </a>
                     
                 </div>
             </div>
         </section>
-
+        
         <section class="testimonials-section">
             <div class="container">
                 <div class="section-title">Что говорят наши клиенты</div>
@@ -849,6 +937,23 @@
                     <div class="swiper testimonials-slider">
                         <div class="swiper-wrapper">
                             
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="testimonial-text">
+                                        «Арендовал машину в Тбилиси через Localrent. Цена отличная, процесс получения авто быстрый, а поддержка Airflow помогла с выбором страховки.»
+                                    </p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">СВ</div>
+                                        <div class="author-info">
+                                            <h4>Сергей В.</h4>
+                                            <p>Автопутешественник</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="swiper-slide">
                                 <div class="testimonial-card">
                                     <div class="stars">
@@ -866,7 +971,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="swiper-slide">
                                 <div class="testimonial-card">
                                     <div class="stars">
@@ -884,128 +988,99 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="swiper-slide">
                                 <div class="testimonial-card">
                                     <div class="stars">
                                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                     </div>
                                     <p class="testimonial-text">
-                                        «Заказывали трансфер из аэропорта Стамбула. Водитель ждал вовремя, машина комфортная. Отличный способ добраться до отеля без лишних нервов.»
+                                        «Заказывали трансфер из аэропорта — все четко, водитель встретил вовремя. Сервис Airflow объединяет все лучшее!»
                                     </p>
                                     <div class="testimonial-author">
-                                        <div class="author-avatar">ОС</div>
+                                        <div class="author-avatar">ВА</div>
                                         <div class="author-info">
-                                            <h4>Ольга С.</h4>
+                                            <h4>Валентина А.</h4>
                                             <p>Клиент (Трансфер)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="testimonial-card">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <p class="testimonial-text">
-                                        «Арендовали машину через Localrent на этом сайте. Выбор был огромный, а цена оказалась ниже, чем на других платформах. Рекомендую!»
-                                    </p>
-                                    <div class="testimonial-author">
-                                        <div class="author-avatar">СК</div>
-                                        <div class="author-info">
-                                            <h4>Сергей К.</h4>
-                                            <p>Клиент (Авто)</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
                         </div>
-                        
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-button-next"></div>
-                        
                     </div>
                 </div>
             </div>
         </section>
 
     </main>
+
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
-                
                 <div class="footer-section">
                     <h3>О нас</h3>
                     <ul>
                         <li><a href="about.html">О проекте Airflow</a></li>
-                        <li><a href="help.html">Помощь и поддержка</a></li>
-                        <li><a href="terms.html">Условия использования</a></li>
-                        <li><a href="privacy.html">Политика конфиденциальности</a></li>
+                        <li><a href="help.html">Помощь и контакты</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-section">
-                    <h3>Путешествия</h3>
+                    <h3>Продукты</h3>
                     <ul>
-                        <li><a href="hotels.html">Бронирование отелей</a></li>
-                        <li><a href="cars.html">Аренда авто</a></li>
-                        <li><a href="transfers.html">Трансферы</a></li>
-                        <li><a href="trains.html">Поезда</a></li>
+                        <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+                        <li><a href="hotels.html">🏨 Отели</a></li>
+                        <li><a href="cars.html">🚗 Аренда авто</a></li>
+                        <li><a href="trains.html">🚆 Поезда</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-section">
-                    <h3>Популярные направления</h3>
+                    <h3>Популярное</h3>
                     <ul>
-                        <li><a href="#">Авиабилеты в Стамбул</a></li>
-                        <li><a href="#">Отели в Тбилиси</a></li>
                         <li><a href="#">Аренда авто в Грузии</a></li>
-                        <li><a href="#">Популярные города</a></li>
+                        <li><a href="#">Автопрокат в Турции</a></li>
+                        <li><a href="#">Машины в аренду в Дубае</a></li>
+                        <li><a href="#">Аренда авто с полной страховкой</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-section">
-                    <h3>Контакты</h3>
-                    <p>Airflow Travel<br>Email: info@airflowtravel.net</p>
+                    <h3>Партнеры</h3>
+                    <p style="color: white; margin-bottom: 5px;">Авто:</p>
+                    <p>Localrent</p>
+                    <p>EconomyBookings</p>
                 </div>
-
             </div>
-
             <div class="footer-bottom">
                 &copy; 2025 Airflow Travel. Все права защищены.
             </div>
         </div>
     </footer>
 
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            /* 1. НАДЕЖНЫЙ СКРИПТ МОБИЛЬНОГО МЕНЮ */
-            const menuButton = document.getElementById('mobile-menu-button');
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Скрипт для переключения мобильного меню
             const mobileMenu = document.getElementById('mobile-menu');
+            const menuButton = document.getElementById('mobile-menu-button');
             const menuOverlay = document.getElementById('mobile-menu-overlay');
             const menuClose = document.getElementById('mobile-menu-close');
-            
             let isMenuOpen = false;
 
             function toggleMenu() {
                 isMenuOpen = !isMenuOpen;
-            
                 if (isMenuOpen) {
                     mobileMenu.classList.add('active');
                     menuOverlay.classList.add('active');
                     menuOverlay.style.display = 'block';
-                    document.body.style.overflow = 'hidden'; /* Блокируем скролл */
+                    document.body.style.overflow = 'hidden'; 
                 } else {
                     mobileMenu.classList.remove('active');
                     menuOverlay.classList.remove('active');
-                    document.body.style.overflow = ''; /* Возвращаем скролл */
+                    document.body.style.overflow = ''; 
                     setTimeout(() => {
                         if (!isMenuOpen) {
                             menuOverlay.style.display = 'none';
@@ -1018,27 +1093,16 @@
                 isMenuOpen = false;
                 mobileMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
-                document.body.style.overflow = ''; /* Возвращаем скролл */
+                document.body.style.overflow = ''; 
                 setTimeout(() => {
                     menuOverlay.style.display = 'none';
                 }, 300);
             }
 
-            // Обработчики событий
             if (menuButton) menuButton.addEventListener('click', toggleMenu);
             if (menuClose) menuClose.addEventListener('click', closeMenu);
             if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
 
-            // Закрытие при клике вне меню
-            document.addEventListener('click', function(event) {
-                if (isMenuOpen && 
-                    !mobileMenu.contains(event.target) && 
-                    !menuButton.contains(event.target)) {
-                    closeMenu();
-                }
-            });
-            
-            // Закрытие при изменении размера экрана
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 1175 && isMenuOpen) {
                     closeMenu();
@@ -1079,6 +1143,24 @@
                         document.body.style.overflowX = 'hidden';
                     },
                 }
+            });
+            
+            /* 3. ЛОГИКА ДЛЯ АККОРДЕОНА (СПОЙЛЕРЫ) */
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const item = header.closest('.accordion-item');
+                    const content = item.querySelector('.accordion-content');
+                    
+                    // Toggle active class on the item
+                    item.classList.toggle('active');
+
+                    // Toggle content visibility
+                    if (item.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        content.style.maxHeight = 0;
+                    }
+                });
             });
         });
     </script>
