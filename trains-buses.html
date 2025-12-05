@@ -227,14 +227,32 @@
         margin-right: auto;
     }
     
-    /* Стили для Виджета */
+    /* Стили для Виджета (Резиновость исправлена) */
     #train-bus-widget-container {
         padding: 20px;
         background: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
-        max-width: 800px;
+        /* Резиновость: убрано жесткое ограничение, добавлено мягкое */
+        width: 100%;
+        max-width: 1000px; 
         margin: 0 auto 50px auto;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* СТИЛИЗАЦИЯ ВИДЖЕТА (TPWGT.COM) */
+    #train-bus-widget-container .tpwgt-button {
+        background-color: #10b981 !important; /* Наш Зеленый */
+        border-color: #10b981 !important;
+        transition: background-color 0.3s;
+    }
+
+    #train-bus-widget-container .tpwgt-button:hover {
+        background-color: #0c8a5a !important; /* Темно-зеленый при наведении */
+    }
+
+    #train-bus-widget-container .tpwgt-tab.active {
+        color: #1d4ed8 !important; /* Наш Синий */
+        border-bottom-color: #1d4ed8 !important;
     }
     
     .product-icons-section {
@@ -977,7 +995,8 @@
             document.body.style.overflow = ''; /* Возвращаем скролл */
             setTimeout(() => {
                 menuOverlay.style.display = 'none';
-            }, 300);
+            }
+            , 300);
         }
 
         // Обработчики событий
