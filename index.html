@@ -176,7 +176,7 @@ property="og:description"/>
     .hero-section {
         background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%);
         color: white;
-        padding: 80px 20px 40px; /* Уменьшен нижний padding */
+        padding: 80px 20px 40px; 
         text-align: center;
     }
 
@@ -203,7 +203,7 @@ property="og:description"/>
     
     /* ИСПРАВЛЕНИЕ: Отступ для счетчика статистики */
     #travel-count {
-      margin-top: 20px; /* Добавляем внешний отступ, чтобы отделить от поиска */
+      margin-top: 20px; 
     }
 
     /* H2 - ЗАГОЛОВОК КАРТОЧКИ (ФОКУС ПОЛЬЗОВАТЕЛЯ) */
@@ -324,11 +324,11 @@ property="og:description"/>
     .product-icon-link:hover .product-icon {
         color: #1d4ed8;
     }
-
+    
     /* СТИЛИ КАРТОЧЕК */
     .car-features-section, .seo-tips-section {
         padding: 80px 20px;
-        background: #f8fafc; 
+        background: white; 
     }
     
     .features-grid, .tips-grid {
@@ -341,16 +341,18 @@ property="og:description"/>
 
     @media (min-width: 1024px) {
         .features-grid, .tips-grid {
+            /* Теперь 9 карточек будут идеально выстроены в 3x3 */
             grid-template-columns: repeat(3, 1fr);
             max-width: 1100px;
         }
     }
     
+    /* Стили для чистой/кнопки карточки */
     .feature-card, .tip-card {
         padding: 30px 20px;
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
-        background: #ffffff;
+        background: #f8fafc; /* Светло-серый фон для карточек */
         border-top: 5px solid #10b981;
         transition: transform 0.3s, box-shadow 0.3s;
         height: 100%;
@@ -384,33 +386,98 @@ property="og:description"/>
         text-align: center;
     }
     
-    /* Стили для АККОРДЕОНА */
-    .tip-card summary {
+    /* ======================================================= */
+    /* СТИЛИ ДЛЯ АККОРДЕОНА (FEATURE SECTION) */
+    /* ======================================================= */
+    
+    /* Общие стили для элемента details в секции features и tips */
+    .feature-card details, .tip-card details {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Стилизация summary (заголовок/кнопка) */
+    .feature-card summary, .tip-card summary {
         list-style: none;
         display: flex;
         flex-direction: column;
         padding-right: 25px;
         position: relative;
         outline: none;
+        cursor: pointer;
+        /* Убедимся, что иконка и текст внутри summary центрированы */
+        text-align: center;
+        flex-grow: 1; /* Чтобы summary занимало всю доступную высоту до контента */
     }
 
-    .tip-card summary::-webkit-details-marker {
+    /* Скрытие стандартного маркера */
+    .feature-card summary::-webkit-details-marker, .tip-card summary::-webkit-details-marker {
         display: none;
     }
-    .tip-card summary:after {
-        content: "\25B6";
+
+    /* Иконка-стрелка для закрытого состояния */
+    .feature-card summary:after, .tip-card summary:after {
+        content: "\25B6"; /* Right triangle */
         position: absolute;
         right: 0;
-        top: 5px;
-        font-size: 14px;
-        color: #10b981; 
+        top: 20px; /* Смещаем стрелку, чтобы она была рядом с текстом */
+        color: #10b981; /* Используем акцентный цвет */
         transition: transform 0.3s;
     }
-    .tip-card[open] summary:after {
-        content: "\25BC";
-        top: 8px;
+    
+    /* Иконка-стрелка для открытого состояния */
+    .feature-card[open] summary:after, .tip-card[open] summary:after {
+        content: "\25BC"; /* Down triangle */
+        top: 20px; 
     }
     
+    /* Стиль для скрытого контента */
+    .feature-content-hidden {
+        border-top: 1px solid #e2e8f0;
+        padding-top: 15px;
+        margin-top: 15px;
+        font-size: 0.95rem;
+        color: #475569;
+        text-align: center;
+        /* Дополнительный стиль для контейнера виджетов/QR */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* Стиль для виджетов внутри аккордеона, чтобы они масштабировались */
+    .feature-content-hidden > div, .feature-content-hidden iframe {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+
+    /* Стиль для QR-кода внутри аккордеона */
+    .qr-container {
+        max-width: 200px; 
+        margin: 15px auto 0 auto; 
+        padding: 10px; 
+        border: 1px solid #e2e8f0; 
+        border-radius: 8px;
+    }
+    
+    .qr-container img {
+        width: 100%; 
+        height: auto; 
+        display: block;
+    }
+    
+    .feature-content-hidden p {
+        font-size: 0.8rem;
+        line-height: 1.3;
+        margin-top: 10px;
+        color: #64748b;
+    }
+
+    /* Стили SEO-советов (Остаются как есть) */
     .tip-card .tip-card-text-short {
         color: #64748b;
         font-size: 0.95rem;
@@ -431,10 +498,10 @@ property="og:description"/>
         border-radius: 6px;
         line-height: 1.5;
     }
+    /* ... остальной CSS для отзывов и футера (без изменений) ... */
     
-    /* СТИЛИ ОТЗЫВОВ */
     .testimonials-section {
-        background: white;
+        background: #f8fafc;
         padding: 80px 0; 
         overflow: hidden; 
     }
@@ -454,7 +521,7 @@ property="og:description"/>
     }
 
     .testimonial-card {
-        background: #f8fafc;
+        background: white;
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
@@ -733,41 +800,63 @@ class="product-icon-link">
 <h2 class="section-title" style="color: #1e293b;">Преимущества покупки через Airflow</h2>
 <div class="features-grid">
 
-<div class="feature-card" style="border-top-color: #f59e0b; text-align: center; padding: 15px 20px; cursor: default;">
-    <h4>Бронирование Паркинга (Parking Widget)</h4>
-    <div style="max-width: 300px; margin: 15px auto 0 auto;">
-        <iframe src="https://tp.media/content?promo_id=1160&shmarker=144185&trs=478043&widget=300x310&campaign_id=38" width="300" height="310" frameborder="0"> </iframe>
-    </div>
+<div class="feature-card" style="border-top-color: #f59e0b;">
+    <details>
+        <summary>
+            <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-parking"></i></div>
+            <h4>Бронирование Паркинга</h4>
+            <p>Забронируйте место в аэропорту заранее по лучшей цене.</p>
+        </summary>
+        <div class="feature-content-hidden" style="padding-bottom: 10px;">
+            <div style="max-width: 300px; margin: 0 auto;">
+                <iframe src="https://tp.media/content?promo_id=1160&shmarker=144185&trs=478043&widget=300x310&campaign_id=38" width="300" height="310" frameborder="0"> </iframe>
+            </div>
+        </div>
+    </details>
 </div>
 
-<div class="feature-card" style="border-top-color: #10b981; text-align: center; padding: 15px 20px; cursor: default;">
-    <h4>Компенсация за Рейсы (QR Code)</h4>
-    <div style="max-width: 200px; margin: 15px auto 0 auto; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px;">
-        <a href="https://compensair.tpo.li/UliOutb6?erid=2VtzqxNeJXs" target="_blank" rel="noopener noreferrer" style="display: block;">
-            <img src="tp-compensair-qr-code.jpeg" alt="QR-код для Compensair" style="width: 100%; height: auto; display: block;"/>
-        </a>
-    </div>
-    <p style="margin-top: 10px; font-size: 0.75rem; color: #64748b; line-height: 1.3;">
-        <i class="fas fa-search-dollar" style="color: #10b981; margin-right: 5px;"></i>
-        Проверьте право на компенсацию за задержку рейса.
-        <br>
-        *Реклама. ООО «ТРЭВЕЛМАРТ». ИНН 7713570937. ERID: 2VtzqxNeJXs
-    </p>
+<div class="feature-card" style="border-top-color: #10b981;">
+    <details>
+        <summary>
+            <div class="feature-icon" style="color: #10b981;"><i class="fas fa-search-dollar"></i></div>
+            <h4>Компенсация за Рейсы</h4>
+            <p>Проверьте право на возврат средств за задержку или отмену.</p>
+        </summary>
+        <div class="feature-content-hidden">
+            <div class="qr-container">
+                <a href="https://compensair.tpo.li/UliOutb6?erid=2VtzqxNeJXs" target="_blank" rel="noopener noreferrer">
+                    <img src="compensair-qr.png" alt="QR-код для Compensair"/>
+                </a>
+            </div>
+            <p>
+                Откройте сканером или кликните по QR-коду, чтобы перейти на сайт.
+                <br>
+                *Реклама. ООО «ТРЭВЕЛМАРТ». ИНН 7713570937. ERID: 2VtzqxNeJXs
+            </p>
+        </div>
+    </details>
 </div>
 
-<div class="feature-card" style="border-top-color: #f59e0b; text-align: center; padding: 15px 20px; cursor: default;">
-    <h4>VIP-Зал (Fast Track)</h4>
-    <div style="max-width: 200px; margin: 15px auto 0 auto; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px;">
-        <a href="https://vip-zal.tpo.li/yyuVHaXv?erid=2VtzqwQHRu3" target="_blank" rel="noopener noreferrer" style="display: block;">
-            <img src="tp-vip-zal.ru-qr-code.jpeg" alt="QR-код для VIP-Зала" style="width: 100%; height: auto; display: block;"/>
-        </a>
-    </div>
-    <p style="margin-top: 10px; font-size: 0.75rem; color: #64748b; line-height: 1.3;">
-        <i class="fas fa-couch" style="color: #f59e0b; margin-right: 5px;"></i>
-        Бронируйте доступ в бизнес-залы аэропортов по всему миру.
-        <br>
-        *Реклама. ООО «ТРЭВЕЛМАРТ». ИНН 7713570937. ERID: 2VtzqwQHRu3
-    </p>
+<div class="feature-card" style="border-top-color: #f59e0b;">
+    <details>
+        <summary>
+            <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-couch"></i></div>
+            <h4>VIP-Зал (Fast Track)</h4>
+            <p>Доступ в бизнес-залы аэропортов по всему миру.</p>
+        </summary>
+        <div class="feature-content-hidden">
+            <div class="qr-container">
+                <a href="https://vip-zal.tpo.li/yyuVHaXv?erid=2VtzqwQHRu3" target="_blank" rel="noopener noreferrer">
+                    <img src="vip-hall-qr.png" alt="QR-код для VIP-Зала"/>
+                </a>
+            </div>
+            <p>
+                Откройте сканером или кликните по QR-коду.
+                <br>
+                *Реклама. ООО «ТРЭВЕЛМАРТ». ИНН 7713570937. ERID: 2VtzqwQHRu3
+            </p>
+        </div>
+    </details>
 </div>
 
 <a href="https://drimsim.tpo.li/3sXdtS89" target="_blank" rel="noopener noreferrer" class="feature-card" style="border-top-color: #1d4ed8; text-align: center; text-decoration: none; color: inherit;">
@@ -776,25 +865,90 @@ class="product-icon-link">
     <p>Универсальная SIM-карта для дешевого интернета и звонков в 190 странах мира.</p>
 </a>
 
-<a href="insurance.html" target="_blank" rel="noopener noreferrer" class="feature-card" style="border-top-color: #1d4ed8; text-align: center; text-decoration: none; color: inherit;">
-    <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-shield-alt"></i></div>
-    <h4>Страхование Путешествий</h4>
-    <p>Выберите полис онлайн для поездок по Шенгену и миру. Расчет за 2 минуты.</p>
-</a>
+<div class="feature-card" style="border-top-color: #1d4ed8;">
+    <details>
+        <summary>
+            <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-shield-alt"></i></div>
+            <h4>Страхование Путешествий</h4>
+            <p>Сравните полисы для поездок по Шенгену и миру.</p>
+        </summary>
+        <div class="feature-content-hidden" style="min-height: 400px; padding-bottom: 20px;">
+            <script async src="//tpwgt.com/content?trs=478043&shmarker=144185&countryGroups=schengen&medicine=30000&powered_by=false&primary=%23636AFF&light=%23EDF4FE&background=%23E5ECF6&success=%2341CC78&warning=%23FB751C&error=%23FF6666&search=%23F54B92&deletion=%23FFECEC&erid=2VtzqukAgWu&campaign_id=24&promo_id=1498" charset="utf-8"></script>
+            <p>
+                *Реклама. ООО «ТРЭВЕЛМАРТ». ИНН 7713570937. ERID: 2VtzqukAgWu
+            </p>
+        </div>
+    </details>
+</div>
 
-<div class="feature-card" style="border-top-color: #10b981; text-align: center; padding: 15px 20px; cursor: default;">
-    <h4>Билеты в музеи и на шоу (Tiqets)</h4>
-    <div style="max-width: 200px; margin: 15px auto 0 auto; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px;">
-        <a href="https://tiqets.tpo.li/k3I6Cswe?erid=2Vtzqv5haeu" target="_blank" rel="noopener noreferrer" style="display: block;">
-            <img src="tp-tiqets-qr-code.jpeg" alt="QR-код для Tiqets" style="width: 100%; height: auto; display: block;"/>
-        </a>
-    </div>
-    <p style="margin-top: 10px; font-size: 0.75rem; color: #64748b; line-height: 1.3;">
-        <i class="fas fa-ticket-alt" style="color: #10b981; margin-right: 5px;"></i>
-        Бронируйте билеты без очередей в лучшие музеи, парки и достопримечательности.
-        <br>
-        *Реклама. ООО «ТРЭВЕЛМАРТ». ИНН 7713570937. ERID: 2Vtzqv5haeu
-    </p>
+<div class="feature-card" style="border-top-color: #10b981;">
+    <details>
+        <summary>
+            <div class="feature-icon" style="color: #10b981;"><i class="fas fa-ticket-alt"></i></div>
+            <h4>Билеты в музеи и на шоу (Tiqets)</h4>
+            <p>Билеты без очередей в музеи, парки и достопримечательности.</p>
+        </summary>
+        <div class="feature-content-hidden">
+            <div class="qr-container">
+                <a href="https://tiqets.tpo.li/k3I6Cswe?erid=2Vtzqv5haeu" target="_blank" rel="noopener noreferrer">
+                    <img src="tiqets-qr.png" alt="QR-код для Tiqets"/>
+                </a>
+            </div>
+            <p>
+                Откройте сканером или кликните по QR-коду.
+                <br>
+                *Реклама. ООО «ТРЭВЕЛМАРТ». ИНН 7713570937. ERID: 2Vtzqv5haeu
+            </p>
+        </div>
+    </details>
+</div>
+
+<div class="feature-card" style="border-top-color: #1d4ed8;">
+    <details>
+        <summary>
+            <div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-map-marked-alt"></i></div>
+            <h4>Карта Дешевых Полетов</h4>
+            <p>Интерактивная карта для поиска самых выгодных авиабилетов.</p>
+        </summary>
+        <div class="feature-content-hidden" style="min-height: 400px; padding-bottom: 20px;">
+            <div style="width: 100%; max-width: 600px; margin: 0 auto; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <script async src="https://tpwgt.com/content?currency=usd&trs=478043&shmarker=144185&lat=&lng=&powered_by=true&search_host=www.aviasales.ru%2Fsearch&locale=ru&value_min=0&value_max=1000000&round_trip=true&only_direct=false&radius=1&draggable=true&disable_zoom=false&show_logo=false&scrollwheel=false&primary=%233FABDB&secondary=%233FABDB&light=%23ffffff&width=1500&height=500&zoom=2&promo_id=4054&campaign_id=100" charset="utf-8"></script>
+            </div>
+            <p>
+                Прокрутите карту, чтобы увидеть цены в других регионах.
+            </p>
+        </div>
+    </details>
+</div>
+
+<div class="feature-card" style="border-top-color: #f59e0b;">
+    <details>
+        <summary>
+            <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-plane-arrival"></i></div>
+            <h4>Табло Рейсов MOW → BKK</h4>
+            <p>Актуальное расписание и цены на популярное направление.</p>
+        </summary>
+        <div class="feature-content-hidden" style="padding-bottom: 10px;">
+            <div style="width: 100%; max-width: 600px; margin: 0 auto;">
+                <script async src="https://tpwgt.com/content?currency=rub&trs=478043&shmarker=144185&color_button=%23FF0000&target_host=search.airflowtravel.net%2Fflights&locale=ru&powered_by=false&origin=MOW&destination=BKK&with_fallback=true&non_direct_flights=true&min_lines=5&border_radius=0&color_background=%23FFFFFF&color_text=%23000000&color_border=%23E0E0F7ff&erid=2VtzqxWe9DB&promo_id=2811&campaign_id=100" charset="utf-8"></script>
+            </div>
+        </div>
+    </details>
+</div>
+
+<div class="feature-card" style="border-top-color: #10b981;">
+    <details>
+        <summary>
+            <div class="feature-icon" style="color: #10b981;"><i class="fas fa-chart-line"></i></div>
+            <h4>Популярные Направления</h4>
+            <p>Список лучших авиапредложений на сегодня.</p>
+        </summary>
+        <div class="feature-content-hidden" style="padding-bottom: 10px;">
+            <div style="width: 100%; max-width: 600px; margin: 0 auto;">
+                <script async src="https://tpwgt.com/content?currency=usd&trs=478043&shmarker=144185&target_host=search.airflowtravel.net%2Fflights&locale=ru&limit=6&powered_by=false&primary=%230085FF&erid=2VtzqvZyRGu&promo_id=4044&campaign_id=100" charset="utf-8"></script>
+            </div>
+        </div>
+    </details>
 </div>
 
 </div>
