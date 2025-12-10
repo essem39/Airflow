@@ -166,7 +166,7 @@
     .hero-section {
         background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%);
         color: white;
-        padding: 80px 20px 40px; /* Уменьшен нижний padding */
+        padding: 80px 20px 40px; 
         text-align: center;
     }
 
@@ -179,36 +179,27 @@
         color: white;
     }
     
-    /* СТИЛИ ДЛЯ ОБЪЕДИНЕННОЙ КАРТОЧКИ ВИДЖЕТА И КОНТАКТОВ */
-    #bus-card-container {
-        padding: 20px 30px;
-        background: rgba(255, 255, 255, 1); /* Белый фон */
-        border-radius: 12px;
-        width: 100%;
-        max-width: 1000px; 
-        margin: 0 auto 50px auto;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        text-align: center;
-        overflow: hidden !important; /* ФИНАЛЬНОЕ ЛОГИЧЕСКОЕ ПРАВИЛО: Принудительно обрезаем все, что не помещается */
-    }
-
-    /* H2 - ЗАГОЛОВОК КАРТОЧКИ (ФОКУС ПОЛЬЗОВАТЕЛЯ) */
+    /* СТИЛИ ДЛЯ ЗАГОЛОВКА, ТЕПЕРЬ ОН НА ТЕМНОМ ФОНЕ */
     .card-title-search {
         font-size: 1.5rem;
         font-weight: 700;
-        color: #1e293b;
+        color: white; /* Изменено на белый для контраста */
         margin-bottom: 20px;
     }
     
-    /* Стили для Виджета */
+    /* Стили для Виджета (Теперь сам виджет - это наш белый контейнер) */
     #train-bus-widget-container {
-        padding: 0; 
-        background: none;
-        border-radius: 0;
-        box-shadow: none;
-        margin: 0 auto 20px auto;
+        padding: 20px 30px; /* Добавим отступы, которые были у карточки */
+        background: white; /* Белый фон */
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        max-width: 700px; /* Ограничиваем его на ПК */
+        margin: 0 auto 50px auto;
+        
+        /* УСИЛЕННЫЙ БЛОК ДЛЯ МОБИЛЬНОЙ АДАПТАЦИИ (Обязательно обрезать и ограничить) */
+        overflow: hidden !important; 
     }
-
+    
     /* СТИЛИЗАЦИЯ ВИДЖЕТА */
     #train-bus-widget-container .tpwgt-button {
         background-color: #10b981 !important;
@@ -220,28 +211,22 @@
         background-color: #0c8a5a !important;
     }
     
-    /* УСИЛЕННЫЙ БЛОК ДЛЯ МОБИЛЬНОЙ АДАПТАЦИИ (ЧТОБЫ ВИДЖЕТ НЕ ВЫЛЕЗАЛ) */
-    /* Принудительно ограничиваем ширину встраиваемого контента 100% */
+    /* Принудительно ограничиваем ширину всех элементов внутри виджета */
     #train-bus-widget-container * {
         max-width: 100% !important; 
     }
-    #train-bus-widget-container {
-        overflow-x: hidden !important; 
-    }
-    /* КОНЕЦ УСИЛЕННОГО БЛОКА */
-
 
     #train-bus-widget-container .tpwgt-tab.active {
         color: #1d4ed8 !important;
         border-bottom-color: #1d4ed8 !important;
     }
     
-    /* Стили для Контактов в Hero (теперь внутри карточки) */
+    /* Стили для Контактов (теперь они снова на градиенте) */
     .hero-contacts {
-        background: #f1f5f9; /* Новый, более светлый фон */
+        background: #1e293b; /* Более темный фон для контраста на градиенте */
         border-radius: 8px;
         padding: 15px 20px;
-        margin-top: 25px; /* Отступ от виджета */
+        margin-top: 25px; 
         display: flex;
         justify-content: center;
         gap: 30px;
@@ -252,7 +237,7 @@
     }
     
     .hero-contacts a {
-        color: #1e293b; /* Темный текст для контактов */
+        color: white; /* Изменено на белый */
         text-decoration: none;
         font-weight: 500;
         font-size: 1rem;
@@ -267,17 +252,19 @@
     }
 
     .hero-contacts i {
-        color: #10b981; /* Зеленый цвет для иконок */
+        color: #10b981; 
         font-size: 1.2rem;
     }
     
+    /* Стили для описания, теперь на градиенте */
     .card-description {
         font-size: 1rem;
-        margin-bottom: 0;
-        opacity: 0.8;
-        color: #475569;
+        margin-bottom: 20px;
+        opacity: 0.9;
+        color: white; /* Изменено на белый */
         max-width: 90%;
-        margin: 0 auto 20px auto;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     /* Остальные секции не менялись */
@@ -286,7 +273,8 @@
         background: white;
         text-align: center;
     }
-    /* ... (остальные стили остались прежними) */
+    
+    /* ... (стили ниже без изменений) */
     
     
     .product-icons-grid {
@@ -635,9 +623,9 @@
     }
 
     @media (max-width: 480px) {
-        /* ИЗМЕНЕНИЕ ДЛЯ МОБИЛЬНЫХ: Уменьшаем боковой отступ белой карточки, чтобы дать место виджету */
-        #bus-card-container {
-            padding: 20px 10px; /* Было 30px, теперь 10px */
+        /* ИЗМЕНЕНИЕ ДЛЯ МОБИЛЬНЫХ: Уменьшаем боковой отступ виджета (который теперь наш контейнер) */
+        #train-bus-widget-container {
+            padding: 20px 10px; /* Уменьшаем отступ, чтобы дать место контенту виджета */
         }
     }
 </style>
@@ -680,8 +668,6 @@
 <div class="container">
 <div class="hero-content">
 <h1>Автобусные билеты по России и СНГ</h1>
-
-<div id="bus-card-container">
     
     <h2 class="card-title-search">Поиск автобусных билетов</h2>
 
@@ -701,8 +687,6 @@
             <i class="fas fa-envelope"></i> help@unitiki.com
         </a>
     </div>
-
-</div>
 
 </div>
 </div>
