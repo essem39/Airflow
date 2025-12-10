@@ -163,10 +163,8 @@
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
         width: 100%;
-        /* Убираем overflow: hidden; отсюда, чтобы виджет мог скроллиться внутри себя */
     }
 
-    /* Адаптивный фикс для виджета внутри контейнера */
     @media (max-width: 600px) {
         #insurance-main-card {
             padding: 15px; /* Меньше паддинга на мобильных */
@@ -183,18 +181,24 @@
         text-align: center;
     }
     
+    /* НОВЫЙ FLEX-КОНТЕЙНЕР для центрирования и локального скролла */
+    #widget-flex-wrapper {
+        display: flex; /* Активируем Flexbox */
+        justify-content: center; /* ЭТО КЛЮЧ! Центрируем широкий контент */
+        overflow-x: auto; /* Разрешаем локальный скролл */
+        overflow-y: hidden;
+        padding: 0 5px; /* Небольшой внутренний отступ для красоты скролла */
+    }
+
     /* Стили для Виджета */
     #train-bus-widget-container {
         padding: 0; 
         background: none;
         border-radius: 0;
         box-shadow: none;
-        /* ЦЕНТРИРОВАНИЕ КОНТЕЙНЕРА */
-        margin: 0 auto;
-        max-width: 100%; 
-        /* САМОЕ ВАЖНОЕ: РАЗРЕШАЕМ ЛОКАЛЬНЫЙ ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ */
-        overflow-x: auto; 
-        overflow-y: hidden; 
+        /* Убираем старое центрирование/скролл, его теперь делает родитель */
+        margin: 0; 
+        max-width: none; /* Разрешаем быть шире 100% */
         position: relative;
     }
 
@@ -319,9 +323,12 @@
         transition: transform 0.3s, box-shadow 0.3s;
         height: 100%;
         text-align: left;
-        cursor: pointer;
     }
     
+    .tip-card { /* Только аккордеоны имеют курсор, чтобы избежать путаницы */
+        cursor: pointer;
+    }
+
     .feature-card:hover, .tip-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
@@ -623,11 +630,14 @@
 
     <div id="insurance-main-card">
         <h2 class="card-title-search">Форма поиска и сравнения страховок</h2>
-
-        <div id="train-bus-widget-container">
-        <script async src="//tpwgt.com/content?trs=478043&shmarker=144185&countryGroups=schengen&medicine=30000&powered_by=false&primary=%23636AFF&light=%23EDF4FE&background=%23E5ECF6&success=%2341CC78&warning=%23FB751C&error=%23FF6666&search=%23F54B92&deletion=%23FFECEC&erid=2VtzqukAgWu&campaign_id=24&promo_id=1498" charset="utf-8"></script>
+        
+        <div id="widget-flex-wrapper"> 
+            
+            <div id="train-bus-widget-container">
+            <script async src="//tpwgt.com/content?trs=478043&shmarker=144185&countryGroups=schengen&medicine=30000&powered_by=false&primary=%23636AFF&light=%23EDF4FE&background=%23E5ECF6&success=%2341CC78&warning=%23FB751C&error=%23FF6666&search=%23F54B92&deletion=%23FFECEC&erid=2VtzqukAgWu&campaign_id=24&promo_id=1498" charset="utf-8"></script>
+            </div>
+            
         </div>
-
         <p class="card-description">
             *Реклама. ООО «ТРЭВЕЛМАРТ». ИНН 7713570937. ERID: 2VtzqukAgWu
         </p>
