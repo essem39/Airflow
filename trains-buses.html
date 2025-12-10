@@ -4,16 +4,16 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="ie=edge" http-equiv="X-X-Compatible"/>
-<meta content="Airflow Travel: Автобусные билеты по России и СНГ. Сравнивайте расписание и цены от официальных партнеров Unitiki." name="description"/>
+<meta content="Airflow Travel: Международные автобусные билеты на экспресс-маршруты. Сравнивайте расписание и цены от официальных партнеров Unitiki." name="description"/>
 
 <link href="bus_icon-icons.com_76529.ico" rel="icon" type="image/x-icon"/>
 
-<meta content="Airflow Travel - Автобусные билеты по России и СНГ" property="og:title"/>
-<meta content="Сравнивайте расписание, бронируйте билеты на междугородние и международные автобусы от Unitiki." property="og:description"/>
+<meta content="Airflow Travel - Международные экспресс-маршруты" property="og:title"/>
+<meta content="Бронирование билетов на международные автобусы Unitiki. Быстрый поиск и сравнение цен на экспресс-маршруты." property="og:description"/>
 <meta content="ru" property="og:locale"/>
 <meta content="website" property="og:type"/>
 
-<title>Автобусные билеты по России и СНГ</title>
+<title>Международные автобусные билеты: Экспресс-маршруты, расписание, цены.</title>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
@@ -139,9 +139,8 @@
         display: block; padding: 12px 15px; border-radius: 6px;
         transition: all 0.3s ease;
     }
-    .nav-menu a:hover, .nav-menu a.active {
-        color: white;
-        text-decoration: none;
+    .mobile-menu-links a:hover, .mobile-menu-links a.active {
+        background: #334155; color: white; text-decoration: none;
     }
 
     @media (max-width: 1175px) {
@@ -170,101 +169,76 @@
         text-align: center;
     }
 
-    /* НОВЫЙ СТИЛЬ H1: МАКСИМАЛЬНО МАЛЕНЬКИЙ */
+    /* H1: АДАПТИВНЫЙ РАЗМЕР */
     .hero-content h1 {
-        font-size: clamp(1.2rem, 2.5vw, 2rem); 
+        /* ФИНАЛЬНЫЙ ЗАГОЛОВОК: ЭКСПРЕСС-ПУТЬ */
+        font-size: clamp(2rem, 5vw, 3rem); 
         margin-bottom: 20px;
-        font-weight: 600; 
+        font-weight: 700; 
         text-align: center;
-        color: white;
+        /* ФИНАЛЬНОЕ ИЗМЕНЕНИЕ ЦВЕТА: Устанавливаем БЕЛЫЙ #ffffff */
+        color: #ffffff; 
+        letter-spacing: 2px;
+        text-transform: uppercase;
     }
     
-    /* СТИЛИ ДЛЯ ЗАГОЛОВКА, ТЕПЕРЬ ОН НА ТЕМНОМ ФОНЕ */
-    .card-title-search {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: white; 
-        margin-bottom: 20px;
-    }
-    
-    /* Стили для Виджета: УДАЛЯЕМ БЕЛУЮ ОБЕРТКУ, ТЕНЬ, СГРУГЛЕНИЕ и горизонтальный PADDING */
+    /* Стили для Виджета: БЕЗ БЕЛОЙ ОБЕРТКИ (ТЕКУЩЕЕ РЕШЕНИЕ) */
     #train-bus-widget-container {
-        padding: 20px 0; /* Убираем горизонтальный отступ */
-        background: none; /* Убираем белый фон */
-        border-radius: 0; /* Убираем скругление углов */
-        box-shadow: none; /* Убираем тень */
-        max-width: 700px; 
-        margin: 0 auto 50px auto;
-        
-        /* УСИЛЕННЫЙ БЛОК ДЛЯ МОБИЛЬНОЙ АДАПТАЦИИ (Обязательно обрезать и ограничить) */
-        overflow: hidden !important; 
+        padding: 0; 
+        background: none; 
+        border-radius: 0; 
+        box-shadow: none; 
+        max-width: 1000px; 
+        margin: 0 auto 20px auto; 
     }
-    
-    /* СТИЛИЗАЦИЯ ВИДЖЕТА (Оставляем только переопределение цветов для внутреннего виджета) */
+
+    /* СТИЛИЗАЦИЯ ВИДЖЕТА (ЖЕЛТЫЙ цвет Unitiki) */
     #train-bus-widget-container .tpwgt-button {
-        background-color: #10b981 !important;
-        border-color: #10b981 !important;
+        background-color: #f59e0b !important; 
+        border-color: #f59e0b !important;
         transition: background-color 0.3s;
     }
 
     #train-bus-widget-container .tpwgt-button:hover {
-        background-color: #0c8a5a !important;
-    }
-    
-    /* Принудительно ограничиваем ширину всех элементов внутри виджета */
-    #train-bus-widget-container * {
-        max-width: 100% !important; 
+        background-color: #e68d00 !important;
     }
 
     #train-bus-widget-container .tpwgt-tab.active {
-        color: #1d4ed8 !important;
-        border-bottom-color: #1d4ed8 !important;
+        color: #f59e0b !important; 
+        border-bottom-color: #f59e0b !important;
     }
     
-    /* Стили для Контактов */
-    .hero-contacts {
-        background: #1e293b; 
-        border-radius: 8px;
-        padding: 15px 20px;
-        margin-top: 25px; 
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .hero-contacts a {
-        color: white; 
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: opacity 0.3s;
-    }
-
-    .hero-contacts a:hover {
-        opacity: 0.8;
-    }
-
-    .hero-contacts i {
-        color: #10b981; 
-        font-size: 1.2rem;
-    }
-    
-    /* Стили для описания, теперь на градиенте */
     .card-description {
         font-size: 1rem;
-        margin-bottom: 20px;
-        opacity: 0.9;
+        margin-bottom: 0;
+        opacity: 0.9; 
         color: white; 
         max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto 0 auto; 
+        padding-bottom: 10px; 
+        padding-top: 10px;
+    }
+
+    /* СТИЛИ ДЛЯ КОМПАКТНЫХ КОНТАКТОВ В HERO-СЕКЦИИ */
+    .hero-inline-contacts {
+        font-size: 0.9rem;
+        margin-top: 15px;
+        color: white;
+        padding-bottom: 10px; 
+    }
+    .hero-inline-contacts a {
+        color: white;
+        text-decoration: none;
+        transition: opacity 0.3s;
+    }
+    .hero-inline-contacts a:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+    }
+    /* ИКОНКИ КОНТАКТОВ - Желтый акцент */
+    .hero-inline-contacts i {
+        color: #f59e0b; 
+        margin-right: 5px;
     }
     
     /* Остальные секции не менялись */
@@ -296,6 +270,7 @@
     .product-icon {
         font-size: 3rem;
         margin-bottom: 10px;
+        /* ИКОНКИ ПРОДУКТОВ - Желтый акцент */
         color: #f59e0b; 
         transition: color 0.3s ease;
     }
@@ -335,6 +310,7 @@
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
         background: #ffffff;
+        /* ЗЕЛЕНЫЙ основной цвет для верхней полосы (сохраняем, как основной цвет сайта) */
         border-top: 5px solid #10b981;
         transition: transform 0.3s, box-shadow 0.3s;
         height: 100%;
@@ -349,6 +325,7 @@
 
     .feature-icon, .tip-icon {
         font-size: 3rem;
+        /* ЗЕЛЕНЫЙ основной цвет для иконок */
         color: #10b981; 
         margin-bottom: 15px;
         text-align: center;
@@ -387,6 +364,7 @@
         right: 0;
         top: 5px;
         font-size: 14px;
+        /* ЗЕЛЕНЫЙ основной цвет для маркера аккордеона */
         color: #10b981; 
         transition: transform 0.3s;
     }
@@ -418,7 +396,6 @@
     
     /* СТИЛИ ОТЗЫВОВ */
     .testimonials-section {
-        background: white;
         padding: 80px 0; 
         overflow: hidden; 
     }
@@ -454,6 +431,7 @@
     }
 
     .stars {
+        /* ЗВЕЗДЫ - Желтый акцент */
         color: #f59e0b;
         margin-bottom: 15px;
     }
@@ -475,6 +453,7 @@
     .author-avatar {
         width: 50px;
         height: 50px;
+        /* ЗЕЛЕНЫЙ основной цвет для аватара */
         background: #10b981; 
         border-radius: 50%;
         display: flex;
@@ -520,6 +499,7 @@
     }
 
     .swiper-pagination-bullet-active {
+        /* ЗЕЛЕНЫЙ основной цвет для пагинации */
         background: #10b981 !important;
     }
 
@@ -592,6 +572,7 @@
     }
     
     .footer-section .footer-contacts i {
+        /* ЗЕЛЕНЫЙ основной цвет для иконок в футере */
         color: #10b981;
         margin-right: 8px;
     }
@@ -603,7 +584,6 @@
         text-align: center;
         color: #94a3b8;
     }
-    /* >>> СЕКЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (МЕДИА-ЗАПРОСЫ) <<< */
     @media (max-width: 768px) {
         .footer-content {
             flex-direction: column;
@@ -618,22 +598,67 @@
         .footer-section .footer-contacts {
             margin-bottom: 15px;
         }
+        
+        /* АДАПТИВНОЕ УМЕНЬШЕНИЕ ЗАГОЛОВКОВ H2 (СЕКЦИЙ) */
+        .section-title {
+            font-size: 1.8rem; 
+            margin-bottom: 25px; 
+        }
+
+        .product-icons-grid {
+            gap: 20px;
+        }
     }
 
     @media (max-width: 480px) {
-        /* ИЗМЕНЕНИЕ 1: Уменьшаем внешний отступ контейнера в секции с виджетом */
+        /* МАКСИМАЛЬНО УМЕНЬШАЕМ ВЕРХНИЙ ОТСТУП */
+        .hero-section {
+            padding-top: 15px; 
+        }
+
         .hero-section .container {
-            padding: 0 5px; /* Оставляем минимальный буфер 5px от края экрана */
+            padding: 0 5px; 
         }
         
-        /* ИЗМЕНЕНИЕ 2: Убираем внутренний отступ, чтобы дать виджету максимальную ширину */
         #train-bus-widget-container {
-            padding: 20px 0 !important; 
+            padding: 10px 0 !important; 
         }
         
-        /* Убеждаемся, что весь контент hero-секции центрирован */
         .hero-content {
             text-align: center;
+        }
+        
+        /* АДАПТИВНОЕ УМЕНЬШЕНИЕ ЗАГОЛОВКА H1 */
+        .hero-content h1 {
+            font-size: 1.8rem; /* Чуть меньше на мобильных */
+            margin-top: 10px; 
+            margin-bottom: 10px;
+        }
+
+        /* АДАПТАЦИЯ ИКОНОК НА МАЛЕНЬКИХ ЭКРАНАХ */
+        .product-icons-grid {
+            gap: 15px; 
+            justify-content: space-around;
+        }
+
+        .product-icon-link {
+            flex-basis: calc(50% - 15px); 
+            padding: 5px; 
+        }
+        
+        /* АДАПТАЦИЯ КОМПАКТНЫХ КОНТАКТОВ НА МАЛЕНЬКИХ ЭКРАНАХ */
+        .hero-inline-contacts {
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+        }
+        .hero-inline-contacts a {
+            display: block;
+            margin: 3px 0;
+        }
+        .hero-inline-contacts span { 
+            display: none;
         }
     }
 </style>
@@ -675,25 +700,21 @@
 <section class="hero-section">
 <div class="container">
 <div class="hero-content">
-<h1>Автобусные билеты по России и СНГ</h1>
-    
-    <h2 class="card-title-search">Поиск автобусных билетов</h2>
 
+<h1>ЭКСПРЕСС-ПУТЬ</h1>
+    
     <div id="train-bus-widget-container">
     <script async charset="utf-8" src="//tpwgt.com/content?currency=RUB&trs=478043&shmarker=144185&powered_by=false&title=%D0%91%D0%B8%D0%BB%D0%B5%D1%82%D1%8B%20%D0%BD%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%B1%D1%83%D1%81&subtitle=%D0%9F%D0%BE%D0%B8%D1%81%D0%BA%20%D0%B8%20%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0%20%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD&button=%D0%9D%D0%B0%D0%B9%D1%82%D0%B8&logo=0&background_color=0174A9ff&title_color=ffffff&subtitle_color=ffffff&button_color=F9DD00&button_text_color=000000&erid=2VtzqwP1XRK&campaign_id=58&promo_id=8019"></script>
     </div>
 
     <p class="card-description">
-        Бронирование билетов и актуальное расписание рейсов Unitiki по России, странам СНГ и Европы.
+        Международные экспресс-маршруты от Unitiki. Бронирование и актуальное расписание по всему миру.
     </p>
-
-    <div class="hero-contacts">
-        <a href="tel:+88004443451">
-            <i class="fas fa-phone"></i> 8 (800) 444-34-51
-        </a>
-        <a href="mailto:help@unitiki.com">
-            <i class="fas fa-envelope"></i> help@unitiki.com
-        </a>
+    
+    <div class="hero-inline-contacts">
+        <a href="tel:+88004443451"><i class="fas fa-phone"></i> 8 (800) 444-34-51</a>
+        <span>|</span> 
+        <a href="mailto:help@unitiki.com"><i class="fas fa-envelope"></i> help@unitiki.com</a>
     </div>
 
 </div>
@@ -730,7 +751,7 @@
 
 <section class="car-features-section">
 <div class="container">
-<h2 class="section-title" style="color: #1e293b;">Преимущества покупки через Airflow</h2>
+<h2 class="section-title" style="color: #1e293b;">Преимущества международных экспресс-маршрутов</h2>
 <div class="features-grid">
 <div class="feature-card" style="border-top-color: #f59e0b;">
 <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-ticket"></i></div>
@@ -740,7 +761,7 @@
 <div class="feature-card" style="border-top-color: #f59e0b;">
 <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-bus-simple"></i></div>
 <h4>Сотни направлений</h4>
-<p>Междугородние и международные рейсы по всем популярным маршрутам.</p>
+<p>Международные рейсы по всем популярным маршрутам мира.</p>
 </div>
 <div class="feature-card" style="border-top-color: #f59e0b;">
 <div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-sack-dollar"></i></div>
@@ -773,11 +794,11 @@
 <details class="tip-card" style="border-top-color: #1d4ed8;">
 <summary>
 <div class="tip-icon" style="color: #1d4ed8;"><i class="fas fa-bus-simple"></i></div>
-<h4>Преимущества автобусов</h4>
-<p class="tip-card-text-short">Обзор преимуществ современных междугородних автобусов.</p>
+<h4>Преимущества экспресс-автобусов</h4>
+<p class="tip-card-text-short">Обзор преимуществ современных международных автобусов.</p>
 </summary>
 <div class="tip-content">
-**Лайфхак:** Современные автобусы оборудованы Wi-Fi, розетками и кондиционерами. На длительных рейсах всегда есть остановки для отдыха и возможность приобрести напитки. В отличие от других видов транспорта, автобус часто доставляет ближе к центру города.
+**Лайфхак:** Современные экспресс-автобусы оборудованы Wi-Fi, розетками и кондиционерами. На длительных рейсах всегда есть остановки для отдыха и возможность приобрести напитки. В отличие от других видов транспорта, автобус часто доставляет ближе к центру города.
 </div>
 </details>
 
@@ -807,10 +828,10 @@
 <summary>
 <div class="tip-icon" style="color: #10b981;"><i class="fas fa-wifi"></i></div>
 <h4>Удобства на борту</h4>
-<p class="tip-card-text-short">Wi-Fi, розетки и кондиционер: что ожидать в автобусе.</p>
+<p class="tip-card-text-short">Wi-Fi, розетки и кондиционер: что ожидать в экспресс-автобусе.</p>
 </summary>
 <div class="tip-content">
-**Лайфхак:** В большинстве современных междугородних автобусов есть бесплатный Wi-Fi, розетки USB для зарядки гаджетов и работающий кондиционер. Для длительных поездок возьмите с собой внешний аккумулятор и убедитесь, что ваш перевозчик предоставляет эти услуги.
+**Лайфхак:** В большинстве современных международных экспресс-автобусов есть бесплатный Wi-Fi, розетки USB для зарядки гаджетов и работающий кондиционер. Для длительных поездок возьмите с собой внешний аккумулятор и убедитесь, что ваш перевозчик предоставляет эти услуги.
 </div>
 </details>
 
