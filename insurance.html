@@ -271,41 +271,67 @@
         overflow-y: hidden;
     }
 
-    /* МОБИЛЬНЫЕ ИСПРАВЛЕНИЯ ДЛЯ ВИДЖЕТА */
+    /* УСИЛЕННЫЕ МОБИЛЬНЫЕ ИСПРАВЛЕНИЯ ДЛЯ ВИДЖЕТА */
     @media (max-width: 768px) {
         #train-bus-widget-container {
-            min-height: 400px;
-            /* Принудительно устанавливаем ширину для мобильных */
+            min-height: 550px !important; /* Увеличиваем высоту для размещения всего контента */
             width: 100% !important;
             max-width: 100% !important;
+            overflow: visible !important; /* Разрешаем переполнение */
+            transform: scale(0.95) !important; /* Немного уменьшаем для лучшего помещения */
+            transform-origin: top left !important;
         }
         
         /* ПРИНУДИТЕЛЬНЫЕ СТИЛИ ДЛЯ ВСЕХ ЭЛЕМЕНТОВ ВИДЖЕТА НА МОБИЛЬНЫХ */
-        #train-bus-widget-container * {
-            max-width: 100% !important;
-        }
-        
-        /* СПЕЦИАЛЬНЫЕ СТИЛИ ДЛЯ IFRAME И СКРИПТОВ ВИДЖЕТА */
+        #train-bus-widget-container *,
         #train-bus-widget-container iframe,
         #train-bus-widget-container > div,
         #train-bus-widget-container script + div {
-            width: 100% !important;
             max-width: 100% !important;
-            min-width: 280px !important;
-            transform: scale(1) !important;
+            width: 100% !important;
+            min-width: 300px !important;
+            box-sizing: border-box !important;
+            overflow: visible !important;
+        }
+        
+        /* СПЕЦИАЛЬНЫЕ СТИЛИ ДЛЯ ПОЛЕЙ ВВОДА И ТЕКСТА */
+        #train-bus-widget-container input,
+        #train-bus-widget-container select,
+        #train-bus-widget-container button,
+        #train-bus-widget-container label,
+        #train-bus-widget-container span,
+        #train-bus-widget-container div {
+            font-size: 13px !important;
+            line-height: 1.2 !important;
+            padding: 8px 6px !important;
+            white-space: nowrap !important;
+            overflow: visible !important;
+            text-overflow: ellipsis !important;
         }
     }
 
     @media (max-width: 480px) {
         #train-bus-widget-container {
-            min-height: 380px;
+            min-height: 580px !important; /* Еще больше высоты для маленьких экранов */
+            transform: scale(0.9) !important; /* Еще больше уменьшаем */
         }
         
         /* ЕЩЕ БОЛЕЕ АГРЕССИВНЫЕ СТИЛИ ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ */
+        #train-bus-widget-container *,
         #train-bus-widget-container iframe,
         #train-bus-widget-container > div {
-            min-width: 260px !important;
+            min-width: 280px !important;
+        }
+        
+        /* УМЕНЬШАЕМ ШРИФТЫ ЕЩЕ БОЛЬШЕ */
+        #train-bus-widget-container input,
+        #train-bus-widget-container select,
+        #train-bus-widget-container button,
+        #train-bus-widget-container label,
+        #train-bus-widget-container span,
+        #train-bus-widget-container div {
             font-size: 12px !important;
+            padding: 6px 4px !important;
         }
     }
 
@@ -1197,31 +1223,54 @@
             });
         });
 
-        // ДОПОЛНИТЕЛЬНЫЙ JAVASCRIPT ДЛЯ ПРИНУДИТЕЛЬНОЙ АДАПТАЦИИ ВИДЖЕТА НА МОБИЛЬНЫХ
+        // УСИЛЕННЫЙ JAVASCRIPT ДЛЯ ПРИНУДИТЕЛЬНОЙ АДАПТАЦИИ ВИДЖЕТА НА МОБИЛЬНЫХ
         function forceWidgetMobileResize() {
             const widgetContainer = document.getElementById('train-bus-widget-container');
             if (widgetContainer && window.innerWidth <= 768) {
                 // Принудительно устанавливаем стили для всех дочерних элементов
                 const allElements = widgetContainer.querySelectorAll('*');
                 allElements.forEach(element => {
+                    // Применяем стили ко всем элементам
+                    element.style.maxWidth = '100%';
+                    element.style.width = '100%';
+                    element.style.boxSizing = 'border-box';
+                    element.style.overflow = 'visible';
+                    
                     if (element.tagName === 'IFRAME' || element.tagName === 'DIV') {
-                        element.style.width = '100%';
-                        element.style.maxWidth = '100%';
-                        element.style.minWidth = '280px';
-                        element.style.transform = 'scale(1)';
+                        element.style.minWidth = '300px';
+                        element.style.transform = window.innerWidth <= 480 ? 'scale(0.9)' : 'scale(0.95)';
                         element.style.transformOrigin = 'top left';
                     }
+                    
+                    // Специальные стили для текстовых элементов
+                    if (['INPUT', 'SELECT', 'BUTTON', 'LABEL', 'SPAN'].includes(element.tagName)) {
+                        element.style.fontSize = window.innerWidth <= 480 ? '12px' : '13px';
+                        element.style.lineHeight = '1.2';
+                        element.style.padding = window.innerWidth <= 480 ? '6px 4px' : '8px 6px';
+                        element.style.whiteSpace = 'nowrap';
+                        element.style.textOverflow = 'ellipsis';
+                    }
                 });
+                
+                // Принудительно обновляем layout
+                widgetContainer.style.minHeight = window.innerWidth <= 480 ? '580px' : '550px';
+                widgetContainer.offsetHeight; // Trigger reflow
             }
         }
 
-        // Запускаем принудительную адаптацию через интервалы
+        // Запускаем принудительную адаптацию через интервалы (больше попыток)
+        setTimeout(forceWidgetMobileResize, 500);
         setTimeout(forceWidgetMobileResize, 1000);
+        setTimeout(forceWidgetMobileResize, 2000);
         setTimeout(forceWidgetMobileResize, 3000);
         setTimeout(forceWidgetMobileResize, 5000);
+        setTimeout(forceWidgetMobileResize, 7000);
 
         // Также при изменении размера окна
         window.addEventListener('resize', forceWidgetMobileResize);
+        
+        // Дополнительно при загрузке страницы
+        window.addEventListener('load', forceWidgetMobileResize);
     });
 </script>
 </body>
