@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ie=edge" http-equiv="X-X-Compatible"/>
+<meta content="Получите компенсацию до 600€ за отмененный или задержанный рейс. Проверка рейса и подача заявки онлайн." name="description"/>
+
+<link href="bus_icon-icons.com_76529.ico" rel="icon" type="image/x-icon"/>
+
+<meta content="Airflow Travel - Компенсация за задержку или отмену рейса" property="og:title"/>
+<meta content="Проверьте возможность получения компенсации до 600€ по европейскому закону EC 261." property="og:description"/>
+<meta content="ru" property="og:locale"/>
+<meta content="website" property="og:type"/>
+
+<title>Компенсация за задержку или отмену рейса до 600€</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet"/>
+<style>
+    /* БАЗОВЫЕ СТИЛИ (ОБЩИЕ) */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИИ) - Без изменений */
+    .main-navigation {
+        background: #1e293b;
+        padding: 0;
+        position: sticky;
+        top: 0;
+        z-index: 1020;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        height: 55px;
+    }
+
+    .nav-container {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 100px;
+        height: 100%;
+    }
+
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 25px;
+    }
+
+    .nav-menu a {
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 18px 0;
+        transition: color 0.3s ease;
+    }
+
+    .nav-menu a:hover, .nav-menu a.active {
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Мобильное меню (стили не менялись, для полноты) */
+    .mobile-menu-button {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 8px;
+    }
+    .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .mobile-menu-overlay.active { opacity: 1; }
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0; right: -280px;
+        width: 260px;
+        height: 100vh;
+        background: #1e293b;
+        z-index: 1001;
+        padding: 60px 15px 15px;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+        transition: right 0.3s ease;
+        overflow-y: auto;
+    }
+    .mobile-menu.active { right: 0; }
+    .mobile-menu-close {
+        position: absolute; top: 15px; right: 15px;
+        background: none; border: none; color: white;
+        font-size: 20px; cursor: pointer; padding: 5px;
+    }
+    .mobile-menu-links { list-style: none; padding: 0; margin: 0; }
+    .mobile-menu-links a {
+        color: #94a3b8; text-decoration: none; font-size: 16px;
+        display: block; padding: 12px 15px; border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+    .mobile-menu-links a:hover, .mobile-menu-links a.active {
+        background: #334155; color: white; text-decoration: none;
+    }
+
+    @media (max-width: 1175px) {
+        .nav-container { padding: 0 16px; }
+        .nav-menu { display: none; }
+        .mobile-menu-button { display: block; }
+        .mobile-menu-overlay, .mobile-menu { display: block; }
+    }
+    @media (max-width: 480px) {
+        .nav-container { padding: 0 12px; }
+    }
+
+    /* СТИЛИ КОНТЕНТА СТРАНИЦЫ (ОБЩИЕ) */
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+        color: #1e293b;
+    }
+    
+    .hero-section {
+        background: linear-gradient(135deg, #1d4ed8 0%, #10b981 100%);
+        color: white;
+        padding: 80px 20px 40px; /* Уменьшен нижний padding */
+        text-align: center;
+    }
+
+    /* НОВЫЙ СТИЛЬ H1: МАКСИМАЛЬНО МАЛЕНЬКИЙ */
+    .hero-content h1 {
+        font-size: clamp(1.2rem, 2.5vw, 2rem); 
+        margin-bottom: 20px;
+        font-weight: 600; 
+        text-align: center;
+        color: white;
+    }
+    
+    /* СТИЛИ ДЛЯ ОБЪЕДИНЕННОЙ КАРТОЧКИ ВИДЖЕТА И КОНТАКТОВ */
+    #bus-card-container {
+        padding: 20px 30px;
+        background: rgba(255, 255, 255, 1); /* Белый фон */
+        border-radius: 12px;
+        width: 100%;
+        max-width: 1000px; 
+        margin: 0 auto 50px auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    /* H2 - ЗАГОЛОВОК КАРТОЧКИ (ФОКУС ПОЛЬЗОВАТЕЛЯ) */
+    .card-title-search {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 20px;
+    }
+    
+    /* Стили для Виджета */
+    #train-bus-widget-container {
+        padding: 0; /* Удалены старые стили, т.к. они в bus-card-container */
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0 auto 20px auto;
+    }
+
+    /* СТИЛИЗАЦИЯ ВИДЖЕТА */
+    #train-bus-widget-container .tpwgt-button {
+        background-color: #10b981 !important;
+        border-color: #10b981 !important;
+        transition: background-color 0.3s;
+    }
+
+    #train-bus-widget-container .tpwgt-button:hover {
+        background-color: #0c8a5a !important;
+    }
+
+    #train-bus-widget-container .tpwgt-tab.active {
+        color: #1d4ed8 !important;
+        border-bottom-color: #1d4ed8 !important;
+    }
+    
+    /* Стили для Контактов в Hero (теперь внутри карточки) */
+    .hero-contacts {
+        background: #f1f5f9; /* Новый, более светлый фон */
+        border-radius: 8px;
+        padding: 15px 20px;
+        margin-top: 25px; /* Отступ от виджета */
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-contacts a {
+        color: #1e293b; /* Темный текст для контактов */
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: opacity 0.3s;
+    }
+
+    .hero-contacts a:hover {
+        opacity: 0.8;
+    }
+
+    .hero-contacts i {
+        color: #10b981; /* Зеленый цвет для иконок */
+        font-size: 1.2rem;
+    }
+    
+    .card-description {
+        font-size: 1rem;
+        margin-bottom: 0;
+        opacity: 0.8;
+        color: #475569;
+        max-width: 90%;
+        margin: 0 auto 20px auto;
+    }
+    
+    /* Остальные секции не менялись */
+    .product-icons-section {
+        padding: 60px 20px;
+        background: white;
+        text-align: center;
+    }
+    /* ... (остальные стили остались прежними) */
+    
+    
+    .product-icons-grid {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        max-width: 900px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+    }
+
+    .product-icon-link {
+        text-decoration: none;
+        color: #1e293b;
+        transition: color 0.3s ease, transform 0.3s ease;
+        display: block;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .product-icon {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        color: #f59e0b; 
+        transition: color 0.3s ease;
+    }
+
+    .product-icon-link:hover {
+        color: #1d4ed8;
+        transform: translateY(-5px);
+    }
+    
+    .product-icon-link:hover .product-icon {
+        color: #1d4ed8;
+    }
+
+    /* СТИЛИ КАРТОЧЕК */
+    .car-features-section, .seo-tips-section {
+        padding: 80px 20px;
+        background: #f8fafc; 
+    }
+    
+    .features-grid, .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+        gap: 30px;
+        max-width: 1200px; 
+        margin: 0 auto;
+    }
+
+    @media (min-width: 1024px) {
+        .features-grid, .tips-grid {
+            grid-template-columns: repeat(3, 1fr); 
+            max-width: 1100px;
+        }
+    }
+    
+    .feature-card, .tip-card {
+        padding: 30px 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
+        background: #ffffff;
+        border-top: 5px solid #10b981;
+        transition: transform 0.3s, box-shadow 0.3s;
+        height: 100%;
+        text-align: left;
+        cursor: pointer;
+    }
+    
+    .feature-card:hover, .tip-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+    }
+
+    .feature-icon, .tip-icon {
+        font-size: 3rem;
+        color: #10b981; 
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .feature-card h4, .tip-card h4 {
+        font-size: 1.2rem;
+        color: #1e293b;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .feature-card p, .tip-card p {
+        color: #64748b;
+        font-size: 0.95rem;
+        text-align: center;
+    }
+    
+    /* Стили для АККОРДЕОНА */
+    .tip-card summary {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        padding-right: 25px;
+        position: relative;
+        outline: none;
+    }
+
+    .tip-card summary::-webkit-details-marker {
+        display: none;
+    }
+    .tip-card summary:after {
+        content: "\25B6";
+        position: absolute;
+        right: 0;
+        top: 5px;
+        font-size: 14px;
+        color: #10b981; 
+        transition: transform 0.3s;
+    }
+    .tip-card[open] summary:after {
+        content: "\25BC";
+        top: 8px;
+    }
+    
+    .tip-card .tip-card-text-short {
+        color: #64748b;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .tip-content {
+        border-top: 1px solid #e2e8f0;
+        padding-top: 15px;
+        margin-top: 15px;
+        font-size: 0.95rem;
+        color: #475569;
+        text-align: left;
+        font-style: italic;
+        background-color: #f0fff4;
+        padding: 15px;
+        border-radius: 6px;
+        line-height: 1.5;
+    }
+    
+    /* СТИЛИ ОТЗЫВОВ */
+    .testimonials-section {
+        background: white;
+        padding: 80px 0; 
+        overflow: hidden; 
+    }
+
+    .testimonials-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        padding: 0 20px; 
+    }
+
+    .swiper-container, .swiper-wrapper {
+        height: auto;
+    }
+    .swiper-wrapper {
+        align-items: stretch; 
+    }
+
+    .testimonial-card {
+        background: #f8fafc;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
+        border: 1px solid #e2e8f0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .testimonial-card:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transform: none;
+    }
+
+    .stars {
+        color: #f59e0b;
+        margin-bottom: 15px;
+    }
+
+    .testimonial-text {
+        color: #475569;
+        margin-bottom: 20px;
+        font-style: italic;
+        position: relative;
+    }
+    
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: auto;
+    }
+
+    .author-avatar {
+        width: 50px;
+        height: 50px;
+        background: #10b981; 
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    .author-info h4 {
+        margin: 0;
+        color: #1e293b;
+        font-size: 1rem;
+    }
+
+    .author-info p {
+        margin: 0;
+        color: #64748b;
+        font-size: 0.9rem;
+    }
+    
+    .swiper-button-prev, .swiper-button-next {
+        background: transparent !important;
+        width: 30px;
+        height: 30px;
+        border-radius: 0;
+        box-shadow: none;
+        transition: opacity 0.3s;
+        top: 50%; 
+        margin-top: -15px; 
+        opacity: 0.7;
+    }
+
+    .swiper-button-prev:hover, .swiper-button-next:hover {
+        background: transparent !important;
+        opacity: 1;
+    }
+    
+    .swiper-button-prev:after, .swiper-button-next:after {
+        color: #1e293b !important;
+        font-size: 24px !important; 
+    }
+
+    .swiper-pagination-bullet-active {
+        background: #10b981 !important;
+    }
+
+    /* СТИЛИ ФУТЕРА (ТРИ КОЛОНКИ) */
+    .footer {
+        background-color: #1e293b;
+        color: #94a3b8;
+        padding: 60px 0 20px;
+        font-size: 14px;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        gap: 30px; 
+    }
+    
+    .footer-section {
+        width: calc(33.333% - 20px); 
+        min-width: 250px; 
+        margin-bottom: 20px;
+    }
+
+    .footer-section h3 {
+        margin-bottom: 20px;
+        color: white;
+        font-size: 1.1rem;
+        border-bottom: 2px solid #334155;
+        padding-bottom: 10px;
+    }
+
+    .footer-section ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .footer-section li {
+        margin-bottom: 10px;
+    }
+
+    .footer-section a {
+        color: #94a3b8;
+        transition: 0.3s;
+        font-size: 0.95rem;
+        text-decoration: none;
+    }
+
+    .footer-section a:hover {
+        color: white;
+        text-decoration: underline;
+    }
+    
+    .footer-section .footer-contacts {
+        font-size: 1rem;
+    }
+    
+    .footer-section .footer-contacts a {
+        display: block;
+        margin-top: 5px;
+        color: white;
+        font-size: 0.95rem;
+    }
+    
+    .footer-section .footer-contacts i {
+        color: #10b981;
+        margin-right: 8px;
+    }
+
+
+    .footer-bottom {
+        border-top: 1px solid #334155;
+        padding-top: 20px;
+        text-align: center;
+        color: #94a3b8;
+    }
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+            gap: 0;
+        }
+        .footer-section {
+            width: 100%;
+        }
+        .footer-section h3 {
+            padding-top: 10px;
+        }
+        .footer-section .footer-contacts {
+            margin-bottom: 15px;
+        }
+    }
+</style>
+</head>
+<body>
+<nav class="main-navigation">
+<div class="nav-container">
+<a class="nav-logo" href="index.html">
+              ✈️ Airflow
+            </a>
+<ul class="nav-menu">
+<li><a href="index.html">Главная</a></li> 
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="flight-compensation.html" class="active">⚖️ Компенсация</a></li>
+</ul>
+<button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+<div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+<nav class="mobile-menu" id="mobile-menu">
+<button aria-label="Закрыть" class="mobile-menu-close" id="mobile-menu-close">×</button>
+<ul class="mobile-menu-links">
+<li><a href="index.html">Главная</a></li>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="flight-compensation.html" class="active">⚖️ Компенсация</a></li>
+<li><a href="about.html">ℹ️ О нас</a></li>
+<li><a href="help.html">❓ Помощь</a></li>
+</ul>
+</nav>
+<main>
+<section class="hero-section">
+<div class="container">
+<div class="hero-content">
+<h1>Компенсация за задержку или отмену рейса</h1>
+
+<div id="bus-card-container">
+    
+    <h2 class="card-title-search">Проверьте свой рейс на компенсацию</h2>
+
+    <div id="train-bus-widget-container">
+    <script async src="https://tpwgt.com/content?trs=478043&shmarker=144185&locale=ru&border_radius=5&plain=true&powered_by=false&promo_id=3408&campaign_id=86" charset="utf-8"></script>
+    </div>
+
+    <p class="card-description">
+        Проверьте возможность получения компенсации до 600€ по европейскому закону EC 261. Без предоплаты.
+    </p>
+
+    <div class="hero-contacts">
+        <a href="mailto:support@compensair.com">
+            <i class="fas fa-envelope"></i> support@compensair.com
+        </a>
+        <a href="#">
+            <i class="fas fa-file-invoice"></i> Онлайн-заявка 24/7
+        </a>
+    </div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="product-icons-section">
+<div class="container">
+<h2 class="section-title" style="margin-bottom: 30px; color: #1d4ed8;">Наши продукты и сервисы</h2>
+<div class="product-icons-grid">
+<a href="https://search.airflowtravel.net" class="product-icon-link">
+<div class="product-icon"><i class="fas fa-plane"></i></div>
+<div class="product-title">Авиабилеты</div>
+</a>
+<a href="hotels.html" class="product-icon-link">
+<div class="product-icon"><i class="fas fa-hotel"></i></div>
+<div class="product-title">Отели</div>
+</a>
+<a href="cars.html" class="product-icon-link">
+<div class="product-icon"><i class="fas fa-car-alt"></i></div>
+<div class="product-title">Аренда авто</div>
+</a>
+<a href="transfers.html" class="product-icon-link">
+<div class="product-icon"><i class="fas fa-taxi"></i></div>
+<div class="product-title">Трансферы</div>
+</a>
+<a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ" class="product-icon-link">
+<div class="product-icon"><i class="fas fa-train"></i></div>
+<div class="product-title">Ж/д билеты</div>
+</a>
+</div>
+</div>
+</section>
+
+<section class="car-features-section">
+<div class="container">
+<h2 class="section-title" style="color: #1e293b;">Наши ключевые преимущества</h2>
+<div class="features-grid">
+<div class="feature-card" style="border-top-color: #1d4ed8;">
+<div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-search-dollar"></i></div>
+<h4>Узнайте, какая компенсация вам положена</h4>
+<p>Мы предоставим вам наше программное обеспечение, чтобы проверить, имеете ли вы право на компенсацию - абсолютно бесплатно.</p>
+</div>
+<div class="feature-card" style="border-top-color: #f59e0b;">
+<div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-euro-sign"></i></div>
+<h4>€450</h4>
+<p>Средняя сумма компенсации, которую получили наши клиенты.</p>
+</div>
+<div class="feature-card" style="border-top-color: #10b981;">
+<div class="feature-icon" style="color: #10b981;"><i class="fas fa-plane-departure"></i></div>
+<h4>150+ авиакомпаний</h4>
+<p>Успешно работаем более чем со 150 авиакомпаниями из 60 стран мира, включая чартерные рейсы.</p>
+</div>
+<div class="feature-card" style="border-top-color: #1d4ed8;">
+<div class="feature-icon" style="color: #1d4ed8;"><i class="fas fa-mobile-alt"></i></div>
+<h4>Вы подаёте заявку</h4>
+<p>Заполняете данные о рейсе и короткое описание. Это занимает 2 минуты.</p>
+</div>
+<div class="feature-card" style="border-top-color: #f59e0b;">
+<div class="feature-icon" style="color: #f59e0b;"><i class="fas fa-scale-balanced"></i></div>
+<h4>Всю работу и риски мы берём на себя</h4>
+<p>Наше программное обеспечение анализирует, положена ли вам компенсация, и подбирает лучший способ для ее получения. Оставьте нам всю рутинную и бумажную работу.</p>
+</div>
+<div class="feature-card" style="border-top-color: #10b981;">
+<div class="feature-icon" style="color: #10b981;"><i class="fas fa-trophy"></i></div>
+<h4>Получаете заслуженную компенсацию</h4>
+<p>Мы перечисляем вам положенную сумму после успешного взыскания средств.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="seo-tips-section">
+<div class="container">
+<h2 class="section-title">Часто задаваемые вопросы (FAQ)</h2>
+<div class="tips-grid">
+
+<details class="tip-card" style="border-top-color: #1d4ed8;">
+    <summary>
+        <div class="tip-icon" style="color: #1d4ed8;"><i class="fas fa-circle-question"></i></div>
+        <h4>Мой рейс был задержан. Могу ли я требовать компенсацию?</h4>
+        <p class="tip-card-text-short">Условия, при которых вы имеете право на компенсацию до €600.</p>
+    </summary>
+    <div class="tip-content">
+        В случае, если вы достигли конечного пункта назначения с опозданием на 3 часа или более, вы имеете право на получение компенсации в размере от €250 до €600. При этом задержка не должна быть вызвана чрезвычайными обстоятельствами: плохие погодные условия, забастовка, угроза теракта. <br><br>Также, если задержка составляет 2 часа или более, Вы имеете право на дополнительную поддержку от авиакомпании: телефонная связь, прохладительные напитки, питание, проживание, транспорт до места проживания.
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #e9573f;">
+    <summary>
+        <div class="tip-icon" style="color: #e9573f;"><i class="fas fa-envelope-open-text"></i></div>
+        <h4>Пробовали писать в авиакомпанию, они отказали. Вы сможете помочь?</h4>
+        <p class="tip-card-text-short">Что делать, если авиакомпания отказала в выплате.</p>
+    </summary>
+    <div class="tip-content">
+        Это нормальная ситуация, как правило, авиакомпании редко соглашаются на выплату с “первого раза”. Наш значительный опыт работы с авиакомпаниями помогает максимизировать шансы получения компенсации в досудебном порядке. Если авиакомпания по-прежнему отказывается платить, мы можем привлечь третьих лиц для подготовки к судебному разбирательству для успешного разрешения дела.
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #f59e0b;">
+    <summary>
+        <div class="tip-icon" style="color: #f59e0b;"><i class="fas fa-globe"></i></div>
+        <h4>Я не гражданин ЕС и Турции, могу ли я рассчитывать компенсацию?</h4>
+        <p class="tip-card-text-short">Правила распространения законодательства ЕС и Турции на пассажиров.</p>
+    </summary>
+    <div class="tip-content">
+        Действие законодательства ЕС и Турции распространяется на всех пассажиров, независимо от гражданства, т.е. вы можете требовать компенсацию, даже если вы не являетесь гражданином этих стран.
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #10b981;">
+    <summary>
+        <div class="tip-icon" style="color: #10b981;"><i class="fas fa-hands-holding-circle"></i></div>
+        <h4>Как Compensair может мне помочь?</h4>
+        <p class="tip-card-text-short">Полный спектр услуг, предоставляемых нашей командой.</p>
+    </summary>
+    <div class="tip-content">
+        <ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;">
+            <li>Детальный анализ всех обстоятельств дела с использованием нашего программного обеспечения</li>
+            <li>Составление всех необходимых документов и отправка их сторонам</li>
+            <li>Переговоры с авиакомпанией</li>
+            <li>При необходимости (мы будем привлекать наших партнеров и брать на себя все расходы и риски):
+                <ul style="list-style-type: circle; margin-left: 20px; padding-left: 0;">
+                    <li>Подготовка иска и необходимого пакета документов для судебного разбирательства</li>
+                    <li>Проведение судебного разбирательства</li>
+                </ul>
+            </li>
+        </ul>
+        <p style="margin-top: 10px;">При этом мы оповещаем Вас о самых важных этапах по почте или sms.</p>
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #1d4ed8;">
+    <summary>
+        <div class="tip-icon" style="color: #1d4ed8;"><i class="fas fa-wallet"></i></div>
+        <h4>Какова стоимость работы по получению компенсации?</h4>
+        <p class="tip-card-text-short">Условия и стоимость наших услуг.</p>
+    </summary>
+    <div class="tip-content">
+        Мы предоставляем вам все необходимые услуги бесплатно. Мы взимаем только плату за успешное решение дела в соответствии с <a href="#" style="color: #1d4ed8; font-weight: 600;">Политикой оплаты</a>. Мы взимаем эту плату только после получения компенсации.
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #e9573f;">
+    <summary>
+        <div class="tip-icon" style="color: #e9573f;"><i class="fas fa-clock"></i></div>
+        <h4>Сколько занимает процесс получения компенсации?</h4>
+        <p class="tip-card-text-short">Средние сроки досудебного и судебного разбирательства.</p>
+    </summary>
+    <div class="tip-content">
+        Мы стараемся добиться вашей компенсации как можно быстрее. Некоторые авиакомпании отвечают в течение двух-трех дней, другие – в течение четырех-шести недель. В среднем, досудебное получение согласия происходит в течение первых 8 недель после подачи претензии. В случае если необходимо обратиться в суд, срок может увеличиться до 16-20 недель.
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #f59e0b;">
+    <summary>
+        <div class="tip-icon" style="color: #f59e0b;"><i class="fas fa-earth-europe"></i></div>
+        <h4>На какие страны и авиакомпании распространяются права пассажиров ЕС и Турции?</h4>
+        <p class="tip-card-text-short">Территориальное действие Регламента (ЕС) 261/2004.</p>
+    </summary>
+    <div class="tip-content">
+        Права авиапассажиров, изложенные в Постановлении (ЕС) 261/2004 действуют, если:
+        <ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;">
+            <li>Страна вылета принадлежит ЕС независимо от того, какой авиакомпанией был выполнен рейс</li>
+            <li>Любой рейс, выполненный авиакомпанией, зарегистрированной в ЕС (также в Исландии, Норвегии или Швейцарии)</li>
+        </ul>
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #10b981;">
+    <summary>
+        <div class="tip-icon" style="color: #10b981;"><i class="fas fa-calendar-alt"></i></div>
+        <h4>Если задержка/отмена/отказ в посадке произошли, но это было давно?</h4>
+        <p class="tip-card-text-short">Срок исковой давности для подачи претензии.</p>
+    </summary>
+    <div class="tip-content">
+        Если ваш рейс был задержан либо отменен, или вам отказали в посадке на борт в течение последних 2-6 лет (в зависимости от авиакомпании), вы имеете право на компенсацию и можете отправить информацию о вашем рейсе в Compensair.
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #1d4ed8;">
+    <summary>
+        <div class="tip-icon" style="color: #1d4ed8;"><i class="fas fa-person"></i></div>
+        <h4>Кто получит компенсацию, если мой рейс был оплачен компанией?</h4>
+        <p class="tip-card-text-short">Определяем законного получателя денежной выплаты.</p>
+    </summary>
+    <div class="tip-content">
+        Право на получение компенсации принадлежит пассажиру, а не тому, кто оплатил билет.
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #e9573f;">
+    <summary>
+        <div class="tip-icon" style="color: #e9573f;"><i class="fas fa-file-signature"></i></div>
+        <h4>Что мне необходимо предоставить для того, чтобы претендовать на компенсацию?</h4>
+        <p class="tip-card-text-short">Список документов, необходимых для начала процесса.</p>
+    </summary>
+    <div class="tip-content">
+        <ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;">
+            <li>Подписанная форма согласия на представление интересов</li>
+            <li>Информация о рейсе и номер билета/бронирования</li>
+        </ul>
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #f59e0b;">
+    <summary>
+        <div class="tip-icon" style="color: #f59e0b;"><i class="fas fa-handshake"></i></div>
+        <h4>Партнерская программа Compensair: Преимущества</h4>
+        <p class="tip-card-text-short">Что вы получите, сотрудничая с нами.</p>
+    </summary>
+    <div class="tip-content">
+        С помощью Compensair вы:
+        <ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;">
+            <li>Превратите клиентов, столкнувшихся с задержкой или отменой рейса, в лояльных</li>
+            <li>Будете зарабатывать в среднем **40 евро** за успешную заявку</li>
+            <li>Сможете дополнительно монетизировать имеющуюся базу клиентов за последние 6 лет</li>
+            <li>Предоставите своим клиентам дополнительную ценность</li>
+        </ul>
+        <p style="margin-top: 15px; font-style: normal; text-align: center;">
+            <a href="https://compensair.tpo.li/D7XbiL71?erid=2VtzqxNeJXs" target="_blank" style="color: #f59e0b; font-weight: 700; text-decoration: underline;">
+                Подробнее о Партнерской программе →
+            </a>
+        </p>
+    </div>
+</details>
+
+<details class="tip-card" style="border-top-color: #10b981;">
+    <summary>
+        <div class="tip-icon" style="color: #10b981;"><i class="fas fa-qrcode"></i></div>
+        <h4>QR-код для быстрой регистрации партнера</h4>
+        <p class="tip-card-text-short">Быстрый переход на страницу "Стать партнёром".</p>
+    </summary>
+    <div class="tip-content">
+        Для мгновенного перехода на страницу регистрации партнера отсканируйте код.
+        <div style="text-align: center; margin: 15px 0;">
+            <a href="https://compensair.tpo.li/D7XbiL71?erid=2VtzqxNeJXs" target="_blank" style="display: inline-block; padding: 20px; border: 3px solid #10b981; background: #ffffff; border-radius: 8px; text-decoration: none; color: #1e293b; font-weight: 600; line-height: 1.2;">
+                <i class="fas fa-qrcode" style="font-size: 3rem; color: #10b981; margin-bottom: 5px; display: block;"></i>
+                <span style="font-style: normal; font-size: 0.9rem;">[Нажмите, чтобы открыть ссылку на регистрацию]</span>
+            </a>
+        </div>
+    </div>
+</details>
+
+</div>
+</div>
+</section>
+
+<section class="testimonials-section">
+<div class="container">
+<h2 class="section-title">Что говорят наши клиенты</h2>
+<div class="testimonials-container">
+<div class="swiper testimonials-slider">
+<div class="swiper-wrapper">
+
+<div class="swiper-slide">
+<div class="testimonial-card">
+<div class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+</div>
+<p class="testimonial-text">
+«Благодаря Compensair получил 400€ за задержку рейса из Парижа! Думал, это невозможно, но ребята справились. Спасибо!»
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">ДК</div>
+<div class="author-info">
+<h4>Дмитрий К.</h4>
+<p>Клиент (Компенсация рейса)</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="testimonial-card">
+<div class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</div>
+<p class="testimonial-text">
+«Подала заявку за 2 минуты, и через 3 месяца получила деньги. Никаких хлопот с документами и перепиской с авиакомпанией.»
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">МС</div>
+<div class="author-info">
+<h4>Мария С.</h4>
+<p>Клиент (Компенсация рейса)</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="testimonial-card">
+<div class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</div>
+<p class="testimonial-text">
+«Удобно, что нет предоплаты. Это снимает все риски. Работают профессионально, результат — 100%.»
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">ОВ</div>
+<div class="author-info">
+<h4>Ольга В.</h4>
+<p>Постоянный клиент</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="testimonial-card">
+<div class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</div>
+<p class="testimonial-text">
+«Я даже не знал, что мне положена компенсация за старый рейс! Проверил, подал заявку и получил деньги. Отличный сервис.»
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">АГ</div>
+<div class="author-info">
+<h4>Артем Г.</h4>
+<p>Клиент (Компенсация рейса)</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="swiper-slide">
+<div class="testimonial-card">
+<div class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</div>
+<p class="testimonial-text">
+«Сайт быстрый и понятный. Проверила рейс, подала заявку и получила 600 евро. Идеально.»
+</p>
+<div class="testimonial-author">
+<div class="author-avatar">ЕВ</div>
+<div class="author-info">
+<h4>Елена В.</h4>
+<p>Клиент (Компенсация рейса)</p>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="swiper-pagination"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>Наши Продукты</h3>
+<ul>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ">🚂 Ж/д билеты</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h3>Информация</h3>
+<ul>
+<li><a href="https://airflowtravel.net/about.html">О нас</a></li>
+<li><a href="https://airflowtravel.net/terms.html">Условия использования</a></li>
+<li><a href="https://airflowtravel.net/privacy.html">Политика конфиденциальности</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+    <h3>Служба поддержки Compensair</h3>
+    <div class="footer-contacts" style="background: none; padding: 0; margin: 0;">
+        <a href="mailto:support@compensair.com" style="color: white;">
+            <i class="fas fa-envelope"></i> support@compensair.com
+        </a>
+        <p style="margin-top: 5px; font-size: 0.9rem; color: #64748b;">Онлайн-заявка и поддержка 24/7</p>
+    </div>
+</div>
+
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 Airflow Travel. Все права защищены.</p>
+</div>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Код для навигации
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuButton = document.getElementById('mobile-menu-button');
+    const menuOverlay = document.getElementById('mobile-menu-overlay');
+    const menuClose = document.getElementById('mobile-menu-close');
+    let isMenuOpen = false;
+
+    function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            menuOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
+        } else {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; 
+            setTimeout(() => {
+                if (!isMenuOpen) {
+                    menuOverlay.style.display = 'none';
+                }
+            }, 300);
+        }
+    }
+
+    function closeMenu() {
+        isMenuOpen = false;
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = ''; 
+        setTimeout(() => {
+            menuOverlay.style.display = 'none';
+        }, 300);
+    }
+
+    if (menuButton) menuButton.addEventListener('click', toggleMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+
+    // Код для Swiper-слайдера отзывов
+    document.addEventListener('DOMContentLoaded', function() {
+        var swiper = new Swiper('.testimonials-slider', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            observer: true, 
+            observeParents: true, 
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                }
+            },
+            autoHeight: true, 
+            on: {
+                init: function () {
+                    document.body.style.overflowX = 'hidden';
+                    this.update(); 
+                },
+                resize: function () {
+                    this.update();
+                }
+            }
+        });
+
+        // Закрытие мобильного меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+        });
+
+    });
+</script>
+</body>
+</html>
