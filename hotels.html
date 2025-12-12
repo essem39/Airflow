@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="ru"><head>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
@@ -20,12 +22,12 @@ property="og:description"/>
 <style>/* БАЗОВЫЕ СТИЛИ (ОБЩИЕ) */
 * {
     box-sizing: border-box;
-margin: 0;
+    margin: 0;
     padding: 0;
     }
 html, body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-line-height: 1.6;
+    line-height: 1.6;
     color: #333;
     background-color: #fff;
     font-size: 16px;
@@ -34,14 +36,14 @@ line-height: 1.6;
 .container {
     max-width: 1240px;
     margin: 0 auto;
-padding: 0 20px;
+    padding: 0 20px;
     }
 /* ---------------------------------------------------- */
 /* СТИЛИ ВЕРХНЕГО МЕНЮ (УНИВЕРСАЛЬНЫЕ И АДАПТИВНЫЕ) */
 /* ---------------------------------------------------- */
 .main-navigation {
     background: #1e293b;
-padding: 0;
+    padding: 0;
     position: sticky;
     top: 0;
     z-index: 1020;
@@ -55,7 +57,7 @@ padding: 0;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-height: 100%;
+    height: 100%;
     }
 .nav-logo {
     display: flex;
@@ -64,7 +66,7 @@ height: 100%;
     color: white;
     font-size: 18px;
     font-weight: 600;
-text-decoration: none;
+    text-decoration: none;
     }
 .nav-menu {
     display: flex;
@@ -79,7 +81,7 @@ text-decoration: none;
     font-size: 15px;
     font-weight: 500;
     padding: 18px 0;
-transition: color 0.3s ease;
+    transition: color 0.3s ease;
     }
 .nav-menu a:hover, .nav-menu a.active {
     color: white;
@@ -93,7 +95,7 @@ transition: color 0.3s ease;
     color: white;
     font-size: 20px;
     cursor: pointer;
-padding: 8px;
+    padding: 8px;
     }
 .mobile-menu-overlay {
     display: none;
@@ -102,13 +104,13 @@ padding: 8px;
     left: 0;
     right: 0;
     bottom: 0;
-background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 999;
     opacity: 0;
     transition: opacity 0.3s ease;
     }
 .mobile-menu-overlay.active {
-opacity: 1;
+    opacity: 1;
     }
 .mobile-menu {
     display: none;
@@ -118,7 +120,7 @@ opacity: 1;
     width: 260px;
     height: 100vh;
     background: #1e293b;
-z-index: 1001;
+    z-index: 1001;
     padding: 60px 15px 15px;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
     transition: right 0.3s ease;
@@ -132,7 +134,7 @@ z-index: 1001;
     top: 15px;
     right: 15px;
     background: none;
-border: none;
+    border: none;
     color: white;
     font-size: 20px;
     cursor: pointer;
@@ -141,7 +143,7 @@ border: none;
 .mobile-menu-links {
     list-style: none;
     padding: 0;
-margin: 0;
+    margin: 0;
     }
 .mobile-menu-links a {
     color: #cbd5e1;
@@ -149,7 +151,7 @@ margin: 0;
     font-size: 16px;
     display: block;
     padding: 12px 15px;
-border-radius: 6px;
+    border-radius: 6px;
     transition: all 0.3s ease;
     }
 .nav-menu a:hover, .mobile-menu-links a.active {
@@ -160,21 +162,21 @@ border-radius: 6px;
 /* АДАПТИВНОСТЬ МЕНЮ */
 @media (max-width: 1175px) {
     .nav-container {
-padding: 0 16px;
+    padding: 0 16px;
     }
     .nav-menu {
-display: none;
+    display: none;
     }
     .mobile-menu-button {
-display: block;
+    display: block;
     }
     .mobile-menu-overlay, .mobile-menu {
-display: block;
+    display: block;
     }
     }
 @media (max-width: 480px) {
     .nav-container {
-padding: 0 12px;
+    padding: 0 12px;
     }
     }
 /* ---------------------------------------------------- */
@@ -182,27 +184,27 @@ padding: 0 12px;
 /* ---------------------------------------------------- */
 .section-title {
     text-align: center;
-font-size: 2.5rem;
+    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 40px;
     color: #1e293b;
     }
 .hero-section {
     /* *** ТЕСТ НА ПУТАНИЦУ: Здесь был ярко-зеленый.
-Теперь - ЖЕЛТЫЙ. *** */
+    Теперь - ЖЕЛТЫЙ. *** */
     /* background: url('https://i.imgur.com/8Q8W34w.jpeg') no-repeat center center/cover; */
     background: #FFC107;
-/* НОВЫЙ ЖЕЛТЫЙ ФОН по запросу */
+    /* НОВЫЙ ЖЕЛТЫЙ ФОН по запросу */
     color: white;
     padding: 80px 20px;
     text-align: center;
     min-height: 450px;
-/* Добавлено для лучшего вида */
+    /* Добавлено для лучшего вида */
 }
 .hero-content h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: 20px;
-font-weight: 700;
+    font-weight: 700;
 } 
 
 /* ГАРАНТИЯ: Принудительно устанавливаем белый цвет для h1 с ID section-1, 
@@ -217,20 +219,20 @@ font-weight: 700;
     opacity: 0.9;
     max-width: 900px;
     margin-left: auto;
-margin-right: auto;
+    margin-right: auto;
 }
 .cta-button {
     display: inline-block;
     background-color: #f59e0b;
     /* Яркий желто-оранжевый */
     color: #1e293b;
-padding: 15px 35px;
+    padding: 15px 35px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
     transition: background-color 0.3s ease;
-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 .cta-button:hover {
     background-color: #d97706;
@@ -242,7 +244,7 @@ box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 .product-icons-grid {
     display: flex;
-justify-content: center;
+    justify-content: center;
     gap: 30px;
     max-width: 900px;
     margin: 0 auto;
@@ -251,7 +253,7 @@ justify-content: center;
 .product-icon-link {
     text-decoration: none;
     color: #1e293b;
-transition: color 0.3s ease, transform 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
     display: block;
     padding: 15px;
     border-radius: 8px;
@@ -261,12 +263,12 @@ transition: color 0.3s ease, transform 0.3s ease;
     font-size: 3rem;
     margin-bottom: 10px;
     color: #f59e0b;
-/* Яркий Оранжевый/Янтарный */
+    /* Яркий Оранжевый/Янтарный */
     transition: color 0.3s ease;
     }
 .product-icon-link:hover {
     color: #4c1d95;
-/* Фирменный фиолетовый для текста при наведении */
+    /* Фирменный фиолетовый для текста при наведении */
     transform: translatey(-5px);
 }
 /* Изменение цвета иконки на фиолетовый при наведении */
@@ -279,14 +281,14 @@ transition: color 0.3s ease, transform 0.3s ease;
 .car-features-section {
     padding: 80px 20px;
     background: #f8fafc;
-/* Светлый фон */
+    /* Светлый фон */
     }
 /* ГЛАВНОЕ ИЗМЕНЕНИЕ ДЛЯ СИММЕТРИИ 3X2 */
 .features-grid, .destinations-grid {
     display: grid;
-/* ФИКС: minmax(300px, 1fr) заставляет 3 столбца на ПК и 2 на планшете */
+    /* ФИКС: minmax(300px, 1fr) заставляет 3 столбца на ПК и 2 на планшете */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 30px;
+    gap: 30px;
     max-width: 1100px;
     margin: 0 auto;
     }
@@ -294,16 +296,16 @@ gap: 30px;
     text-align: center;
     padding: 30px 20px;
     border-radius: 10px;
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     background: #fff;
-/* Белый фон для карточек */
+    /* Белый фон для карточек */
     border-top: 5px solid #4c1d95;
-/* Фирменный цвет по умолчанию */
+    /* Фирменный цвет по умолчанию */
     transition: transform 0.3s;
     }
 .feature-card:hover {
     transform: translatey(-3px);
-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     }
 .feature-icon {
     font-size: 3rem;
@@ -317,7 +319,7 @@ box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     }
 .feature-card p {
     color: #64748b;
-font-size: 0.95rem;
+    font-size: 0.95rem;
     }
 /* Стили для карточек направлений (скопированы из cars.html) */
 .destinations-section {
@@ -329,20 +331,20 @@ font-size: 0.95rem;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
     color: inherit;
     display: block;
     }
 .destination-card:hover {
     transform: translatey(-5px);
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 .destination-image {
     width: 100%;
     height: 180px;
     background-size: cover;
-background-position: center;
+    background-position: center;
     position: relative;
     display: flex;
     align-items: center;
@@ -371,7 +373,7 @@ background-position: center;
     background-image: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
     }
 .destination-info {
-padding: 20px;
+    padding: 20px;
     }
 .destination-title {
     font-size: 1.5rem;
@@ -389,19 +391,19 @@ padding: 20px;
 /* ---------------------------------------------------- */
 .testimonials-section {
     background: #f8fafc;
-/* Светлый фон */
+    /* Светлый фон */
     padding: 80px 20px;
     }
 .testimonials-container {
     max-width: 1200px;
     margin: 0 auto;
-position: relative;
+    position: relative;
     }
 .testimonial-card {
     background: white;
     /* Белый фон для карточек */
     padding: 30px;
-border-radius: 4px;
+    border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     border: 1px solid #e2e8f0;
     height: 100%;
@@ -421,7 +423,7 @@ border-radius: 4px;
     }
 .testimonial-author {
     display: flex;
-align-items: center;
+    align-items: center;
     gap: 15px;
     margin-top: auto;
     }
@@ -429,14 +431,14 @@ align-items: center;
     width: 50px;
     height: 50px;
     background: #4c1d95;
-/* Фирменный цвет */
+    /* Фирменный цвет */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-weight: 600;
-font-size: 1.2rem;
+    font-size: 1.2rem;
     }
 .author-info h4 {
     margin: 0;
@@ -444,7 +446,7 @@ font-size: 1.2rem;
     }
 .author-info p {
     margin: 0;
-color: #64748b;
+    color: #64748b;
     font-size: 0.9rem;
     }
 .swiper-button-prev, .swiper-button-next {
@@ -452,7 +454,7 @@ color: #64748b;
     width: 30px;
     height: 30px;
     border-radius: 0;
-box-shadow: none;
+    box-shadow: none;
     transition: opacity 0.3s;
     top: 50%;
     margin-top: -15px;
@@ -460,7 +462,7 @@ box-shadow: none;
     }
 .swiper-button-prev:hover, .swiper-button-next:hover {
     background: transparent !important;
-opacity: 1;
+    opacity: 1;
     }
 .swiper-button-prev:after, .swiper-button-next:after {
     color: #1e293b !important;
@@ -470,72 +472,86 @@ opacity: 1;
     background: #4c1d95 !important;
     }
 /* ---------------------------------------------------- */
-/* СТИЛИ ФУТЕРА */
+/* СТИЛИ ФУТЕРА (ОПТИМИЗИРОВАННЫЕ И АДАПТИВНЫЕ) */
 /* ---------------------------------------------------- */
 .footer {
-    background-color: #1e293b;
-color: #94a3b8;
+    background-color: #1e293b; /* Темно-синий фон */
+    color: #94a3b8;
     padding: 60px 0 20px;
     font-size: 14px;
-    }
+}
+
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-padding: 0 20px;
-    }
+    padding: 0 20px;
+}
+
 .footer-content {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 40px;
+    gap: 30px 20px; 
 }
+
 .footer-section {
-    width: 20%;
-    margin-right: 20px;
+    /* 4 колонки на больших экранах */
+    width: calc(25% - 15px);
+    min-width: 250px; 
     margin-bottom: 20px;
-    }
+}
+
 .footer-section h3 {
+    margin-bottom: 20px;
     color: white;
-margin-bottom: 20px;
     font-size: 1.1rem;
-    border-bottom: 2px solid #334155;
+    border-bottom: 2px solid #334155; /* Акцентная линия */
     padding-bottom: 10px;
-    }
+}
+
 .footer-section ul {
     list-style: none;
     padding-left: 0;
 }
-.footer-section li {
-    margin-bottom: 10px;
-    }
+
 .footer-section a {
     color: #94a3b8;
     transition: 0.3s;
     font-size: 0.95rem;
-text-decoration: none;
-    }
+    text-decoration: none;
+    display: block; /* Улучшение кликабельности */
+    padding: 4px 0;
+}
+
 .footer-section a:hover {
     color: white;
     text-decoration: underline;
 }
+
+/* АДАПТАЦИЯ ФУТЕРА */
+@media (max-width: 1100px) {
+    .footer-section {
+        /* 2 колонки на планшетах */
+        width: calc(50% - 15px);
+        min-width: 0;
+    }
+}
+
+@media (max-width: 550px) {
+    .footer-section {
+        /* 1 колонка на мобильных */
+        width: 100%;
+    }
+}
+
 .footer-bottom {
     border-top: 1px solid #334155;
     padding-top: 20px;
     text-align: center;
     color: #94a3b8;
+    margin-top: 20px;
 }
-@media (max-width: 768px) {
-    .footer-content {
-flex-direction: column;
-    }
-    .footer-section {
-        width: 100%;
-        margin-right: 0;
-    }
-    .footer-section h3 {
-padding-top: 10px;
-    }
-    }
 /* ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ ПРОЗРАЧНОСТИ ВИДЖЕТА */
 #hotel-widget-wrapper {
     border-radius: 8px; 
@@ -559,11 +575,12 @@ padding-top: 10px;
               🏨  Airflow
             </a>
 <ul class="nav-menu">
-<li><a class="active" href="index.html">Главная</a></li> <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a class="active" href="index.html">Главная</a></li> 
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
 <li><a href="hotels.html">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Автобусы</a></li>
+<li><a href="trains-buses.html">🚌 Поезда и автобусы</a></li>
 </ul>
 <button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
 <i class="fas fa-bars"></i>
@@ -579,7 +596,7 @@ padding-top: 10px;
 <li><a href="hotels.html">🏨 Отели</a></li>
 <li><a href="cars.html">🚗 Аренда авто</a></li>
 <li><a href="transfers.html">🚕 Трансферы</a></li>
-<li><a href="trains-buses.html">🚌 Автобусы</a></li>
+<li><a href="trains-buses.html">🚌 Поезда и автобусы</a></li>
 <li><a href="about.html">ℹ️ О нас</a></li>
 <li><a href="help.html">❓ Помощь</a></li>
 </ul>
@@ -619,9 +636,9 @@ color: #4c1d95;">Наши продукты и сервисы</h2>
 <div class="product-icon"><i class="fas fa-taxi"></i></div>
 <div class="product-title">Трансферы</div>
 </a>
-<a class="product-icon-link" href="https://tutu.tpo.li/1A2oIVqc?erid=2Vtzqv4DbNZ">
-<div class="product-icon"><i class="fas fa-train"></i></div>
-<div class="product-title">Ж/д билеты</div>
+<a class="product-icon-link" href="trains-buses.html">
+<div class="product-icon"><i class="fas fa-bus"></i></div> 
+<div class="product-title">Поезда и автобусы</div>
 </a>
 </div>
 </div>
@@ -815,47 +832,53 @@ fa-star-half-alt"></i>
 </div>
 </section>
 <footer class="footer">
-<div class="footer-container">
-<div class="footer-content">
-<div class="footer-section">
-<h3 id="section-4-1">О нас</h3>
-<ul>
-<li><a href="about.html">О проекте Airflow</a></li>
-<li><a href="help.html">Помощь и поддержка</a></li>
-<li><a href="terms.html">Условия использования</a></li>
-<li><a href="privacy.html">Политика конфиденциальности</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h3 id="section-4-2">Путешествия</h3>
-<ul>
-<li><a href="hotels.html">Бронирование отелей</a></li>
-<li><a href="cars.html">Аренда авто</a></li>
-<li><a href="transfers.html">Трансферы</a></li>
-<li><a href="trains-buses.html">Автобусы</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h3 id="section-4-3">Популярные туры</h3>
-<ul>
-<li><a href="#">Авиабилеты в Стамбул</a></li>
-<li><a href="#">Отели в Тбилиси</a></li>
-<li><a href="#">Аренда авто в Грузии</a></li>
-<li><a href="#">Популярные города</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h3 id="section-4-4">Контакты</h3>
-<p>Общие вопросы :<br/>📧 hello@level.travel</p>
-<p>Клиентский сервис :<br/>📧 manager@level.travel</p>
-<p>Визовый отдел :<br/>📧 visa@level.travel</p>
-</div>
-</div>
-<div class="footer-bottom">
-                © 2025 Airflow Travel.
-Все права защищены.
+    <div class="footer-container">
+        <div class="footer-content">
+            
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> О нас</h3>
+                <ul>
+                    <li><a href="about.html">О проекте Airflow Travel</a></li>
+                    <li><a href="help.html">Помощь и контакты</a></li>
+                    <li><a href="terms.html">Условия использования</a></li>
+                    <li><a href="privacy.html">Политика конфиденциальности</a></li>
+                </ul>
             </div>
-</div>
+            
+            <div class="footer-section">
+                <h3><i class="fas fa-box-open"></i> Продукты</h3>
+                <ul>
+                    <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+                    <li><a href="hotels.html">🏨 Отели</a></li>
+                    <li><a href="cars.html">🚗 Аренда авто</a></li>
+                    <li><a href="trains-buses.html">🚌 Поезда и автобусы</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3><i class="fas fa-at"></i> Партнерские E-mail</h3>
+                <p style="color: white; margin-bottom: 5px;"> ✈️Авиабилеты:</p>
+                <p>flights@airflowtravel.net</p>
+                <p style="color: white; margin-top: 10px; margin-bottom: 5px;"> 🏨Отели:</p>
+                <p>hotels@airflowtravel.net</p>
+                <p style="color: white; margin-top: 10px; margin-bottom: 5px;"> 🚗Аренда авто:</p>
+                <p>cars@airflowtravel.net</p>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-phone"></i> Общие контакты</h3>
+                <p style="color: white; margin-bottom: 5px;">📞 Тех. поддержка:</p>
+                <p>+7 (926) 333-55-99</p>
+                <p style="color: white; margin-top: 10px; margin-bottom: 5px;"> 📧 Реклама/Сотрудничество:</p>
+                <p>partner@airflowtravel.net</p>
+            </div>
+            
+        </div>
+        
+        <div class="footer-bottom">
+            &copy; 2025 Airflow Travel. Все права защищены.
+        </div>
+    </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
@@ -866,7 +889,7 @@ fa-star-half-alt"></i>
             const mobileMenu = document.getElementById('mobile-menu');
             const menuOverlay = document.getElementById('mobile-menu-overlay');
            
-const menuClose = document.getElementById('mobile-menu-close');
+            const menuClose = document.getElementById('mobile-menu-close');
             
             let isMenuOpen = false;
 
@@ -875,38 +898,38 @@ const menuClose = document.getElementById('mobile-menu-close');
             
                 if (isMenuOpen) {
        
-              mobileMenu.classList.add('active');
+                    mobileMenu.classList.add('active');
                     menuOverlay.classList.add('active');
                     menuOverlay.style.display = 'block';
                     document.body.style.overflow = 'hidden'; /* Блокируем скролл */
                 } else 
-{
+                {
  
                     mobileMenu.classList.remove('active');
-menuOverlay.classList.remove('active');
+                    menuOverlay.classList.remove('active');
                     document.body.style.overflow = ''; /* Возвращаем скролл */
                     setTimeout(() => {
                         if (!isMenuOpen) {
                             menuOverlay.style.display = 'none';
                
-          }
+                        }
                     }, 300);
-}
+                }
             }
 
             function closeMenu() {
                 isMenuOpen = false;
-mobileMenu.classList.remove('active');
+                mobileMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
                 document.body.style.overflow = ''; /* Возвращаем скролл */
                 setTimeout(() => {
                     menuOverlay.style.display = 'none';
                 }, 300);
-}
+            }
 
             // Обработчики событий
             if (menuButton) menuButton.addEventListener('click', toggleMenu);
-if (menuClose) menuClose.addEventListener('click', closeMenu);
+            if (menuClose) menuClose.addEventListener('click', closeMenu);
             if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
 
             // Закрытие при клике вне меню
@@ -915,29 +938,29 @@ if (menuClose) menuClose.addEventListener('click', closeMenu);
                     !mobileMenu.contains(event.target) && 
                     !menuButton.contains(event.target)) {
            
-          closeMenu();
+                    closeMenu();
                 }
             });
-// Закрытие при изменении размера экрана
+            // Закрытие при изменении размера экрана
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 1175 && isMenuOpen) {
                     closeMenu();
                 }
             });
-/* 2. ИНИЦИАЛИЗАЦИЯ SWIPER-СЛАЙДЕРА ДЛЯ ОТЗЫВОВ */
+            /* 2. ИНИЦИАЛИЗАЦИЯ SWIPER-СЛАЙДЕРА ДЛЯ ОТЗЫВОВ */
             new Swiper('.testimonials-slider', {
                 loop: true,
                 slidesPerView: 1,
                 spaceBetween: 30,
                 autoplay: {
             
-         delay: 5000,
+                    delay: 5000,
                     disableOnInteraction: false,
                 },
                 pagination: {
                     el: '.swiper-pagination',
                
-     clickable: true,
+                    clickable: true,
                 },
                 navigation: {
                     nextEl: '.swiper-button-next',
@@ -945,40 +968,40 @@ if (menuClose) menuClose.addEventListener('click', closeMenu);
                 },
   
    
-             breakpoints: {
+                breakpoints: {
                     768: {
                         slidesPerView: 2,
                         spaceBetween: 30
              
-    },
+                    },
                     1024: {
                         slidesPerView: 3,
                         spaceBetween: 30
                     }
  
      
-            },
+                },
                 autoHeight: false, 
                 on: {
                     init: function () {
                         document.body.style.overflowX = 
-'hidden';
- },
+                        'hidden';
+                    },
                 }
             });
-/* 3. ИСПРАВЛЕНИЕ ОШИБКИ: ОТЛОЖЕННАЯ ЗАГРУЗКА ВИДЖЕТА ДЛЯ ПРЕДОТВРАЩЕНИЯ ПРОКРУТКИ */
+            /* 3. ИСПРАВЛЕНИЕ ОШИБКИ: ОТЛОЖЕННАЯ ЗАГРУЗКА ВИДЖЕТА ДЛЯ ПРЕДОТВРАЩЕНИЯ ПРОКРУТКИ */
             const widgetContainer = document.getElementById('destinations-widget-container');
-if (widgetContainer) {
+            if (widgetContainer) {
                 const observer = new IntersectionObserver((entries, observerInstance) => {
                     entries.forEach(entry => {
                         // Если контейнер виджета появился в области видимости
                       
-   if (entry.isIntersecting) {
+                        if (entry.isIntersecting) {
                             // Создаем тег script
                             const script = document.createElement('script');
                             script.async = true;
    
-                         script.charset = 'utf-8';
+                            script.charset = 'utf-8';
                             // Устанавливаем URL виджета
                             script.src = 'https://tpwgt.com/content?trs=478043&shmarker=144185&departure=Moscow&destination=29386%2C168%2C149%2C116%2C10093%2C169%2C1056%2C181%2C994%2C10095%2C10535%2C204%2C205%2C159%2C21486%2C20574%2C10097%2C210%2C225%2C10540%2C995%2C983%2C21610&start_date=WEEK&nights=4..6&adults=2&kids=0&redirect=_blank&powered_by=false&campaign_id=26&promo_id=8286';
            
@@ -986,17 +1009,18 @@ if (widgetContainer) {
                 
                             // Добавляем скрипт в контейнер
                             widgetContainer.appendChild(script);
-// После загрузки скрипта прекращаем наблюдение, чтобы он не загружался повторно
+                            // После загрузки скрипта прекращаем наблюдение, чтобы он не загружался повторно
                             observerInstance.unobserve(widgetContainer);
-}
+                        }
                     });
-}, {
+                }, {
                     // Начинаем загрузку, когда до элемента остается 200px
                     rootMargin: '200px' 
                 });
-// Начинаем наблюдение за контейнером виджета
+                // Начинаем наблюдение за контейнером виджета
                 observer.observe(widgetContainer);
-}
+            }
         });
     </script>
-</body></html>
+</body>
+</html>
