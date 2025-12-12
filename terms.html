@@ -1,573 +1,442 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="Полные условия использования и правила пользования сайтом Airflow Travel. Пожалуйста, ознакомьтесь с политикой конфиденциальности и ответственностью."
-/>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <meta property="og:title" content="Условия использования Airflow Travel" />
-    <meta property="og:description" content="Полные условия использования и правила пользования сайтом Airflow Travel."
-/>
-    <meta content="ru" property="og:locale">
-    <meta content="website" property="og:type">
-    <title>Условия использования Airflow Travel</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ie=edge" http-equiv="X-X-Compatible"/>
+<meta content="Условия использования (публичная оферта) сервиса Airflow Travel. Правила пользования, ограничения ответственности и взаимодействие с партнерами."
+name="description"/>
+
+<link href="bus_icon-icons.com_76529.ico" rel="icon" type="image/x-icon"/>
+
+<title>Условия использования | Airflow Travel</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet"/>
+<style>
+    /* БАЗОВЫЕ СТИЛИ (ОБЩИЕ) - ОТ НАШЕГО ШАБЛОНА */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8fafc; 
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    /* ЦВЕТОВАЯ СХЕМА (Нейтральный синий) */
+    :root {
+        --color-primary: #1e40af; /* Яркий синий */
+        --color-accent: #2563eb;  /* Акцент */
+        --color-text: #1e293b;
+        --color-light: #f8fafc;
+    }
+
+    /* СТИЛИ ВЕРХНЕГО МЕНЮ (НАВИГАЦИИ) - СТАНДАРТ */
+    .main-navigation {
+        background: #1e293b;
+        padding: 0;
+        position: sticky;
+        top: 0;
+        z-index: 1020;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        height: 55px;
+    }
+
+    .nav-container {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 100px;
+        height: 100%;
+    }
+
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 5px 0;
+    }
+    .nav-logo img {
+        height: 45px; width: auto; display: block;
+    }
+
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 25px;
+    }
+
+    .nav-menu a {
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 18px 0;
+        transition: color 0.3s ease;
+    }
+
+    .nav-menu a:hover, .nav-menu a.active {
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Мобильное меню - СТАНДАРТ */
+    .mobile-menu-button { display: none; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 8px; }
+    .mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 999; opacity: 0; transition: opacity 0.3s ease; }
+    .mobile-menu-overlay.active { opacity: 1; }
+    .mobile-menu { display: none; position: fixed; top: 0; right: -280px; width: 260px; height: 100vh; background: #1e293b; z-index: 1001; padding: 60px 15px 15px; box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3); transition: right 0.3s ease; overflow-y: auto; }
+    .mobile-menu.active { right: 0; }
+    .mobile-menu-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 5px; }
+    .mobile-menu-links { list-style: none; padding: 0; margin: 0; }
+    .mobile-menu-links a { color: #94a3b8; text-decoration: none; font-size: 16px; display: block; padding: 12px 15px; border-radius: 6px; transition: all 0.3s ease; }
+    .mobile-menu-links a:hover, .mobile-menu-links a.active { background: #334155; color: white; text-decoration: none; }
+
+    @media (max-width: 1175px) {
+        .nav-container { padding: 0 16px; }
+        .nav-menu { display: none; }
+        .mobile-menu-button { display: block; }
+        .mobile-menu-overlay, .mobile-menu { display: block; }
+    }
+    @media (max-width: 480px) {
+        .nav-container { padding: 0 12px; }
+    }
+
+    /* --- СЕКЦИЯ КОНТЕНТА "УСЛОВИЯ" (Как на about.html) --- */
+    .terms-section {
+        padding: 60px 20px;
+        background: var(--color-light); 
+    }
+
+    .terms-card {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        max-width: 900px;
+        margin: 0 auto;
+    }
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    .terms-card h1 {
+        color: var(--color-primary);
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 15px;
+        font-weight: 700;
+    }
+    .terms-card h2 {
+        color: var(--color-text);
+        font-size: 1.5rem;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-weight: 600;
+        border-left: 4px solid var(--color-accent);
+        padding-left: 15px;
+    }
+    .terms-card p, .terms-card ul {
+        font-size: 1rem;
+        color: #4b5563;
+        margin-bottom: 20px;
+        padding-left: 20px;
+        list-style-type: disc;
+    }
+
+    .terms-card ul li {
+        margin-bottom: 10px;
+    }
     
-    <style>
-        /* БАЗОВЫЕ СТИЛИ (ОБЩИЕ) */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    .terms-card strong {
+        color: var(--color-primary);
+    }
+    
+    /* СТИЛИ ФУТЕРА (СТАНДАРТ - ИСПОЛЬЗУЕМ 3 КОЛОНКИ Unitiki) */
+    .footer {
+        background-color: #1e293b;
+        color: #94a3b8;
+        padding: 60px 0 20px;
+        font-size: 14px;
+    }
 
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        gap: 30px; 
+    }
+    
+    .footer-section {
+        width: calc(33.333% - 20px); 
+        min-width: 250px; 
+        margin-bottom: 20px;
+    }
 
-        /* ---------------------------------------------------- */
-        /* СТИЛИ ВЕРХНЕГО МЕНЮ (УНИВЕРСАЛЬНЫЕ И АДАПТИВНЫЕ) */
-        /* ---------------------------------------------------- */
-        .main-navigation {
-            background: #1e293b;
-            padding: 0;
-            position: sticky;
-            top: 0;
-            z-index: 1020;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            height: 55px;
-        }
+    .footer-section h3 {
+        margin-bottom: 20px;
+        color: white;
+        font-size: 1.1rem;
+        border-bottom: 2px solid #334155;
+        padding-bottom: 10px;
+    }
 
-        .nav-container {
-            max-width: 1240px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 100px;
-            height: 100%;
-        }
+    .footer-section ul {
+        list-style: none;
+        padding-left: 0;
+    }
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 25px;
-        }
+    .footer-section li {
+        margin-bottom: 10px;
+    }
 
-        .nav-menu a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            padding: 18px 0;
-            transition: color 0.3s ease;
-        }
+    .footer-section a {
+        color: #94a3b8;
+        transition: 0.3s;
+        font-size: 0.95rem;
+        text-decoration: none;
+    }
 
-        .nav-menu a:hover, .nav-menu a.active {
-            color: white;
-            text-decoration: none;
-        }
+    .footer-section a:hover {
+        color: white;
+        text-decoration: underline;
+    }
+    
+    .footer-section .footer-contacts a {
+        display: block;
+        margin-top: 5px;
+        color: white;
+        font-size: 0.95rem;
+    }
+    
+    .footer-section .footer-contacts i {
+        /* ЗЕЛЕНЫЙ основной цвет для иконок в футере */
+        color: #10b981;
+        margin-right: 8px;
+    }
 
-        /* Мобильное меню */
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 8px;
-        }
+    .footer-bottom {
+        border-top: 1px solid #334155;
+        padding-top: 20px;
+        text-align: center;
+        color: #94a3b8;
+    }
+    
+    .footer-bottom p i {
+        color: #06b6d4;
+    }
 
-        .mobile-menu-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .mobile-menu-overlay.active {
-            opacity: 1;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: -280px;
-            width: 260px;
-            height: 100vh;
-            background: #1e293b;
-            z-index: 1001;
-            padding: 60px 15px 15px;
-            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
-            transition: right 0.3s ease;
-            overflow-y: auto;
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .mobile-menu-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .mobile-menu-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 16px;
-            display: block;
-            padding: 12px 15px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-links a:hover, .mobile-menu-links a.active {
-            background: #334155;
-            color: white;
-            text-decoration: none;
-        }
-
-        /* АДАПТИВНОСТЬ МЕНЮ */
-        @media (max-width: 1175px) {
-            .nav-container {
-                padding: 0 16px;
-            }
-            .nav-menu {
-                display: none;
-            }
-            .mobile-menu-button {
-                display: block;
-            }
-            .mobile-menu-overlay,
-            .mobile-menu {
-                display: block;
-            }
-        }
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 0 12px;
-            }
-        }
-
-        /* ---------------------------------------------------- */
-        /* СТИЛИ КОНТЕНТА СТРАНИЦЫ (ОБЩИЕ) */
-        /* ---------------------------------------------------- */
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-            color: #1e293b;
-        }
-        
-        .hero-section {
-            /* Используем темно-серый/синий фон от автостраницы */
-            background: linear-gradient(135deg, #370c79 0%, #1e293b 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .hero-content p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            margin-bottom: 50px;
-            opacity: 0.9;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Дополнительные стили для текстовой страницы */
-        .text-content-section {
-            padding: 60px 20px;
-            background: white;
-        }
-        
-        .text-content-section h2 {
-             font-size: 1.8rem;
-             font-weight: 700;
-             margin-bottom: 20px;
-             color: #4c1d95; /* Фирменный цвет для подзаголовков */
-             text-align: left;
-             border-bottom: 2px solid #e2e8f0;
-             padding-bottom: 5px;
-        }
-
-        .text-content-section h3 {
-             font-size: 1.4rem;
-             font-weight: 600;
-             margin-top: 30px;
-             margin-bottom: 15px;
-             color: #1e293b;
-        }
-
-        .text-content-section p {
-            margin-bottom: 20px;
-            color: #475569;
-        }
-        
-        /* ---------------------------------------------------- */
-        /* СТИЛИ ФУТЕРА */
-        /* ---------------------------------------------------- */
-        .footer {
-            background-color: #1e293b;
-            color: #94a3b8;
-            padding: 60px 0 20px;
-            font-size: 14px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .footer-section {
-            width: 20%;
-            margin-right: 20px;
-            margin-bottom: 20px;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 20px;
-            color: white;
-            font-size: 1.1rem;
-            border-bottom: 2px solid #334155;
-            padding-bottom: 10px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .footer-section li {
-            margin-bottom: 10px;
-        }
-
-        .footer-section a {
-            color: #94a3b8;
-            transition: 0.3s;
-            font-size: 0.95rem;
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #334155;
-            padding-top: 20px;
-            text-align: center;
-            color: #94a3b8;
-        }
-        
-        @media (max-width: 768px) {
-            .footer-content {
-                flex-direction: column;
-            }
-
-            .footer-section {
-                width: 100%;
-                margin-right: 0;
-            }
-            
-            .footer-section h3 {
-                padding-top: 10px;
-            }
-        }
-    </style>
+    /* АДАПТАЦИЯ */
+    @media (max-width: 768px) {
+        .footer-content { flex-direction: column; gap: 0; }
+        .footer-section { width: 100%; }
+        .footer-section h3 { padding-top: 10px; }
+        .terms-card { padding: 25px 15px; } 
+    }
+</style>
 </head>
 <body>
 
-    <nav class="main-navigation">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                Airflow
-            </a>
+<nav class="main-navigation">
+<div class="nav-container">
 
-            <ul class="nav-menu">
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
-                <li><a href="hotels.html">🏨 Отели</a></li>
-                <li><a href="cars.html">🚗 Аренда авто</a></li> 
-                <li><a href="transfers.html">🚕 Трансферы</a></li>
-                <li><a href="trains.html">🚆 Поезда</a></li>
-            </ul>
+    <a class="nav-logo" href="index.html">
+        <img src="AirflowTravel.png" alt="Airflow Travel Logo">
+    </a>
 
-            <button 
-                class="mobile-menu-button" id="mobile-menu-button" aria-label="Меню">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
+<ul class="nav-menu">
+<li><a href="index.html">Главная</a></li> 
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="vip-lounge.html">👑 VIP-Залы</a></li> 
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="trains-buses.html">🚌 Автобусы</a></li>
+</ul>
+<button aria-label="Меню" class="mobile-menu-button" id="mobile-menu-button">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+<div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+<nav class="mobile-menu" id="mobile-menu">
+<button aria-label="Закрыть" class="mobile-menu-close" id="mobile-menu-close">×</button>
+<ul class="mobile-menu-links">
+<li><a href="index.html">Главная</a></li>
+<li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
+<li><a href="hotels.html">🏨 Отели</a></li>
+<li><a href="cars.html">🚗 Аренда авто</a></li>
+<li><a href="vip-lounge.html">👑 VIP-Залы</a></li> 
+<li><a href="transfers.html">🚕 Трансферы</a></li>
+<li><a href="trains-buses.html">🚌 Автобусы</a></li>
+<li><a href="about.html">ℹ️ О нас</a></li>
+<li><a href="help.html">❓ Помощь</a></li>
+<li><a href="privacy.html">🔒 Конфиденциальность</a></li>
+<li><a class="active" href="terms.html">⚖️ Условия</a></li>
+</ul>
+</nav>
 
-    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
-    <nav id="mobile-menu" class="mobile-menu">
-        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Закрыть">×</button>
+<main>
+    
+<section class="terms-section">
+<div class="container">
+<div class="terms-card">
+    
+    <h1>Условия использования сервиса Airflow Travel</h1>
+    <p>Дата вступления в силу: 12 декабря 2025 г.</p>
+    
+    <p>Настоящие Условия использования (далее — «Условия») регулируют использование Вами веб-сайта Airflow Travel (далее — «Сервис»). Используя Сервис, Вы соглашаетесь с данными Условиями.</p>
 
-        <ul class="mobile-menu-links">
-            <li><a href="index.html">Главная</a></li>
+    <h2>1. Общие положения и роль Сервиса</h2>
+    <p>Airflow Travel выступает в качестве информационно-поискового агрегатора. Наша основная функция — предоставление Вам возможности сравнить предложения авиабилетов, отелей, аренды авто и других туристических услуг от наших партнеров (третьих лиц).</p>
+    <ul>
+        <li>Airflow Travel не является продавцом туристических услуг.</li>
+        <li>Мы не несем ответственности за процесс бронирования, оплату, отмену, качество услуг или возврат средств.</li>
+        <li>Все финансовые и юридические обязательства возникают между Вами и **Партнером** (авиакомпанией, отелем, агентством и т.д.), на сайт которого Вы переходите для совершения покупки.</li>
+    </ul>
+    
+    <h2>2. Ограничение ответственности</h2>
+    <p>Информация, представленная на Сайте (включая цены, наличие, расписания), предоставляется «как есть». Мы прилагаем все усилия для обеспечения точности, однако не гарантируем ее абсолютную безошибочность, поскольку данные поступают от третьих сторон в реальном времени.</p>
+    <p>Airflow Travel не несет ответственности за любой ущерб, причиненный в результате использования или невозможности использования нашего Сервиса или в результате Вашего взаимодействия с сайтами наших Партнеров.</p>
+
+    <h2>3. Права интеллектуальной собственности</h2>
+    <p>Все содержимое Сервиса, включая тексты, графику, логотипы, дизайн и программный код (за исключением контента, предоставленного Партнерами), является собственностью Airflow Travel и защищено законом.</p>
+    
+    <h2>4. Изменения Условий</h2>
+    <p>Мы оставляем за собой право вносить изменения в настоящие Условия в любое время. Продолжая пользоваться Сервисом после публикации изменений, Вы принимаете обновленные Условия.</p>
+
+    <h2>5. Контакты</h2>
+    <p>По вопросам, связанным с настоящими Условиями, пожалуйста, обращайтесь по электронной почте:</p>
+    
+    <p style="font-weight: 700;">
+        <i class="fas fa-envelope" style="color: var(--color-accent); margin-right: 8px;"></i> info@airflowtravel.net
+    </p>
+
+    <p style="margin-top: 40px; text-align: right; font-style: italic;">Данный документ является публичной офертой и подлежит обязательному прочтению.</p>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-content">
+    
+    <div class="footer-section">
+        <h3>Наши Продукты</h3>
+        <ul>
             <li><a href="https://search.airflowtravel.net">✈️ Авиабилеты</a></li>
             <li><a href="hotels.html">🏨 Отели</a></li>
             <li><a href="cars.html">🚗 Аренда авто</a></li>
+            <li><a href="vip-lounge.html">👑 VIP-Залы</a></li> 
             <li><a href="transfers.html">🚕 Трансферы</a></li>
-            <li><a href="trains.html">🚆 Поезда</a></li>
-            <li><a href="about.html">ℹ️ О нас</a></li>
-            <li><a href="terms.html" class="active">📜 Условия</a></li> 
-            <li><a href="help.html">❓ Помощь</a></li>
+            <li><a href="trains-buses.html">🚌 Автобусы</a></li>
         </ul>
-  
-    </nav>
+    </div>
 
-    <main>
-        <section class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Условия использования Airflow Travel</h1>
-                    <p>
-                    Пожалуйста, внимательно ознакомьтесь с данным документом. Использование сайта Airflow Travel означает Ваше полное согласие с изложенными здесь условиями.
-                    </p>
-                </div>
-            </div>
-        </section>
+    <div class="footer-section">
+        <h3>Информация</h3>
+        <ul>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="help.html">Помощь (FAQ)</a></li>
+            <li style="font-weight: 700;"><a href="terms.html" style="color: white;">Условия использования</a></li>
+            <li><a href="privacy.html">Политика конфиденциальности</a></li>
+        </ul>
+    </div>
 
-        <section class="text-content-section">
-            <div class="container">
-                <h2 style="color: #1e293b;">1. Общие положения</h2>
-                <p>
-                    1.1. [cite_start]Настоящие Условия использования (далее — «Условия») регулируют отношения между Airflow Travel (далее — «Компания») и пользователем сети Интернет (далее — «Пользователь»), возникающие при использовании веб-сайта Airflow Travel и его сервисов. [cite: 676, 677, 678]
-                </p>
-                <p>
-                    1.2. Пользователь обязан полностью ознакомиться с настоящими Условиями до начала использования сайта. [cite_start]Начиная использовать сайт, Пользователь автоматически принимает все его условия без каких-либо оговорок и исключений. [cite: 681, 682]
-                </p>
-
-                <h2>2. Интеллектуальная собственность</h2>
-                <p>
-                    2.1. [cite_start]Все объекты, доступные на сайте, включая элементы дизайна, текст, графические изображения, иллюстрации и скрипты, являются объектами исключительных прав Компании и других правообладателей. [cite: 691]
-                </p>
-                <p>
-                    2.2. Использование материалов, доступных на сайте, разрешено только в личных некоммерческих целях. [cite_start]Копирование, воспроизведение или распространение контента в коммерческих целях строго запрещено. [cite: 706, 707]
-                </p>
-                
-                <h2>3. Отказ от ответственности</h2>
-                <p>
-                    3.1. [cite_start]Компания не несет ответственности за любые прямые или косвенные убытки, возникшие вследствие использования или невозможности использования сайта и информационных сервисов, представленных на нем. [cite: 714]
-                </p>
-                <p>
-                    3.2. Цены и информация, представленные на сайте, являются результатом сравнения данных от сторонних партнеров (Localrent, EconomyBookings и др.) и могут изменяться. [cite_start]Актуальную информацию необходимо уточнять на сайтах партнеров. [cite: 629, 630]
-                </p>
-                
-                <h2>4. Изменение Условий</h2>
-                <p>
-                    4.1. Компания оставляет за собой право изменять или дополнять настоящие Условия в любое время. Продолжение использования сайта после внесения изменений означает полное согласие Пользователя с новыми условиями.
-                </p>
-            </div>
-        </section>
-        
-    </main>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>О нас</h3>
-                    <ul> 
-                        <li><a href="about.html">О проекте Airflow</a></li> 
-                        <li><a href="help.html">Помощь и контакты</a></li> 
-                        <li><a href="terms.html">Условия использования</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Помощь</h3>
-                    <ul>
-                        <li><a href="help.html#faq">FAQ</a></li>
-                        <li><a href="help.html#contact">Связаться с нами</a></li>
-                        <li><a href="terms.html">Условия использования</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Направления</h3>
-                    <ul>
-                        <li><a href="#">Авиабилеты</a></li>
-                        <li><a href="#">Отели</a></li>
-                        <li><a href="cars.html">Аренда авто</a></li>
-                        <li><a href="#">Трансферы</a></li>
-                        <li><a href="#">Поезда</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Мы в соцсетях</h3>
-                    <ul class="social-links" style="display: flex; gap: 10px;">
-                        <li><a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane" style="font-size: 1.4rem;"></i></a></li>
-                        <li><a href="#" aria-label="VKontakte"><i class="fab fa-vk" style="font-size: 1.4rem;"></i></a></li>
-                        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram" style="font-size: 1.4rem;"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                &copy; 2024 Airflow Travel. Все права защищены.
-            </div>
+    <div class="footer-section">
+        <h3>Контакты</h3>
+        <div class="footer-contacts" style="background: none; padding: 0; margin: 0;">
+            <a href="mailto:info@airflowtravel.net" style="color: white;">
+                <i class="fas fa-envelope"></i> info@airflowtravel.net
+            </a>
+            <p style="margin-top: 5px; font-size: 0.9rem; color: #64748b;">(Общие вопросы)</p>
+            <a href="https://coffeespecialty.ru" style="color: #f59e0b; text-decoration: none; display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+                <i class="fas fa-mug-hot" style="color: #f59e0b;"></i> 
+                <p style="margin: 0; color: #94a3b8;">Specialty Coffee</p>
+            </a>
         </div>
-    </footer>
+    </div>
 
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 Airflow Travel. Все права защищены.</p>
+</div>
+</div>
+</footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            /* 1. ЛОГИКА МОБИЛЬНОГО МЕНЮ */
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuClose = document.getElementById('mobile-menu-close');
-            const menuOverlay = document.getElementById('mobile-menu-overlay');
-            let isMenuOpen = false;
+<script>
+    // Код для навигации (стандартный, рабочий скрипт)
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuButton = document.getElementById('mobile-menu-button');
+    const menuOverlay = document.getElementById('mobile-menu-overlay');
+    const menuClose = document.getElementById('mobile-menu-close');
+    let isMenuOpen = false;
 
-            function toggleMenu() {
-                isMenuOpen = !isMenuOpen;
-                if (isMenuOpen) {
-                    menuOverlay.style.display = 'block';
-                    setTimeout(() => {
-                        mobileMenu.classList.add('active');
-                        menuOverlay.classList.add('active');
-                        document.body.style.overflow = 'hidden'; // Блокируем скролл фона
-                    }, 10);
-                } else {
-                    mobileMenu.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    document.body.style.overflow = ''; // Возвращаем скролл
-                    setTimeout(() => {
-                        if (!isMenuOpen) {
-                            menuOverlay.style.display = 'none';
-                        }
-                    }, 300);
-                }
-            }
-
-            function closeMenu() {
-                isMenuOpen = false;
-                mobileMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                document.body.style.overflow = ''; // Возвращаем скролл
-                setTimeout(() => {
+    function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            menuOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
+        } else {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; 
+            setTimeout(() => {
+                if (!isMenuOpen) {
                     menuOverlay.style.display = 'none';
-                }, 300);
-            }
-
-            // Обработчики событий
-            if (menuButton) menuButton.addEventListener('click', toggleMenu);
-            if (menuClose) menuClose.addEventListener('click', closeMenu);
-            if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
-
-            // Закрытие при изменении размера экрана
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 1175 && isMenuOpen) {
-                    closeMenu();
                 }
-            });
+            }, 300);
+        }
+    }
 
+    function closeMenu() {
+        isMenuOpen = false;
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = ''; 
+        setTimeout(() => {
+            menuOverlay.style.display = 'none';
+        }, 300);
+    }
 
-            /* 2. ИНИЦИАЛИЗАЦИЯ SWIPER-СЛАЙДЕРА ДЛЯ ОТЗЫВОВ (Отключена, т.к. секция удалена, но код оставлен для совместимости) */
-            // new Swiper('.testimonials-slider', {
-            //     loop: true,
-            //     slidesPerView: 1,
-            //     spaceBetween: 30,
-            //     autoplay: {
-            //         delay: 5000,
-            //         disableOnInteraction: false,
-            //     },
-            //     pagination: {
-            //         el: '.swiper-pagination',
-            //         clickable: true,
-            //     },
-            //     navigation: {
-            //         nextEl: '.swiper-button-next',
-            //         prevEl: '.swiper-button-prev',
-            //     },
-            //     breakpoints: {
-            //         768: {
-            //             slidesPerView: 2,
-            //             spaceBetween: 30
-            //         },
-            //         1024: {
-            //             slidesPerView: 3,
-            //             spaceBetween: 30
-            //         }
-            //     },
-            //     autoHeight: false, 
-            //     on: {
-            //         init: function () {
-            //             document.body.style.overflowX = 'hidden';
-            //         },
-            //     }
-            // });
+    if (menuButton) menuButton.addEventListener('click', toggleMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+    
+    // Закрытие мобильного меню при клике на ссылку
+    document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('active')) {
+                closeMenu();
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>
